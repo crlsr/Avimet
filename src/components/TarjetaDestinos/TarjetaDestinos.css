@@ -1,0 +1,76 @@
+.tarjeta-destino {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    overflow: hidden;
+    margin: 20px auto;
+    color: white;
+    height: 320px;
+    max-width: 1050px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .tarjeta-destino.lightgreen {
+    background-color: #0DA665;
+  }
+
+  .tarjeta-destino.darkgreen {
+    background-color: #1b4332;;
+  }
+  
+  .imagen-destino {
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 50%;
+    height: 80%;
+    object-fit: cover;
+    border: 3px solid #a3e96c;
+    border-radius: 10px 20px 110px 20px;
+  }
+  
+  .contenido-destino {
+    margin: 0 20px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .titulo-destino {
+    font-size: 3.5em;
+    font-family: "Instrument Serif";
+    font-weight: lighter;
+    color:#a3e96c;
+    margin-top: 0;
+    margin-left: 0; 
+    padding-left: 0; 
+    text-align: left;
+  }
+  
+  .descripcion-destino {
+    font-size: 1em;
+    margin-bottom: 15px;
+    text-align: justify;
+    font-family: "Roboto", "Inter", sans-serif
+  }
+  
+  .boton-mas-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: #a3e96c;
+    padding: 10px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 0.8rem;
+  }
+  
+  .boton-mas-info:hover {
+    background-color: #21835a;
+  }
