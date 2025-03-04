@@ -18,6 +18,18 @@ body {
   align-items: center;
 }
 
+.loading {
+  font-size: x-small;
+  color: #1b4332;
+  font-weight: bold;
+}
+
+.error {
+  font-size: x-small;
+  color: #d14b4b;
+  font-weight: bold;
+}
+
 .image-container {
   position: fixed;
   left: 0;
@@ -37,7 +49,7 @@ body {
 }
 
 .login-box {
-  padding: 20px;
+  padding: 0px;
   border-radius: 10px;
   width: 80%;
 }
@@ -91,7 +103,7 @@ form {
 
 .password-input {
   width: 100%;
-  padding-right: 40px; 
+  padding-right: 40px;
 }
 
 .eye-icon {
@@ -101,7 +113,6 @@ form {
   color: gray;
   font-size: 18px;
 }
-
 
 .options {
   display: flex;
@@ -225,5 +236,11 @@ input:checked + .slider:before {
 @media (max-width: 600px) {
   .login-box {
     width: 90%;
+  }
+}
+
+@media (max-width: 1599px) {
+  .image-container {
+    margin-bottom: -35px;
   }
 }
