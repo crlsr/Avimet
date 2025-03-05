@@ -8,29 +8,14 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 import appFirebase from "../../credenciales";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getFirestore, doc, getDoc } from "firebase/firestore";
 
 import { authProviders, providerGoogle, providerFacebook } from "../../credenciales";
 import { signInWithPopup } from "firebase/auth";
 
 const auth = getAuth(appFirebase);
+const db = getFirestore(appFirebase);
 
-const facebookClick = () => {
-  signInWithPopup(authProviders, providerFacebook).then((result) => {
-      console.log(result); // Falta comprobar la informacion del usuario en la base de datos
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-};
-
-const googleClick = () => {
-  signInWithPopup(authProviders, providerGoogle).then((result) => {
-      console.log(result); // Falta comprobar la informacion del usuario en la base de datos
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-};
 
 const Login = () => {
   const navigation = useNavigate();
@@ -39,6 +24,42 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const googleClick = async () => {
+    try {
+      const result = await signInWithPopup(authProviders, providerGoogle);
+      const userDoc = await getDoc(doc(db, "users", result.user.uid));
+      if (userDoc.exists()) {
+        console.log(result); // Existe el usuario dentro de la base de datos
+        navigation("/");
+      } else {
+        console.error("User not registered. Please sign up first.");
+        alert("User not registered. Please sign up first.");
+        await auth.signOut();
+      }
+    } catch (error) {
+      console.error("Error during Google sign-in:", error);
+      alert("Error during Google sign-in: " + error.message);
+    }
+  };
+
+  const facebookClick = async () => {
+    try {
+      const result = await signInWithPopup(authProviders, providerFacebook);
+      const userDoc = await getDoc(doc(db, "users", result.user.uid));
+      if (userDoc.exists()) {
+        console.log(result); // Existe el usuario dentro de la base de datos
+        navigation("/");
+      } else {
+        console.error("User not registered. Please sign up first.");
+        alert("User not registered. Please sign up first.");
+        await auth.signOut();
+      }
+    } catch (error) {
+      console.error("Error during Facebook sign-in:", error);
+      alert("Error during Facebook sign-in: " + error.message);
+    }
+  };
 
   const functAuthentication = async (e) => {
     e.preventDefault();
