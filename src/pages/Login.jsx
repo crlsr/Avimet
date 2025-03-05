@@ -9,7 +9,28 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import appFirebase from "../../credenciales";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
+import { authProviders, providerGoogle, providerFacebook } from "../../credenciales";
+import { signInWithPopup } from "firebase/auth";
+
 const auth = getAuth(appFirebase);
+
+const facebookClick = () => {
+  signInWithPopup(authProviders, providerFacebook).then((result) => {
+      console.log(result); // Falta comprobar la informacion del usuario en la base de datos
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+const googleClick = () => {
+  signInWithPopup(authProviders, providerGoogle).then((result) => {
+      console.log(result); // Falta comprobar la informacion del usuario en la base de datos
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
 
 const Login = () => {
   const navigation = useNavigate();
@@ -90,11 +111,11 @@ const Login = () => {
             </button>
           </form>
           <div className="social-login">
-            <button className="btn2">
+            <button className="btn2" onClick={googleClick}>
               <img src={googleLogo} alt="Google" className="icon" />
               Iniciar sesión con Google
             </button>
-            <button className="btn2">
+            <button className="btn2" onClick={facebookClick}>
               <img src={facebookLogo} alt="Facebook" className="icon" />
               Iniciar sesión con Facebook
             </button>
