@@ -30,16 +30,13 @@ const Login = () => {
       const result = await signInWithPopup(authProviders, providerGoogle);
       const userDoc = await getDoc(doc(db, "users", result.user.uid));
       if (userDoc.exists()) {
-        console.log(result); // Existe el usuario dentro de la base de datos
         navigation("/");
       } else {
-        console.error("User not registered. Please sign up first.");
-        alert("User not registered. Please sign up first.");
+        setError("Usuario no registrado. Asegúrese de registrarse primero.");
         await auth.signOut();
       }
     } catch (error) {
-      console.error("Error during Google sign-in:", error);
-      alert("Error during Google sign-in: " + error.message);
+      setError("Error al iniciar sesión con google: " + error.message);
     }
   };
 
@@ -48,16 +45,13 @@ const Login = () => {
       const result = await signInWithPopup(authProviders, providerFacebook);
       const userDoc = await getDoc(doc(db, "users", result.user.uid));
       if (userDoc.exists()) {
-        console.log(result); // Existe el usuario dentro de la base de datos
         navigation("/");
       } else {
-        console.error("User not registered. Please sign up first.");
-        alert("User not registered. Please sign up first.");
+        setError("Usuario no registrado. Asegúrese de registrarse primero.");
         await auth.signOut();
       }
     } catch (error) {
-      console.error("Error during Facebook sign-in:", error);
-      alert("Error during Facebook sign-in: " + error.message);
+      setError("Error al iniciar sesión con facebook: " + error.message);
     }
   };
 
