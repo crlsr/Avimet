@@ -4,6 +4,7 @@
 
 .slide-current {
     padding: 0;
+    position: fixed;
 }
 
 @media (min-width: 768px) {
