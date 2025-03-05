@@ -6,6 +6,30 @@ import googleLogo from "../assets/google.png";
 import facebookLogo from "../assets/facebook.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
+/*
+// Importar modulos de firebase para verificar datos
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../credenciales";
+
+
+// Función para validar el email dentro de la base de datos
+const validateEmail = () => {
+  //event.preventDefault();
+  //alert("Usuario no registrado");
+};
+
+// Función para agregar un usuario a la base de datos
+const addUser = async () => {}
+*/
+
+// Función para registrar un usuario con Google
+const signUpGoogle = () => {}
+
+// Función para registrar un usuario con Facebook
+const signUpFacebook = () => {}
+
+
+
 const SignUp = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
@@ -48,11 +72,11 @@ const SignUp = () => {
             <button className="btn1" type="submit">Crear Cuenta</button>
           </form>
           <div className="social-login">
-            <button className="btn2">
-              <img src={googleLogo} alt="Google" className="icon" />
+            <button className="btn2" onClick={signUpGoogle}>
+              <img src={googleLogo} alt="Google" className="icon"/>
               Registrarme con Google
             </button>
-            <button className="btn2">
+            <button className="btn2" onClick={signUpFacebook}>
               <img src={facebookLogo} alt="Facebook" className="icon" />
               Registrarme con Facebook
             </button>
