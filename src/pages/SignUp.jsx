@@ -7,9 +7,11 @@ import facebookLogo from "../assets/facebook.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 //importacion de modulos de firebase
-import appFirebase from "../credenciales";
+import appFirebase from "../../credenciales";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {doc, getFirestore, setDoc} from "firebase/firestore";
 const auth = getAuth(appFirebase);
+const db = getFirestore(appFirebase)
 
 //falta hacer la autenticacion con google y facebook
 const SignUp = () => {
@@ -47,7 +49,14 @@ const SignUp = () => {
       }
 
       setLoading(true);
-      await createUserWithEmailAndPassword(auth, email, password);
+      const nameRegister = await createUserWithEmailAndPassword(auth, email, password);
+      await setDoc(doc(db, "users", nameRegister.user.uid), {
+        name: name,
+        email: email,
+        phone: phone,
+        uid: nameRegister.user.uid,
+        creationDate: new Date(),
+      });
       setName("");
       setEmail("");
       setPhone("");
@@ -103,7 +112,7 @@ const SignUp = () => {
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               className="input-field"
-              type="phone"
+              type="text"
               placeholder="Teléfono"
               id="phone"
             />

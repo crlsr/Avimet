@@ -6,7 +6,7 @@ import googleLogo from "../assets/google.png";
 import facebookLogo from "../assets/facebook.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-import appFirebase from "../credenciales";
+import appFirebase from "../../credenciales";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 const auth = getAuth(appFirebase);
