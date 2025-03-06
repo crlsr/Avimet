@@ -1,6 +1,6 @@
 import React from "react";
 import { UserContext } from "../context/UserContext";
-import "./LoginSignup.css";
+import "./LoginSignUp/LoginSignup.css";
 import ProductCarousel from "../components/ProductCarousel/ProductCarousel";
 import TarjetaDestinos, {
   destinosData,

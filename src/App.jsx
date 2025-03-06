@@ -9,11 +9,12 @@ const auth = getAuth(appFirebase);
 */
 
 //importando los componentes
-import Login from "./pages/Login";
+import Login from "./pages/LoginSignUp/Login";
 import Home from "./pages/Home";
-import SignUp from "./pages/SignUp";
+import SignUp from "./pages/LoginSignUp/SignUp";
 import Notfound from "./pages/Notfound";
-import Profile from "./pages/Profile"
+import Profile from "./pages/Profile";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
   /*const [user, setUser] = useState(null);
@@ -29,14 +30,13 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route
-          path="/"
-          element={<Home />}
-        />
-        <Route path="/profile" element={<Profile />} />
+        <Route element={<Navbar />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="*" element={<Notfound />} />
+        </Route>
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
-        <Route path="*" element={<Notfound />} />
       </Routes>
     </Router>
   );

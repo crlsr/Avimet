@@ -1,19 +1,24 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "./LoginSignup.css";
-import image from "../assets/montana-login.png";
-import googleLogo from "../assets/google.png";
-import facebookLogo from "../assets/facebook.png";
+import global from "../../global.module.css";
+import image from "../../assets/montana-login.png";
+import googleLogo from "../../assets/google.png";
+import facebookLogo from "../../assets/facebook.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import "./LoginSignup.css";
 
 //importacion de modulos de firebase
-import appFirebase from "../../credenciales";
+import appFirebase from "../../../credenciales";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import {doc, getFirestore, setDoc, getDoc} from "firebase/firestore";
+import { doc, getFirestore, setDoc, getDoc } from "firebase/firestore";
 const auth = getAuth(appFirebase);
-const db = getFirestore(appFirebase)
+const db = getFirestore(appFirebase);
 
-import { authProviders, providerGoogle, providerFacebook } from "../../credenciales";
+import {
+  authProviders,
+  providerGoogle,
+  providerFacebook,
+} from "../../../credenciales";
 import { signInWithPopup } from "firebase/auth";
 
 //falta hacer la autenticacion con google y facebook
@@ -29,6 +34,7 @@ const googleSignUp = async () => {
 
 const SignUp = () => {
   const phoneRegex = /^\+58-\d{4}-\d{3}-\d{4}$/;
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@correo\.unimet\.edu\.ve$/;
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -55,9 +61,17 @@ const SignUp = () => {
         setError("Validación de contraseña inválida");
         return;
       }
+      if (!emailRegex.test(email)) {
+        setError("El correo debe ser @correo.unimet.edu.ve");
+        return;
+      }
 
       setLoading(true);
-      const nameRegister = await createUserWithEmailAndPassword(auth, email, password);
+      const nameRegister = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
       await setDoc(doc(db, "users", nameRegister.user.uid), {
         name: name,
         email: email,
@@ -80,9 +94,14 @@ const SignUp = () => {
 
       if (error.message == "Firebase: Error (auth/email-already-in-use).") {
         setError("El correo ya está en uso");
-      } else if (error.message == "Firebase: Error (auth/network-request-failed).") {
+      } else if (
+        error.message == "Firebase: Error (auth/network-request-failed)."
+      ) {
         setError("Opss. Revise su conexión a Internet");
-      } else if (error.message == "Firebase: Password should be at least 6 characters (auth/weak-password).") {
+      } else if (
+        error.message ==
+        "Firebase: Password should be at least 6 characters (auth/weak-password)."
+      ) {
         setError("Su contraseña debe tener por lo menos 6 carácteres");
       } else if (error.message == "Firebase: Error (auth/invalid-email).") {
         setError("Email invalido");
@@ -156,7 +175,7 @@ const SignUp = () => {
             <input
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="input-field"
+              className={global.input_field}
               type="text"
               placeholder="Nombre y Apellido"
               id="name"
@@ -164,7 +183,7 @@ const SignUp = () => {
             <input
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="input-field"
+              className={global.input_field}
               type="email"
               placeholder="Email"
               id="email"
@@ -172,7 +191,7 @@ const SignUp = () => {
             <input
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              className="input-field"
+              className={global.input_field}
               type="text"
               placeholder="Teléfono"
               id="phone"
@@ -181,7 +200,7 @@ const SignUp = () => {
               <input
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="input-field password-input"
+                className={global.password_input}
                 type={passwordVisible ? "text" : "password"}
                 placeholder="Contraseña (min. 8 caracteres)"
                 id="password"
@@ -197,7 +216,7 @@ const SignUp = () => {
               <input
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                className="input-field password-input"
+                className={global.password_input}
                 type={confirmPasswordVisible ? "text" : "password"}
                 placeholder="Repetir contraseña"
                 id="confirm-password"
@@ -211,16 +230,16 @@ const SignUp = () => {
                 {confirmPasswordVisible ? <FaEyeSlash /> : <FaEye />}
               </span>
             </div>
-            <button className="btn1" type="submit">
+            <button className={global.btn1} type="submit">
               Crear Cuenta
             </button>
           </form>
           <div className="social-login">
-            <button className="btn2" onClick={handleGoogleSignUp}>
+            <button className={global.btn2} onClick={handleGoogleSignUp}>
               <img src={googleLogo} alt="Google" className="icon" />
               Registrarse con Google
             </button>
-            <button className="btn2" onClick={handleFacebookSignUp}>
+            <button className={global.btn2} onClick={handleFacebookSignUp}>
               <img src={facebookLogo} alt="Facebook" className="icon" />
               Registrarse con Facebook
             </button>

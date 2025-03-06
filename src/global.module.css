@@ -1,0 +1,105 @@
+h1 {
+  color: #1b4332;
+  font-size: 2rem;
+  font-family: "Instrument Serif";
+  font-weight: lighter;
+  margin: 5px;
+}
+
+h2 {
+  color: #1b4332;
+  margin: 0px;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+p {
+  font-size: 0.875rem;
+}
+
+.input_field {
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #0da665;
+  border-radius: 16px;
+  height: 20px;
+}
+
+.input_field:hover {
+  background-color: #ffffffc3;
+}
+
+.input_field:focus {
+  outline: none;
+  border: 1px solid #1b4332;
+}
+.password_input {
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #0da665;
+  border-radius: 16px;
+  height: 20px;
+  width: 100%;
+  padding-right: 40px;
+}
+.password_input:hover {
+  background-color: #ffffffc3;
+}
+
+.password_input:focus {
+  outline: none;
+  border: 1px solid #1b4332;
+}
+.btn1 {
+  background: #1b4332;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+.btn1:hover {
+  background: #a3e96c;
+  color: #1b4332;
+}
+
+.btn2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #a3e96c;
+  color: #1b4332;
+  padding: 10px;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+.btn2:hover {
+  background: #1b4332;
+  color: #fff;
+}
+
+.btn3 {
+  background: #a3e96c;
+  color: #1b4332;
+  padding: 10px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+.btn3:hover {
+  background: #d9f5de;
+  color: #1b4332;
+}

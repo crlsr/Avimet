@@ -1,21 +1,24 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./LoginSignup.css";
-import image from "../assets/montana-login.png";
-import googleLogo from "../assets/google.png";
-import facebookLogo from "../assets/facebook.png";
+import global from "../../global.module.css";
+import image from "../../assets/montana-login.png";
+import googleLogo from "../../assets/google.png";
+import facebookLogo from "../../assets/facebook.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-import appFirebase from "../../credenciales";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import appFirebase from "../../../credenciales";
+import { getAuth, signInWithEmailAndPassword,signInWithPopup} from "firebase/auth";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 
-import { authProviders, providerGoogle, providerFacebook } from "../../credenciales";
-import { signInWithPopup } from "firebase/auth";
+import {
+  authProviders,
+  providerGoogle,
+  providerFacebook,
+} from "../../../credenciales";
 
 const auth = getAuth(appFirebase);
 const db = getFirestore(appFirebase);
-
 
 const Login = () => {
   const navigation = useNavigate();
@@ -90,7 +93,7 @@ const Login = () => {
           <h2>Iniciar Sesión</h2>
           <form onSubmit={functAuthentication} onChange={() => setError("")}>
             <input
-              className="input-field"
+              className={global.input_field}
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -99,7 +102,7 @@ const Login = () => {
             />
             <div className="input-wrapper">
               <input
-                className="input-field password-input"
+                className={global.password_input}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 type={passwordVisible ? "text" : "password"} //"password"
@@ -121,16 +124,16 @@ const Login = () => {
               <p>Recuérdame</p>
               <a href="#">¿Olvidaste tu contraseña?</a>
             </div>
-            <button className="btn1" type="submit">
+            <button className={global.btn1} type="submit">
               Iniciar Sesión
             </button>
           </form>
           <div className="social-login">
-            <button className="btn2" onClick={googleClick}>
+            <button className={global.btn2} onClick={googleClick}>
               <img src={googleLogo} alt="Google" className="icon" />
               Iniciar sesión con Google
             </button>
-            <button className="btn2" onClick={facebookClick}>
+            <button className={global.btn2} onClick={facebookClick}>
               <img src={facebookLogo} alt="Facebook" className="icon" />
               Iniciar sesión con Facebook
             </button>

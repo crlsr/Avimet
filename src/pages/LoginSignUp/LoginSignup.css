@@ -54,56 +54,15 @@ body {
   width: 80%;
 }
 
-h1 {
-  color: #1b4332;
-  font-size: 2rem;
-  font-family: "Instrument Serif";
-  font-weight: lighter;
-  margin: 5px;
-}
-
-h2 {
-  color: #1b4332;
-  margin: 0px;
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-p {
-  font-size: 0.875rem;
-}
-
 form {
   display: flex;
   flex-direction: column;
-}
-
-.input-field {
-  padding: 10px;
-  margin: 5px 0;
-  border: 1px solid #0da665;
-  border-radius: 16px;
-  height: 20px;
-}
-
-.input-field:hover {
-  background-color: #ffffffc3;
-}
-
-.input-field:focus {
-  outline: none;
-  border: 1px solid #003428;
 }
 
 .input-wrapper {
   position: relative;
   display: flex;
   align-items: center;
-}
-
-.password-input {
-  width: 100%;
-  padding-right: 40px;
 }
 
 .eye-icon {
@@ -126,47 +85,9 @@ form {
   margin-right: auto;
 }
 
-.btn1 {
-  background: #003428;
-  color: #fff;
-  padding: 10px;
-  border: none;
-  border-radius: 16px;
-  cursor: pointer;
-  margin-top: 10px;
-  font-weight: bold;
-  font-size: 0.8rem;
-}
-
-.btn1:hover {
-  background: #a3e96c;
-  color: #003428;
-}
-
-.btn2 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  background: #a3e96c;
-  color: #003428;
-  padding: 10px;
-  border: none;
-  border-radius: 16px;
-  cursor: pointer;
-  margin-top: 10px;
-  font-weight: bold;
-  font-size: 0.8rem;
-}
-
 .btn2 img {
   width: 20px;
   height: 20px;
-}
-
-.btn2:hover {
-  background: #003428;
-  color: #fff;
 }
 
 a {
