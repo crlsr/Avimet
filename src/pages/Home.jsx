@@ -1,10 +1,7 @@
 import React from "react";
-import { UserContext } from "../context/UserContext";
 import "./LoginSignUp/LoginSignup.css";
 import ProductCarousel from "../components/ProductCarousel/ProductCarousel";
-import TarjetaDestinos, {
-  destinosData,
-} from "../components/TarjetaDestinos/TarjetaDestinos";
+import TarjetaDestinos, { destinosData } from "../components/TarjetaDestinos/TarjetaDestinos";
 import TarjetaMisionVision from "../components/TarjetaMisionVision/TarjetaMisionVision";
 
 const Home = () => {
