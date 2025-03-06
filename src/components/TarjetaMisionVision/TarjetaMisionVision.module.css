@@ -1,0 +1,69 @@
+.contenedor-tarjetas {
+  display: flex;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  justify-content: center;
+}
+
+.tarjeta {
+  background-color: #1b4332;
+  color: white;
+  border-radius: 20px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+  position: relative;
+  max-width: 500px;
+}
+
+.tarjeta-content {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.icono {
+  position: absolute;
+  top: 25px;
+  right: 20px;
+  left: 170px;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+}
+
+.imagen {
+  width: 50px;
+  height: 50px;
+  margin-left: auto;
+}
+
+.titulo {
+  font-size: 3.5em;
+  font-family: "Instrument Serif";
+  font-weight: lighter;
+  color: #a3e96c;
+  margin: 0;
+  text-align: left;
+}
+
+.texto {
+  font-size: 1em;
+  margin: 0;
+  text-align: justify;
+  font-family: "Roboto", "Inter", sans-serif;
+}
+
+/* Responsivo: Apilar en móviles */
+@media (max-width: 768px) {
+  .contenedor-tarjetas {
+    grid-template-columns: 1fr;
+  }
+
+  .tarjeta {
+    width: 100%;
+  }
+}

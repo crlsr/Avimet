@@ -11,8 +11,9 @@ import image3 from '../../assets/Avila.png.jpg';
 import image4 from '../../assets/Avila.png.jpg';
 import image5 from '../../assets/Avila.png.jpg';
 import image6 from '../../assets/Avila.png.jpg';
+import image7 from '../../assets/Avila.png.jpg';
+import image8 from '../../assets/Avila.png.jpg';
 
-// Flechas para ver los demas productos
 function SampleNextArrow(props) {
     const { className, style, onClick } = props;
     return (
@@ -43,6 +44,8 @@ function ProductCarousel() {
         { id: 4, name: 'xx', image: image4 },
         { id: 5, name: 'xx', image: image5 },
         { id: 6, name: 'xx', image: image6 },
+        { id: 7, name: 'xx', image: image7 },
+        { id: 8, name: 'xx', image: image8 },
     ];
 
     var settings = {
@@ -50,12 +53,12 @@ function ProductCarousel() {
         infinite: true,
         speed: 500,
         lazyLoad: true,
-        slidesToShow: 4,
+        slidesToShow: 8,
         slidesToScroll: 1,
-        initialSlide: 0,
-        slidesMargin: 10,
-        nextArrow: <SampleNextArrow />,
-        prevArrow: <SamplePrevArrow />,
+        autoplay: true, 
+        autoplaySpeed: 2500,
+        sEase: "linear", // Movimiento suave
+        pauseOnHover: false,
         responsive: [
             {
                 breakpoint: 1024,
