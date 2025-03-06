@@ -117,7 +117,7 @@ const SignUp = () => {
       if (userDoc.exists()) {
         setLoading(false);
         setError("El usuario ya está registrado. Por favor, inicie sesión.");
-        await auth.signOut(); // Sign out the user if they are already registered
+        await auth.signOut();
       } else {
         await setDoc(doc(db, "users", fbUser.user.uid), {
           name: fbUser.user.displayName,
@@ -145,7 +145,7 @@ const SignUp = () => {
       if (userDoc.exists()) {
         setLoading(false);
         setError("El usuario ya está registrado. Por favor, inicie sesión.");
-        await auth.signOut(); // Sign out the user if they are already registered
+        await auth.signOut();
       } else {
         await setDoc(doc(db, "users", googleUser.user.uid), {
           name: googleUser.user.displayName,

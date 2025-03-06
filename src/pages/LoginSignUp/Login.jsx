@@ -39,7 +39,10 @@ const Login = () => {
         await auth.signOut();
       }
     } catch (error) {
-      setError("Error al iniciar sesión con google: " + error.message);
+      if (error.message == "Firebase: Error (auth/popup-blocked).") {
+        setError("Tu buscador ha bloqueado la ventana emergente de inicio de sesión. Asegúsere de que su buscador no esté bloqueando ventanas emergentes.")
+      }
+      console.log("Error al iniciar sesión con google: " + error.message);
     }
   };
 
@@ -54,7 +57,10 @@ const Login = () => {
         await auth.signOut();
       }
     } catch (error) {
-      setError("Error al iniciar sesión con facebook: " + error.message);
+      if (error.message == "Firebase: Error (auth/popup-blocked).") {
+        setError("Tu buscador ha bloqueado la ventana emergente de inicio de sesión. Asegúsere de que su buscador no esté bloqueando ventanas emergentes.")
+      }
+      console.log("Error al iniciar sesión con facebook: " + error.message);
     }
   };
 
