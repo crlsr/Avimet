@@ -1,0 +1,72 @@
+.tarjetaHome {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  border-radius: 20px;
+  background: transparent; 
+  max-width: 2000px;
+  margin: auto;
+  width: 1000px;
+}
+
+.contenido {
+  flex: 1;
+}
+
+.subtitulo {
+  color: #1b4332;
+  font-size: 1rem;
+  font-family: "Instrument Serif";
+  font-weight: lighter;
+  margin: 5px;
+}
+
+.titulo {
+  font-size: 120px;
+  font-weight: bold;
+  font-style: italic;
+  color: #21835a;
+}
+
+.primeraParte {
+  color: #000; 
+}
+
+.boton {
+  background-color: #1b4332;
+  color: white;
+  padding: 10px 160px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 5px;
+  position: absolute; 
+}
+
+.boton:hover {
+  background-color: #21835a;
+}
+
+.imagenContainer {
+  width: "x";
+}
+
+.imagen {
+  width: 100%;
+    height: auto;
+    object-fit: cover;
+    max-width: 400px; 
+    max-height: 250px; 
+    margin-left: auto;
+    border: 5px solid #8ce14c;
+    border-radius: 30px 130px 30px 130px;
+}
+
+.pageContainer {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin: 0 auto;
+}
