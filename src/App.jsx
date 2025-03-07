@@ -15,6 +15,7 @@ import SignUp from "./pages/LoginSignUp/SignUp";
 import Notfound from "./pages/Notfound";
 import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar/Navbar";
+import Destination from "./pages/Destination";
 
 function App() {
   /*const [user, setUser] = useState(null);
@@ -33,6 +34,7 @@ function App() {
         <Route element={<Navbar />}>
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/destinations/:slug" element={<Destination />}/>
           <Route path="*" element={<Notfound />} />
         </Route>
         <Route path="/signup" element={<SignUp />} />

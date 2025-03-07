@@ -46,7 +46,7 @@ const Home = () => {
             botonTexto={homeData.botonTexto}
             imagen={homeData.imagen}
           />
-          </div>
+        </div>
 
         </>
 
