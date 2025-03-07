@@ -3,7 +3,7 @@ body {
   background: #d9f5de;
   margin: 0;
   padding: 0;
-  display: flex;
+  /* display: flex; */
   justify-content: center;
   align-items: center;
   height: 100vh;
@@ -220,6 +220,8 @@ input:checked + .slider:before {
 .social-login {
   display: flex;
   flex-direction: column;
+  gap: 12px;
+  font-size: 12px;
 }
 
 @media (max-width: 600px) {

@@ -166,7 +166,7 @@ const SignUp = () => {
   };
 
   return (
-    <>
+    <div className="auth-container">
       <div className="container">
         <h1>Regístrate y sé un aventurero más</h1>
         <div className="login-box">
@@ -230,16 +230,16 @@ const SignUp = () => {
                 {confirmPasswordVisible ? <FaEyeSlash /> : <FaEye />}
               </span>
             </div>
-            <button className={global.btn1} type="submit">
+            <button className="btn-primary auth-btn" type="submit">
               Crear Cuenta
             </button>
           </form>
           <div className="social-login">
-            <button className={global.btn2} onClick={handleGoogleSignUp}>
+            <button className="btn-secondary auth-btn social-auth-btn" onClick={handleGoogleSignUp}>
               <img src={googleLogo} alt="Google" className="icon" />
               Registrarse con Google
             </button>
-            <button className={global.btn2} onClick={handleFacebookSignUp}>
+            <button className="btn-secondary auth-btn social-auth-btn" onClick={handleFacebookSignUp}>
               <img src={facebookLogo} alt="Facebook" className="icon" />
               Registrarse con Facebook
             </button>
@@ -254,7 +254,7 @@ const SignUp = () => {
       <div className="image-container">
         <img src={image} alt="Montaña" className="image_mountain" />
       </div>
-    </>
+    </div>
   );
 };
 

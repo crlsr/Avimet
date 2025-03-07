@@ -92,7 +92,7 @@ const Login = () => {
   };
 
   return (
-    <>
+    <div className="auth-container">
       <div className="container">
         <h1>Bienvenido/a a tu guía aventurera</h1>
         <div className="login-box">
@@ -130,16 +130,16 @@ const Login = () => {
               <p>Recuérdame</p>
               <a href="#">¿Olvidaste tu contraseña?</a>
             </div>
-            <button className={global.btn1} type="submit">
+            <button className="btn-primary auth-btn" type="submit">
               Iniciar Sesión
             </button>
           </form>
           <div className="social-login">
-            <button className={global.btn2} onClick={googleClick}>
+            <button className="btn-secondary auth-btn social-auth-btn" onClick={googleClick}>
               <img src={googleLogo} alt="Google" className="icon" />
               Iniciar sesión con Google
             </button>
-            <button className={global.btn2} onClick={facebookClick}>
+            <button className="btn-secondary auth-btn social-auth-btn" onClick={facebookClick}>
               <img src={facebookLogo} alt="Facebook" className="icon" />
               Iniciar sesión con Facebook
             </button>
@@ -155,7 +155,7 @@ const Login = () => {
       <div className="image-container">
         <img src={image} alt="Montaña" className="image_mountain" />
       </div>
-    </>
+    </div>
   );
 };
 

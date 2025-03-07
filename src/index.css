@@ -1,3 +1,11 @@
+body {
+    font-family: "Roboto", "Inter", sans-serif;
+    background: #d9f5de;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
 button {
     font-weight: bold;
     padding: 10px 64px;
@@ -9,8 +17,10 @@ button {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 2px;
+    justify-content: center;
+    gap: 8px;
     font-family: "Roboto";
+    text-align: center;
 }
 
 .btn-primary {

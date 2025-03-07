@@ -14,7 +14,7 @@ const TarjetaNoticias = ({ imagen, titulo, fecha, descripcion }) => {
         <span className="fecha">{fecha}</span>
         <h2 className="titulonoticias">{titulo}</h2>
         <p className="descripcion">{descripcion}</p>
-        <button className="boton">Ver más</button>
+        <button className="btn-primary news-btn">Ver más</button>
       </div>
     </div>
   );

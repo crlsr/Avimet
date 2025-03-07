@@ -57,20 +57,5 @@
 }
 
 .boton-mas-info {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  background-color: #a3e96c;
-  padding: 10px;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  margin-top: 10px;
-  font-weight: bold;
-  font-size: 0.8rem;
-}
-
-.boton-mas-info:hover {
-  background-color: #21835a;
+  width: 100%;
 }

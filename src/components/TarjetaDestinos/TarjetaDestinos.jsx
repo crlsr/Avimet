@@ -9,7 +9,7 @@ const TarjetaDestinos = ({ imagen, titulo, descripcion, colorClase }) => {
       <div className="contenido-destino">
         <h2 className="titulo-destino">{titulo}</h2>
         <p className="descripcion-destino">{descripcion}</p>
-        <button className="boton-mas-info">Más información</button>
+        <button className="btn-secondary boton-mas-info">Más información</button>
       </div>
     </div>
   );

@@ -84,13 +84,7 @@
   font-family: "Roboto", "Inter", sans-serif;
 }
 
-.boton {
-  background-color: #1b4332;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
+.news-btn {
   display: flex;
   text-align: center;
   font-weight: light;
@@ -100,10 +94,6 @@
   margin-bottom: auto;
   bottom: 15px;
   right: 15px;
-}
-
-.boton:hover {
-  background-color: #21835a;
 }
 
 @media (max-width: 768px) {

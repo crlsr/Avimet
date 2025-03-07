@@ -1,8 +1,14 @@
-body {
-  font-family: "Roboto", "Inter", sans-serif;
-  background: #d9f5de;
-  margin: 0;
-  padding: 0;
+.auth-btn {
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.social-auth-btn {
+  font-size: 12px;
+}
+
+.auth-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -52,6 +58,9 @@ body {
   padding: 0px;
   border-radius: 10px;
   width: 80%;
+  display: flex;
+  flex-flow: column;
+  gap: 12px;
 }
 
 form {
@@ -152,6 +161,8 @@ input:checked + .slider:before {
 .social-login {
   display: flex;
   flex-direction: column;
+  gap: 12px;
+  font-size: 12px;
 }
 
 @media (max-width: 600px) {
