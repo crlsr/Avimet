@@ -1,0 +1,44 @@
+button {
+    font-weight: bold;
+    padding: 10px 64px;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    font-size: 16px;
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2px;
+    font-family: "Roboto";
+}
+
+.btn-primary {
+    background-color: #1b4332;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #a3e96c;
+    color: #1b4332;
+}
+
+.btn-secondary {
+    background: #a3e96c;
+    color: #1b4332;
+}
+  
+.btn-secondary:hover {
+    background: #D9F5DE;
+}
+
+.btn-tertiary {
+    color: #0DA665;
+    background-color: transparent;
+    font-size: 12px;
+    padding: 0;
+}
+  
+.btn-tertiary:hover {
+    color: #1b4332;
+}

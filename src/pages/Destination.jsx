@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import appFirebase from "../../credenciales";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
-import BannerTitle from '../components/banner/BannerTitle';
+import DestinationHeader from '../components/destination/DestinationHeader';
 
 const db = getFirestore(appFirebase);
 
@@ -28,11 +28,10 @@ export default function Destination() {
 
     if (destination)
         return (
-            <div className="tarjeta-home-container">
-                <BannerTitle 
+            <div>
+                <DestinationHeader 
                     titulo={destination?.destination}
-                    subtitulo={destination?.titulo} 
-                    botonTexto={"reservar"}
+                    subtitulo={destination?.title} 
                 />
             </div>
         )

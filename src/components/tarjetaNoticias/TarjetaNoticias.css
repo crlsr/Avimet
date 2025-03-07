@@ -96,7 +96,7 @@
   font-weight: light;
   align-items: center;
   justify-content: center;
-  position: absolute;
+  align-self: flex-end;
   margin-bottom: auto;
   bottom: 15px;
   right: 15px;
