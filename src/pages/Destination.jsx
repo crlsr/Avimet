@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import appFirebase from "../../credenciales";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import DestinationHeader from '../components/destination/DestinationHeader';
+import MapBanner from '../components/destination/MapBanner';
 
 const db = getFirestore(appFirebase);
 
@@ -33,6 +34,7 @@ export default function Destination() {
                     titulo={destination?.destination}
                     subtitulo={destination?.title} 
                 />
-            </div>
+                <MapBanner/>
+            </div>        
         )
 }

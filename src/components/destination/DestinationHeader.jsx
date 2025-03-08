@@ -3,10 +3,11 @@ import BannerTitle from "../banner/BannerTitle"
 import "./Destination.css"
 import { ArrowBackIcon } from "../../assets/icons/ArrowBackIcon"
 
-export default function DestinationHeader({ titulo, subtitulo }) {
+
+export default function DestinationHeader({ titulo, subtitulo, image }) {
 
     return (
-        <div className="header-container">
+        <div className="header-container" style={{ backgroundImage: `url(${image})`}}>
             <button className="btn-tertiary return-button">
                 <ArrowBackIcon className="arrow-back" />
                 Volver

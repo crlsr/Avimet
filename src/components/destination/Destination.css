@@ -7,7 +7,7 @@
     margin-top: 83px;
     background-color: rgba(217, 245, 222, 0.85);
     background-blend-mode: lighten;
-    background-image: url('../../assets/sabas-nieves.png');
+    /* background-image: url('../../assets/sabas-nieves.png'); */
     background-repeat: no-repeat;
     background-size: cover;
     padding: 40px 120px;
@@ -21,4 +21,92 @@
 
 .arrow-back {
     width: 18px;
+}
+
+.info-container {
+    display: flex;
+    flex-flow: row;
+    height: 55px;
+    width: 185px;
+    color: #a3e96c;
+    border: #a3e96c solid;
+    font-family: "Roboto";
+    font-size: 23px;
+    background: transparent;
+    border-radius: 22px;
+    border-width: 3px;
+    font-weight: bold;
+    gap: 10px;
+}
+
+.sign {
+    margin-left: 10px;
+    width: 35px;
+}
+
+.clock {
+    margin-left: 10px;
+    width: 35px;
+}
+
+.difficulty {
+    margin-left: 10px;
+    width: 35px;
+}
+
+.map-banner {
+    display: flex;
+    justify-content: center;
+    height: 80vh;
+    width: 100%;
+    background-color: #1b4332;
+}
+
+.map-container {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+    padding-right: 180px;
+}
+
+.map {
+    border-top-left-radius: 84px;
+    border-top-right-radius: 170px;
+    border-bottom-left-radius: 170px;
+    border-bottom-right-radius: 84px;
+    border: #a3e96c solid;
+    border-width: 5px;
+    width: 560px;
+    height: 350px;
+}
+
+.text-container {
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.about-container {
+    display: flex;
+    flex-flow: column;
+    align-items: start;
+    justify-content: center;
+    color:#a3e96c;
+    font-family: "Instrument Serif";
+    font-weight: lighter;
+    font-size: 35px;
+    gap: 20px;
+}
+
+.text-title {
+    color: #D9F5DE;
+    font-size: 12px;
+    margin:0;
+}
+
+.first-part {
+    color:white;
 }
