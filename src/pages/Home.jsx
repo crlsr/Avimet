@@ -1,20 +1,19 @@
 import React from "react";
-import { UserContext } from "../context/UserContext";
 import "./LoginSignUp/LoginSignup.css";
 import ProductCarousel from "../components/ProductCarousel/ProductCarousel";
-import TarjetaDestinos, {
-  destinosData,
-} from "../components/TarjetaDestinos/TarjetaDestinos";
+import TarjetaDestinos, { destinosData } from "../components/TarjetaDestinos/TarjetaDestinos";
 import TarjetaMisionVision from "../components/TarjetaMisionVision/TarjetaMisionVision";
+import TarjetaNoticias, { noticiasData } from "../components/TarjetaNoticias/TarjetaNoticias";
+import TarjetaHome, { homeData } from "../components/TarjetaHome/TarjetaHome";
 
 const Home = () => {
-  return (
-    <>
-      <div className="container">
-        <h1>Bienvenido</h1>
-        <ProductCarousel />
-      </div>
-      {/* Sección de tarjetas de información */}
+    return (
+        <>
+        <div className="container">
+            <h1>Bienvenido</h1>
+            <ProductCarousel/>
+        </div>
+        {/* Sección de tarjetas de información */}
       <div className="tarjetas-container">
         {destinosData.map((destino, index) => (
           <TarjetaDestinos
@@ -29,8 +28,32 @@ const Home = () => {
       <div>
         <TarjetaMisionVision />
       </div>
-    </>
-  );
-};
+      <div className="tarjetasnoticias-container">
+        {noticiasData.map((noticia, index) => (
+          <TarjetaNoticias
+            key={index}
+            imagen={noticia.imagen}
+            titulo={noticia.titulo}
+            fecha={noticia.fecha}
+            descripcion={noticia.descripcion}
+          />
+        ))}
+        </div>
+        <div className="tarjeta-home-container">
+          <TarjetaHome
+            titulo={homeData.titulo}
+            subtitulo={homeData.subtitulo}
+            botonTexto={homeData.botonTexto}
+            imagen={homeData.imagen}
+          />
+          </div>
 
-export default Home;
+        </>
+
+    )
+}
+
+export default Home
+
+
+

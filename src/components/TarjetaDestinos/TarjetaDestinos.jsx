@@ -31,10 +31,4 @@ export const destinosData = [
         descripcion: "La Quebrada Quintero, cerca de Municipio Sucre, Miranda, es un bellísimo destino paradisíaco lleno de rocas y un ambiente natural perfecto para disfrutar junto a amigos o familia. Esta ruta de 6.3 km tarda alrededor de 2h 38 m en ser recorrida, no suele ser un recorrido muy movido, siendo una de las rutas más sencillas de realizar si solo deseas pasar un buen rato.",
         colorClase: "lightgreen" 
     },
-    {
-        imagen: image1,
-        titulo: "Quebrada Quintero",
-        descripcion: "La Quebrada Quintero, cerca de Municipio Sucre, Miranda, es un bellísimo destino paradisíaco lleno de rocas y un ambiente natural perfecto para disfrutar junto a amigos o familia. Esta ruta de 6.3 km tarda alrededor de 2h 38 m en ser recorrida, no suele ser un recorrido muy movido, siendo una de las rutas más sencillas de realizar si solo deseas pasar un buen rato.",
-        colorClase: "darkgreen" 
-    },
 ];

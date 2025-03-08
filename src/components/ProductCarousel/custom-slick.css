@@ -9,6 +9,6 @@
 
 @media (min-width: 768px) {
     .slick-slide {
-        margin: 0 1rem;
+        margin: 0;
     }
 }

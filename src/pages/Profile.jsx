@@ -8,13 +8,47 @@ export default function Profile() {
 
     console.log(profile);
     return (
-        <div>
-            <ul>
-                <li> {profile.email} </li>
-                <li> {profile.name} </li>
-                <li> {profile.phone}</li>
 
-            </ul>
+        
+        <div>
+            <button> Editar </button>
+            <form>
+                <p> Nombre y Apellido</p>
+                <input
+                className="input-field"
+                type="text"
+                placeholder={profile.name}
+                id="name"
+                />
+                <p> Nombre de usuario </p>
+                <input
+                className="input-field"
+                type="text"
+                placeholder={profile.user}
+                id="username"
+                />
+                <p> Email </p>
+                <input
+                className="input-field"
+                type="email"
+                placeholder={profile.email}
+                id="email"
+                />
+                <p> Teléfono </p>
+                <input
+                className="input-field"
+                type="text"
+                placeholder={profile.phone}
+                id="phone"
+                />
+                <p> Contraseña </p>
+                <input
+                className="input-field password-input"
+                type= "password"
+                placeholder={profile.password}
+                id="password"
+                />
+            </form>
         </div>
     )
 }
