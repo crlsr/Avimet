@@ -1,0 +1,13 @@
+.mainContainer{
+    margin-top: 70vh;
+    display: flex;
+    flex-direction: column;
+}
+.container1{
+    margin-bottom: 100px;
+}
+.container2{
+    margin-top: 100px;
+    margin: 0 auto;
+    text-align: center;
+}

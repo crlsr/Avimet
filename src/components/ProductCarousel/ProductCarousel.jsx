@@ -1,7 +1,7 @@
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import './custom-slick.css'; 
+
 
 import styles from './ProductCarousel.module.css';
 
@@ -13,28 +13,6 @@ import image5 from '../../assets/Avila.png.jpg';
 import image6 from '../../assets/Avila.png.jpg';
 import image7 from '../../assets/Avila.png.jpg';
 import image8 from '../../assets/Avila.png.jpg';
-
-function SampleNextArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-        <div
-            className={`${className} ${styles.arrow}`}
-            style={{ ...style, right: "10px" }}
-            onClick={onClick}
-        />
-    );
-}
-
-function SamplePrevArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-        <div
-            className={`${className} ${styles.arrow}`}
-            style={{ ...style, left: "10px" }}
-            onClick={onClick}
-        />
-    );
-}
 
 function ProductCarousel() {
     const productos = [
@@ -53,7 +31,7 @@ function ProductCarousel() {
         infinite: true,
         speed: 500,
         lazyLoad: true,
-        slidesToShow: 8,
+        slidesToShow: 9,
         slidesToScroll: 1,
         autoplay: true, 
         autoplaySpeed: 2500,
@@ -63,7 +41,7 @@ function ProductCarousel() {
             {
                 breakpoint: 1024,
                 settings: {
-                    slidesToShow: 4,
+                    slidesToShow: 8,
                     slidesToScroll: 1,
                     infinite: true,
                     dots: false
@@ -72,7 +50,7 @@ function ProductCarousel() {
             {
                 breakpoint: 600,
                 settings: {
-                    slidesToShow: 2,
+                    slidesToShow: 6,
                     slidesToScroll: 1,
                     initialSlide: 2
                 }
@@ -80,7 +58,7 @@ function ProductCarousel() {
             {
                 breakpoint: 480,
                 settings: {
-                    slidesToShow: 1,
+                    slidesToShow: 5,
                     slidesToScroll: 1
                 }
             }
