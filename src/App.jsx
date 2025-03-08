@@ -15,6 +15,7 @@ import SignUp from "./pages/LoginSignUp/SignUp";
 import Notfound from "./pages/Notfound";
 import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer"
 
 function App() {
   /*const [user, setUser] = useState(null);
@@ -30,10 +31,12 @@ function App() {
   return (
     <Router>
       <Routes>
+        <Route element ={<Footer />}>
         <Route element={<Navbar />}>
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="*" element={<Notfound />} />
+        </Route>
         </Route>
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />

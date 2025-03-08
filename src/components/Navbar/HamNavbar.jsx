@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 import { UserContext } from "../../context/UserContext";
-import appFirebase from "../../../credenciales";
 import { getAuth, signOut } from "firebase/auth";
+import appFirebase from "../../../credenciales";
 
 import styles from "./Navbar.module.css";
 import global from "../../global.module.css";
@@ -11,44 +11,65 @@ import avimetLogo from "../../assets/avimet-logo.png";
 import profilePhoto from "../../assets/foto-predeterminada.png";
 import { IoIosSearch } from "react-icons/io";
 
-import { MenuHamburguesa } from "./HamNavbar";
-
 const auth = getAuth(appFirebase);
 
-export default function Navbar() {
-  const navigation = useNavigate();
+export const MenuHamburguesa = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const { logged, profile } = useContext(UserContext);
+  const navigation = useNavigate();
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
 
   const handleLogout = async () => {
     await signOut(auth);
   };
 
   return (
-    <>
-      <nav className={styles.navbar}>
-        <ul className={styles.navbar_list}>
-          <li className={styles.logo}>
-            <Link to="/">
-              <img src={avimetLogo} alt="Avimet" />
-            </Link>
-          </li>
+    <div className={styles.menuContainer}>
+      <div className={styles.mobileHeader}>
+        <Link to="/">
+          <img src={avimetLogo} alt="Avimet" className={styles.logoMobile} />
+        </Link>
+        <div className={styles.menuIcon} onClick={toggleMenu}>
+          ☰
+        </div>
+      </div>
+
+      <div className={`${styles.menu} ${isOpen ? styles.menuOpen : ""}`}>
+        <div className={styles.menuHeader}>
+          <span className={styles.closeIcon} onClick={toggleMenu}>
+            ✖
+          </span>
+        </div>
+
+        <ul className={styles.menuList}>
           <li>
-            <Link to="/" className={styles.navbar_link}>
+            <Link to="/" className={styles.navbar_link} onClick={toggleMenu}>
               Home
             </Link>
           </li>
           <li>
-            <Link to="/profile" className={styles.navbar_link}>
+            <Link
+              to="/profile"
+              className={styles.navbar_link}
+              onClick={toggleMenu}
+            >
               Destinos
             </Link>
           </li>
           <li>
             {logged ? (
-              <Link to="/" className={styles.navbar_link}>
+              <Link to="/" className={styles.navbar_link} onClick={toggleMenu}>
                 Reserva tu viaje
               </Link>
             ) : (
-              <Link to="/login" className={styles.navbar_link}>
+              <Link
+                to="/login"
+                className={styles.navbar_link}
+                onClick={toggleMenu}
+              >
                 Reserva tu viaje
               </Link>
             )}
@@ -87,9 +108,7 @@ export default function Navbar() {
             </div>
           </li>
         </ul>
-        <MenuHamburguesa />
-      </nav>
-      <Outlet />
-    </>
+      </div>
+    </div>
   );
-}
+};
