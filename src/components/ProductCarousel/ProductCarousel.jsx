@@ -1,7 +1,7 @@
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import './custom-slick.css'; 
+
 
 import styles from './ProductCarousel.module.css';
 
@@ -13,28 +13,6 @@ import image5 from '../../assets/Avila.png.jpg';
 import image6 from '../../assets/Avila.png.jpg';
 import image7 from '../../assets/Avila.png.jpg';
 import image8 from '../../assets/Avila.png.jpg'; */
-
-function SampleNextArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-        <div
-            className={`${className} ${styles.arrow}`}
-            style={{ ...style, right: "10px" }}
-            onClick={onClick}
-        />
-    );
-}
-
-function SamplePrevArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-        <div
-            className={`${className} ${styles.arrow}`}
-            style={{ ...style, left: "10px" }}
-            onClick={onClick}
-        />
-    );
-}
 
 function ProductCarousel( {images = [], className = "" } ) {
     const productos = [
@@ -80,7 +58,7 @@ function ProductCarousel( {images = [], className = "" } ) {
             {
                 breakpoint: 480,
                 settings: {
-                    slidesToShow: 1,
+                    slidesToShow: 5,
                     slidesToScroll: 1
                 }
             }

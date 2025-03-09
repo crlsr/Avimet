@@ -4,6 +4,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import styles from './ImageCarousel.module.css'
+import global from "../../global.module.css";
 
 import image1 from '../../assets/Avila.png.jpg';
 import image2 from '../../assets/facebook.png';

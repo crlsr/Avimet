@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #1b4332;
+  background-color: #003428;
   padding: 16px 0;
   z-index: 1000;
 }
@@ -40,18 +40,25 @@
   color: white;
 }
 
+.search_container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
 .search_input {
-  padding: 10px 30px;
-  margin: 5px 0;
-  background-color: #1b4332;
+  width: 180px; 
+  padding: 10px 10px 10px 35px; 
+  background-color: #003428;
   border: 1px solid #fff;
   border-radius: 12px;
-  height: 10px;
   color: #fff;
 }
+
 .search_input::placeholder {
-  color: #ffffffe8; 
+  color: #ffffffe8;
 }
+
 .search_input:hover {
   background-color: #ffffff15;
 }
@@ -60,6 +67,108 @@
   outline: none;
   border: 1px solid #fff;
 }
-body {
-  padding-top: 0px;
+
+.search_icon {
+  position: absolute;
+  left: 10px;
+  color: #fff;
+  font-size: 20px;
+}
+
+
+.menuContainer {
+  display: none; 
+}
+.menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 70%;
+  height: 100vh;
+  background-color: #1b4332;
+  transition: right 0.3s ease-in-out;
+  z-index: 1000;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.menuOpen {
+  right: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .navbar_list {
+    display: none;
+  }
+
+  .mobileHeader {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    width: 100%;
+    padding: 0; 
+  }
+  .menuContainer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0px 16px;
+  }
+
+  .menuIcon {
+    font-size: 28px;
+    cursor: pointer;
+    color: white;
+  }
+  .menuHeader {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+  }
+
+  .closeIcon {
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+    padding: 10px;
+  }
+
+  .menuList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .menuList li {
+    display: flex;
+    align-items: center;
+  }
+  .search_container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+  }
+
+  .search_input {
+    width: 150px;
+  }
+
+  .auth_container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .user_info {
+    width: 40px;
+    height: 40px;
+  }
 }

@@ -1,5 +1,5 @@
 h1 {
-  color: #1b4332;
+  color: #003428;
   font-size: 2rem;
   font-family: "Instrument Serif";
   font-weight: lighter;
@@ -7,7 +7,7 @@ h1 {
 }
 
 h2 {
-  color: #1b4332;
+  color: #003428;
   margin: 0px;
   font-size: 1.5rem;
   font-weight: bold;
@@ -31,7 +31,7 @@ p {
 
 .input_field:focus {
   outline: none;
-  border: 1px solid #1b4332;
+  border: 1px solid #003428;
 }
 .password_input {
   padding: 10px;
@@ -48,10 +48,10 @@ p {
 
 .password_input:focus {
   outline: none;
-  border: 1px solid #1b4332;
+  border: 1px solid #003428;
 }
 .btn1 {
-  background: #1b4332;
+  background: #003428;
   color: #fff;
   padding: 10px;
   border: none;
@@ -64,7 +64,7 @@ p {
 
 .btn1:hover {
   background: #a3e96c;
-  color: #1b4332;
+  color: #003428;
 }
 
 .btn2 {
@@ -73,7 +73,7 @@ p {
   justify-content: center;
   gap: 10px;
   background: #a3e96c;
-  color: #1b4332;
+  color: #003428;
   padding: 10px;
   border: none;
   border-radius: 16px;
@@ -84,13 +84,13 @@ p {
 }
 
 .btn2:hover {
-  background: #1b4332;
+  background: #003428;
   color: #fff;
 }
 
 .btn3 {
   background: #a3e96c;
-  color: #1b4332;
+  color: #003428;
   padding: 10px;
   border: none;
   border-radius: 12px;
@@ -101,5 +101,5 @@ p {
 
 .btn3:hover {
   background: #d9f5de;
-  color: #1b4332;
+  color: #003428;
 }
