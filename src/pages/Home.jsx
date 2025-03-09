@@ -5,6 +5,7 @@ import TarjetaDestinos, { destinosData } from "../components/tarjetaDestinos/Tar
 import TarjetaMisionVision from "../components/tarjetaMisionVision/TarjetaMisionVision";
 import TarjetaNoticias, { noticiasData } from "../components/TarjetaNoticias/TarjetaNoticias";
 import TarjetaHome, { homeData } from "../components/tarjetaHome/TarjetaHome";
+import InputBG from "../components/commentSection/InputBG";
 
 const Home = () => {
     return (
@@ -47,7 +48,7 @@ const Home = () => {
             imagen={homeData.imagen}
           />
         </div>
-
+        
         </>
 
     )
