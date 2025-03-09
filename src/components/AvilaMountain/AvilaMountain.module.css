@@ -12,7 +12,7 @@
   @media (width >= 1024px) {
     .Carousel {
         position: absolute;
-        top: 58%;
+        top: 54%;
         z-index: 100;
     }
   }

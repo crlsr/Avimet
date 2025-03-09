@@ -1,4 +1,4 @@
-.tarjeta-destino {
+.tarjetaDestino {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,19 +7,20 @@
   margin: 20px auto;
   color: white;
   height: 320px;
-  max-width: 1050px;
+  max-width: 1250px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 80%;
 }
 
-.tarjeta-destino.lightgreen {
-  background-color: #0DA665;
+.darkgreen {
+  background-color: #003428;
 }
 
-.tarjeta-destino.darkgreen {
-  background-color: #1b4332;;
+.lightgreen {
+  background-color: #0da665;
 }
 
-.imagen-destino {
+.imagenDestino {
   margin-left: 20px;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -30,7 +31,7 @@
   border-radius: 10px 20px 110px 20px;
 }
 
-.contenido-destino {
+.contenidoDestino {
   margin: 0 20px;
   padding: 15px;
   display: flex;
@@ -38,22 +39,19 @@
   justify-content: center;
 }
 
-.titulo-destino {
-  font-size: 3.5em;
+.tituloDestino {
+  font-size: 2em;
   font-family: "Instrument Serif";
   font-weight: lighter;
-  color:#a3e96c;
-  margin-top: 0;
-  margin-left: 0; 
-  padding-left: 0; 
+  color: #a3e96c;
   text-align: left;
 }
 
-.descripcion-destino {
+.descripcionDestino {
   font-size: 1em;
   margin-bottom: 15px;
   text-align: justify;
-  font-family: "Roboto", "Inter", sans-serif
+  font-family: "Roboto", "Inter", sans-serif;
 }
 
 .boton-mas-info {

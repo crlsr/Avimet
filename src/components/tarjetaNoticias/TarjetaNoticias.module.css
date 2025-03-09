@@ -1,0 +1,85 @@
+/*
+IMPORTANTE, ESTE PEDAZO DE CSS VA CUANDO COLOQUEMOS LA PAGINA DE NOTICIAS Y TIPS, NO VA EN ESTA, NO BORRAR
+.tarjetasnoticias_container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 150px;
+  justify-content: center;
+  padding: 10px;
+  align-items: center;
+  width: 80%;
+  max-width: 1150px;
+  margin: 50px auto;
+}
+
+@media (max-width: 991px) {
+  .tarjetasnoticias_container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    place-items: center;
+    width: 80%;
+  }
+}
+  */
+
+.tarjeta_noticia {
+  background: linear-gradient(#d9f5dea0, #d9f5def6),
+    url("../../assets/background-avila.jpg") center/cover no-repeat;
+  position: relative;
+  width: 100%;
+  max-width: 570px;
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 350px;
+  height: 100%;
+}
+
+.contenido {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  padding: 20px;
+  color: #003428;
+  font-size: 1em;
+  text-align: justify;
+  font-family: "Roboto", "Inter", sans-serif;
+  flex-grow: 1;
+}
+
+.titulonoticias {
+  font-size: 2.5em;
+  font-family: "Instrument Serif";
+  font-weight: lighter;
+  color: #003428;
+  margin: 0;
+  text-align: left;
+}
+
+.boton {
+  background-color: #003428;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  position: relative;
+  align-self: flex-end;
+}
+
+.boton:hover {
+  background-color: #a3e96c;
+}
+
+@media (max-width: 991px) {
+  .titulonoticias {
+    font-size: 1.8em;
+    margin-bottom: 2px;
+  }
+}

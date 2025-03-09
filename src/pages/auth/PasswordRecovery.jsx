@@ -56,6 +56,7 @@ const PasswordRecovery = () => {
 
   return (
     <>
+    <div className="pageWrapper">
       <div className="container">
         <h1>Recuperación de Contraseña</h1>
         <div className="login-box">
@@ -82,6 +83,7 @@ const PasswordRecovery = () => {
       </div>
       <div className="image-container">
         <img src={image} alt="Montaña" className="image_mountain" />
+      </div>
       </div>
     </>
   );

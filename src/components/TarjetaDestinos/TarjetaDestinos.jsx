@@ -1,6 +1,5 @@
 import React from "react";
-import "./TarjetaDestinos.css";
-import image1 from '../../assets/Avila.png.jpg';
+import image1 from '../../assets/Avila.png.jpg'
 
 const TarjetaDestinos = ({ imagen, titulo, descripcion, colorClase }) => {
   return (
@@ -17,7 +16,6 @@ const TarjetaDestinos = ({ imagen, titulo, descripcion, colorClase }) => {
 
 export default TarjetaDestinos;
 
-// Datos de ejemplo para las tarjetas
 export const destinosData = [
     {
         imagen: image1,

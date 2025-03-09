@@ -55,6 +55,12 @@
   font-size: 0.9em;
   color: white;
 }
+.links img:hover{
+  opacity: 0.7;
+}
+.links span:hover {
+  color: #ffffff92;
+}
 
 @media screen and (max-width: 768px) {
   .footer_list {
