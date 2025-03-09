@@ -12,7 +12,7 @@ const auth = getAuth(appFirebase);
 import Login from "./pages/LoginSignUp/Login";
 import Home from "./pages/Home/Home";
 import SignUp from "./pages/LoginSignUp/SignUp";
-import Notfound from "./pages/Notfound";
+import Notfound from "./pages/NotFound/Notfound";
 import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";

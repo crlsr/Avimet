@@ -1,15 +1,15 @@
 import React from "react";
-import "./TarjetaDestinos.css";
-import image1 from '../../assets/Avila.png.jpg';
+import styles from "./TarjetaDestinos.module.css";
+import image1 from '../../assets/Avila.png.jpg'
 
 const TarjetaDestinos = ({ imagen, titulo, descripcion, colorClase }) => {
   return (
-    <div className={`tarjeta-destino ${colorClase}`}>
-      <img src={imagen} alt={titulo} className="imagen-destino" />
-      <div className="contenido-destino">
-        <h2 className="titulo-destino">{titulo}</h2>
-        <p className="descripcion-destino">{descripcion}</p>
-        <button className="boton-mas-info">Más información</button>
+    <div className={`${styles.tarjetaDestino} ${styles[colorClase]}`}>
+      <img src={imagen} alt={titulo} className={styles.imagenDestino} />
+      <div className={styles.contenidoDestino}>
+        <h2 className={styles.tituloDestino}>{titulo}</h2>
+        <p className={styles.descripcionDestino}>{descripcion}</p>
+        <button className={styles.botonMasInfo}>Más información</button>
       </div>
     </div>
   );
@@ -17,7 +17,6 @@ const TarjetaDestinos = ({ imagen, titulo, descripcion, colorClase }) => {
 
 export default TarjetaDestinos;
 
-// Datos de ejemplo para las tarjetas
 export const destinosData = [
     {
         imagen: image1,
