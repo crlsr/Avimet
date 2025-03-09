@@ -45,36 +45,42 @@ IMPORTANTE, ESTE PEDAZO DE CSS VA CUANDO COLOQUEMOS LA PAGINA DE NOTICIAS Y TIPS
   justify-content: space-between;
   flex-grow: 1;
   padding: 20px;
-  color: #003428;
+  color: #1b4332;
   font-size: 1em;
   text-align: justify;
   font-family: "Roboto", "Inter", sans-serif;
   flex-grow: 1;
 }
 
+.fecha {
+  display: block;
+  text-align: right;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
 .titulonoticias {
   font-size: 2.5em;
   font-family: "Instrument Serif";
   font-weight: lighter;
-  color: #003428;
+  color: #1b4332;
   margin: 0;
   text-align: left;
+  padding: 15px;
+  display: block;
 }
 
-.boton {
-  background-color: #003428;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: bold;
-  position: relative;
+.news-btn {
+  display: flex;
+  text-align: center;
+  font-weight: light;
+  align-items: center;
+  justify-content: center;
   align-self: flex-end;
-}
-
-.boton:hover {
-  background-color: #a3e96c;
+  margin-bottom: auto;
+  bottom: 15px;
+  right: 15px;
 }
 
 @media (max-width: 991px) {

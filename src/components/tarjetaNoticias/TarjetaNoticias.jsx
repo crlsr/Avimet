@@ -1,5 +1,6 @@
 import React from "react";
 import image1 from "../../assets/Avila.png.jpg";
+import './TarjetaNoticias.module.css'
 
 const TarjetaNoticias = ({ titulo, fecha, descripcion }) => {
     /*ESTE PEDAZO DE CODIGO TAMBIEN VA EN LA PAGINA DONDE UTILICEMOS LAS TARJETAS
@@ -17,10 +18,6 @@ const TarjetaNoticias = ({ titulo, fecha, descripcion }) => {
         </div>*/
   return (
     <div className="tarjeta-noticia">
-      <div
-        className="imagen-fondo"
-        style={{ backgroundImage: `url(${image1})` }}
-      ></div>
       <div className="contenido">
         <span className="fecha">{fecha}</span>
         <h2 className="titulonoticias">{titulo}</h2>
