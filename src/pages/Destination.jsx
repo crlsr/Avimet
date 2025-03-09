@@ -4,6 +4,8 @@ import appFirebase from "../../credenciales";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import DestinationHeader from '../components/destination/DestinationHeader';
 import MapBanner from '../components/destination/MapBanner';
+import DestinationCarousel from '../components/destination/DestinationCarousel';
+import InfoSection from '../components/destination/InfoSection';
 
 const db = getFirestore(appFirebase);
 
@@ -34,7 +36,19 @@ export default function Destination() {
                     titulo={destination?.destination}
                     subtitulo={destination?.title} 
                 />
-                <MapBanner/>
+                <MapBanner
+                    destination={destination?.destination}
+                    estimatedTime={destination?.estimatedTime}
+                    difficulty={destination?.difficulty}
+                    distance={destination?.distance}
+                />
+                <DestinationCarousel/>
+                <InfoSection
+                    descriptionTitle={destination?.descriptionTitle}
+                    description={destination?.description}
+                    guide={destination?.routeGuide}
+                    guideDescription={destination?.routeGuideDescription}
+                />
             </div>        
         )
 }

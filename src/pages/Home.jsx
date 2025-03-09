@@ -5,13 +5,16 @@ import TarjetaDestinos, { destinosData } from "../components/tarjetaDestinos/Tar
 import TarjetaMisionVision from "../components/tarjetaMisionVision/TarjetaMisionVision";
 import TarjetaNoticias, { noticiasData } from "../components/TarjetaNoticias/TarjetaNoticias";
 import TarjetaHome, { homeData } from "../components/tarjetaHome/TarjetaHome";
+import image from '../assets/Avila.png.jpg'
 
 const Home = () => {
     return (
         <>
         <div className="container">
             <h1>Bienvenido</h1>
-            <ProductCarousel/>
+            <ProductCarousel
+              images={[image]}
+            />
         </div>
         {/* Sección de tarjetas de información */}
       <div className="tarjetas-container">

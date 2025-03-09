@@ -60,6 +60,7 @@
     height: 80vh;
     width: 100%;
     background-color: #1b4332;
+    padding-bottom: 50px;
 }
 
 .map-container {
@@ -68,7 +69,8 @@
     justify-content: center;
     align-items: center;
     gap: 80px;
-    padding-right: 180px;
+    width: 100%;
+    padding: 0 120px;
 }
 
 .map {
@@ -99,6 +101,7 @@
     font-weight: lighter;
     font-size: 35px;
     gap: 20px;
+    width: 50%;
 }
 
 .text-title {
@@ -109,4 +112,139 @@
 
 .first-part {
     color:white;
+}
+
+.destination-carousel {
+    position: relative;
+    z-index: auto;
+    margin:0;
+    top: -70px;
+    /* left: -280px; */
+}
+
+.destination-card {
+    border-radius: 0;
+    width: 903px;
+    height: 307px;
+  }
+  
+  .card-container {
+    background-color: #1b4332;
+    border-radius: 26px;
+    width: 100%;
+    padding: 32px 47px;
+  }
+
+  .guide-card-container {
+    background-color: #0DA665;
+    border-radius: 26px;
+    width: 100%;
+    padding: 32px 47px;
+  }
+    
+  .content-wrapper {
+    gap: 52px;
+    display: flex;
+  }
+
+  .guide-content.content-wrapper {
+    justify-content: space-between;
+  }
+  
+  .destination-image {
+    object-fit: cover;
+    border-radius: 21px 27px 127px 23px;
+    border:#a3e96c solid;
+    width: 307px;
+    height: 243px;
+  }
+  
+  .guide-image {
+    object-fit: cover;
+    border-radius: 27px 21px 23px 127px;
+    border:#a3e96c solid;
+    width: 307px;
+    height: 243px;
+    justify-self: end;
+  }
+
+  .text-content {
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: start;
+    justify-content: center;
+    font-family: Roboto;
+    font-size: 14px;
+    display: flex;
+    max-width: 450px;
+  }
+
+  .title {
+    color: #a3e96c;
+    font-size: 42px;
+    font-weight: lighter;
+    font-family: Instrument Serif;
+  }
+  
+  .guide-title {
+    color: #1b4332;
+    font-size: 42px;
+    font-weight: lighter;
+    font-family: Instrument Serif;
+  }
+
+  .guide-info {
+    color: #fff;
+    align-self: stretch;
+    margin-top: 9px;
+    font-size: 21px;
+    line-height: 16px;
+  }
+
+  .description {
+    color: #fff;
+    align-self: stretch;
+    margin-top: 9px;
+    font-size: 14px;
+    line-height: 16px;
+  }
+  
+  @media (width<=991px) {
+    .card-container {
+      max-width: 100%;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    
+    .guide-card-container {
+        max-width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    
+    .content-wrapper {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+      }
+
+    .destination-image {
+        margin-top: 40px;
+      }
+    
+    .text-content {
+        max-width: 100%;
+        margin-top: 40px;
+      }
+    
+    .description {
+        max-width: 100%;
+      }
+  }
+
+.info-section {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    gap: 98px;
 }

@@ -5,14 +5,14 @@ import './custom-slick.css';
 
 import styles from './ProductCarousel.module.css';
 
-import image1 from '../../assets/Avila.png.jpg';
+/* import image1 from '../../assets/Avila.png.jpg';
 import image2 from '../../assets/Avila.png.jpg';
 import image3 from '../../assets/Avila.png.jpg';
 import image4 from '../../assets/Avila.png.jpg';
 import image5 from '../../assets/Avila.png.jpg';
 import image6 from '../../assets/Avila.png.jpg';
 import image7 from '../../assets/Avila.png.jpg';
-import image8 from '../../assets/Avila.png.jpg';
+import image8 from '../../assets/Avila.png.jpg'; */
 
 function SampleNextArrow(props) {
     const { className, style, onClick } = props;
@@ -36,16 +36,16 @@ function SamplePrevArrow(props) {
     );
 }
 
-function ProductCarousel() {
+function ProductCarousel( {images = [], className = "" } ) {
     const productos = [
-        { id: 1, name: 'xx', image: image1},
-        { id: 2, name: 'xx', image: image2 },
-        { id: 3, name: 'xx', image: image3 },
-        { id: 4, name: 'xx', image: image4 },
-        { id: 5, name: 'xx', image: image5 },
-        { id: 6, name: 'xx', image: image6 },
-        { id: 7, name: 'xx', image: image7 },
-        { id: 8, name: 'xx', image: image8 },
+        { id: 1, name: 'xx', image: images[0]},
+        { id: 2, name: 'xx', image: images[0] },
+        { id: 3, name: 'xx', image: images[0] },
+        { id: 4, name: 'xx', image: images[0] },
+        { id: 5, name: 'xx', image: images[0] },
+        { id: 6, name: 'xx', image: images[0] },
+        { id: 7, name: 'xx', image: images[0] },
+        { id: 8, name: 'xx', image: images[0] },
     ];
 
     var settings = {
@@ -53,7 +53,7 @@ function ProductCarousel() {
         infinite: true,
         speed: 500,
         lazyLoad: true,
-        slidesToShow: 8,
+        slidesToShow: className == "mediumCarousel" ? 4 : 8,
         slidesToScroll: 1,
         autoplay: true, 
         autoplaySpeed: 2500,
@@ -63,7 +63,7 @@ function ProductCarousel() {
             {
                 breakpoint: 1024,
                 settings: {
-                    slidesToShow: 4,
+                    slidesToShow: className == "mediumCarousel" ? 3 : 4,
                     slidesToScroll: 1,
                     infinite: true,
                     dots: false
@@ -72,7 +72,7 @@ function ProductCarousel() {
             {
                 breakpoint: 600,
                 settings: {
-                    slidesToShow: 2,
+                    slidesToShow: className == "mediumCarousel" ? 1 : 2,
                     slidesToScroll: 1,
                     initialSlide: 2
                 }
@@ -95,7 +95,7 @@ function ProductCarousel() {
                         <div className={styles.contenedor} key={d.id}>
                             <div className={styles.contenedorImagen}>
                                 <img
-                                    className={`${styles.imagen} ${index % 2 === 0 ? styles.imagenPar : styles.imagenImpar}`}
+                                    className={`${styles.imagen} ${styles?.[className]} ${index % 2 === 0 ? styles.imagenPar : styles.imagenImpar}`}
                                     src={d.image}
                                 />
                             </div>
