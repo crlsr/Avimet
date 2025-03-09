@@ -33,21 +33,27 @@ export default function Destination() {
         return (
             <div>
                 <DestinationHeader 
+                    image={destination?.images.bannerUrl}
                     titulo={destination?.destination}
                     subtitulo={destination?.title} 
                 />
                 <MapBanner
+                    image={destination?.images.mapUrl}
                     destination={destination?.destination}
                     estimatedTime={destination?.estimatedTime}
                     difficulty={destination?.difficulty}
                     distance={destination?.distance}
                 />
-                <DestinationCarousel/>
+                <DestinationCarousel
+                    images={destination?.images.carouselUrls}
+                />
                 <InfoSection
                     descriptionTitle={destination?.descriptionTitle}
                     description={destination?.description}
+                    descriptionImage={destination?.images.descriptionUrl}
                     guide={destination?.routeGuide}
                     guideDescription={destination?.routeGuideDescription}
+                    guideImage={destination?.images.guideUrl}
                 />
             </div>        
         )

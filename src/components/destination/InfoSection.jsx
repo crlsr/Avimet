@@ -1,22 +1,21 @@
 import React from 'react'
-import image from '../../assets/sabas-nieves.png'
 import DescriptionCard from './DescriptionCard'
 import GuideCard from './GuideCard'
 import './Destination.css'
 
 
-export default function InfoSection({description , descriptionTitle , guide , guideDescription}) {
+export default function InfoSection({description , descriptionTitle , descriptionImage , guide , guideDescription , guideImage }) {
     return (
         <div className='info-section'>
             <DescriptionCard
-                image={image}
+                image={descriptionImage}
                 description={description}
                 title={descriptionTitle}
             />
             <GuideCard
-                image={image}
+                image={guideImage}
                 guide={guide}
-                guideDescription={guideDescription}
+                description={guideDescription}
             />
             {/* Aqui el componente comentarios */}
         </div>

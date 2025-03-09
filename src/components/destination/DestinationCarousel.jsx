@@ -1,14 +1,13 @@
 import React from "react"
 import ProductCarousel from '../productCarousel/ProductCarousel';
 import './Destination.css'
-import image from '../../assets/sabas-nieves.png'
 
-export default function DestinationCarousel() {
+export default function DestinationCarousel( { images } ) {
     return(
         <div>
             <div className="destination-carousel">
                 <ProductCarousel
-                    images={[image]}
+                    images={images}
                     className="mediumCarousel"
                 />
             </div>

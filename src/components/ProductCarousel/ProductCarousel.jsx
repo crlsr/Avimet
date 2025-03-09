@@ -5,26 +5,28 @@ import 'slick-carousel/slick/slick-theme.css';
 
 import styles from './ProductCarousel.module.css';
 
-/* import image1 from '../../assets/Avila.png.jpg';
-import image2 from '../../assets/Avila.png.jpg';
-import image3 from '../../assets/Avila.png.jpg';
-import image4 from '../../assets/Avila.png.jpg';
-import image5 from '../../assets/Avila.png.jpg';
-import image6 from '../../assets/Avila.png.jpg';
-import image7 from '../../assets/Avila.png.jpg';
-import image8 from '../../assets/Avila.png.jpg'; */
-
 function ProductCarousel( {images = [], className = "" } ) {
-    const productos = [
-        { id: 1, name: 'xx', image: images[0]},
-        { id: 2, name: 'xx', image: images[0] },
-        { id: 3, name: 'xx', image: images[0] },
-        { id: 4, name: 'xx', image: images[0] },
-        { id: 5, name: 'xx', image: images[0] },
-        { id: 6, name: 'xx', image: images[0] },
-        { id: 7, name: 'xx', image: images[0] },
-        { id: 8, name: 'xx', image: images[0] },
+    var productos = []
+    if (className == 'mediumCarousel') {
+        productos = [
+            { id: 1, name: 'xx', image: images[0]?images[0]:""},
+            { id: 2, name: 'xx', image: images[1]?images[1]:"" },
+            { id: 3, name: 'xx', image: images[2]?images[2]:"" },
+            { id: 4, name: 'xx', image: images[3]?images[3]:"" },
+        ];  
+    } else {
+        productos = [
+        { id: 1, name: 'xx', image: images[0]?images[0]:""},
+        { id: 2, name: 'xx', image: images[1]?images[1]:"" },
+        { id: 3, name: 'xx', image: images[2]?images[2]:"" },
+        { id: 4, name: 'xx', image: images[3]?images[3]:"" },
+        { id: 5, name: 'xx', image: images[4]?images[4]:"" },
+        { id: 6, name: 'xx', image: images[5]?images[5]:"" },
+        { id: 7, name: 'xx', image: images[6]?images[6]:"" },
+        { id: 8, name: 'xx', image: images[7]?images[7]:"" },
     ];
+    }
+
 
     var settings = {
         dots: false,
