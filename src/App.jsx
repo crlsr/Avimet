@@ -12,7 +12,6 @@ const auth = getAuth(appFirebase);
 import Login from "./pages/auth/Login";
 import Home from "./pages/Home/Home";
 import SignUp from "./pages/auth/SignUp";
-import Notfound from "./pages/Notfound";
 import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
@@ -38,7 +37,6 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/destinations/:slug" element={<Destination />}/>
-            <Route path="*" element={<Notfound />} />
           </Route>
         </Route>
         <Route path="/signup" element={<SignUp />} />

@@ -41,18 +41,18 @@ function ProductCarousel( {images = [], className = "" } ) {
         pauseOnHover: false,
         responsive: [
             {
-                breakpoint: 1024,
+                breakpoint: 1025,
                 settings: {
-                    slidesToShow: className == "mediumCarousel" ? 3 : 4,
+                    slidesToShow: className == "mediumCarousel" ? 2 : 5,
                     slidesToScroll: 1,
                     infinite: true,
                     dots: false
                 }
             },
             {
-                breakpoint: 600,
+                breakpoint: 640,
                 settings: {
-                    slidesToShow: className == "mediumCarousel" ? 1 : 2,
+                    slidesToShow: className == "mediumCarousel" ? 1 : 3,
                     slidesToScroll: 1,
                     initialSlide: 2
                 }
@@ -60,7 +60,7 @@ function ProductCarousel( {images = [], className = "" } ) {
             {
                 breakpoint: 480,
                 settings: {
-                    slidesToShow: 5,
+                    slidesToShow: className == "mediumCarousel" ? 1 : 2,
                     slidesToScroll: 1
                 }
             }

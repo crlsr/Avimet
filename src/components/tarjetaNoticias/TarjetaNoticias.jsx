@@ -1,6 +1,6 @@
 import React from "react";
 import image1 from "../../assets/Avila.png.jpg";
-import './TarjetaNoticias.module.css'
+import styles from './TarjetaNoticias.module.css'
 
 const TarjetaNoticias = ({ titulo, fecha, descripcion }) => {
     /*ESTE PEDAZO DE CODIGO TAMBIEN VA EN LA PAGINA DONDE UTILICEMOS LAS TARJETAS
@@ -17,12 +17,12 @@ const TarjetaNoticias = ({ titulo, fecha, descripcion }) => {
             </div>
         </div>*/
   return (
-    <div className="tarjeta-noticia">
-      <div className="contenido">
-        <span className="fecha">{fecha}</span>
-        <h2 className="titulonoticias">{titulo}</h2>
-        <p className="descripcion">{descripcion}</p>
-        <button className="btn-primary news-btn">Ver más</button>
+    <div className={styles.tarjeta_noticia}>
+      <div className={styles.contenido}>
+        <span className={styles.fecha}>{fecha}</span>
+        <h2 className={styles.titulonoticia}>{titulo}</h2>
+        <p className={styles.descripcion}>{descripcion}</p>
+        <button className={`btn-primary ${styles.btnMasInfo}`}>Ver más</button>
       </div>
     </div>
   );

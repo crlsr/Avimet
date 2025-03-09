@@ -6,14 +6,14 @@
     align-items: center;
     width: 100%;
     padding: 200px 0px;
-    position: relative; /* Para posicionar el carousel */
   }
   
   @media (width >= 1024px) {
     .Carousel {
-        position: absolute;
-        top: 54%;
-        z-index: 100;
+      position: relative;
+      z-index: auto;
+      margin:0;
+      bottom: -70px;
     }
   }
   
@@ -26,9 +26,10 @@
  
   @media (width <= 1024px) {
     .Carousel {
-        position: absolute;
-        top: 78%;
-        z-index: 100;
+      position: relative;
+      z-index: auto;
+      margin:0;
+      bottom: -70px;
     }
   }
   
@@ -40,9 +41,10 @@
       padding: 20px 0px;
     }
     .Carousel {
-        position: absolute;
-        top: 82%;
-        z-index: 100;
+      position: relative;
+      z-index: auto;
+      margin:0;
+      bottom: -70px;
     }
   }
 

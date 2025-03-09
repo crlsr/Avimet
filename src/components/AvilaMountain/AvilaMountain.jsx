@@ -1,13 +1,18 @@
 import * as React from "react";
 import styles from "./AvilaMountain.module.css";
-import ProductCarousel from "../ProductCarousel/ProductCarousel";
-("../ProductCarousel/ProductCarousel");
+import ProductCarousel from "../productCarousel/ProductCarousel";
+import image from '../../assets/background-avila.jpg'
 
 function AvilaMountainHero() {
   return (
     <div className={styles.container}>
-      <div className={styles.Carousel}>
-        <ProductCarousel />
+      <div>
+        <div className={styles.Carousel}>
+          <ProductCarousel 
+            images={[image,image,image,image,image,image,image,image]}
+            className=""
+          />
+        </div>
       </div>
       <div className={styles.mainContainer}>
         <article className={styles.contentWrapper}>
