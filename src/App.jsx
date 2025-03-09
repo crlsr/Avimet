@@ -9,14 +9,14 @@ const auth = getAuth(appFirebase);
 */
 
 //importando los componentes
-import Login from "./pages/LoginSignUp/Login";
+import Login from "./pages/auth/Login";
 import Home from "./pages/Home/Home";
-import SignUp from "./pages/LoginSignUp/SignUp";
+import SignUp from "./pages/auth/SignUp";
 import Notfound from "./pages/Notfound";
 import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
-import PasswordRecovery from './pages/LoginSignUp/PasswordRecovery';
+import PasswordRecovery from './pages/auth/PasswordRecovery';
 import Destination from "./pages/Destination";
 
 function App() {
