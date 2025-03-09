@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./LoginSignup.css";
 import global from "../../global.module.css";
@@ -8,7 +8,7 @@ import facebookLogo from "../../assets/facebook.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 import appFirebase from "../../../credenciales";
-import { getAuth, signInWithEmailAndPassword,signInWithPopup} from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 
 import {
@@ -27,6 +27,16 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
+
+  useEffect(() => {
+    const savedUser = JSON.parse(localStorage.getItem('rememberedUser'));
+    if (savedUser) {
+      setEmail(savedUser.email);
+      setPassword(savedUser.password);
+      setRememberMe(true);
+    }
+  }, []);
 
   const googleClick = async () => {
     try {
@@ -39,10 +49,7 @@ const Login = () => {
         await auth.signOut();
       }
     } catch (error) {
-      if (error.message == "Firebase: Error (auth/popup-blocked).") {
-        setError("Tu buscador ha bloqueado la ventana emergente de inicio de sesión. Asegúsere de que su buscador no esté bloqueando ventanas emergentes.")
-      }
-      console.log("Error al iniciar sesión con google: " + error.message);
+      setError("Error al iniciar sesión con google: " + error.message);
     }
   };
 
@@ -57,22 +64,24 @@ const Login = () => {
         await auth.signOut();
       }
     } catch (error) {
-      if (error.message == "Firebase: Error (auth/popup-blocked).") {
-        setError("Tu buscador ha bloqueado la ventana emergente de inicio de sesión. Asegúsere de que su buscador no esté bloqueando ventanas emergentes.")
-      }
-      console.log("Error al iniciar sesión con facebook: " + error.message);
+      setError("Error al iniciar sesión con facebook: " + error.message);
     }
   };
 
   const functAuthentication = async (e) => {
     e.preventDefault();
     try {
-      if ((email, password == "")) {
+      if (email === "" || password === "") {
         setError("Complete todos los campos solicitados");
         return;
       }
       setLoading(true);
       const user = await signInWithEmailAndPassword(auth, email, password);
+      if (rememberMe) {
+        localStorage.setItem('rememberedUser', JSON.stringify({ email, password }));
+      } else {
+        localStorage.removeItem('rememberedUser');
+      }
       setEmail("");
       setPassword("");
       setLoading(false);
@@ -80,11 +89,9 @@ const Login = () => {
       console.log(user.user.email);
     } catch (error) {
       setLoading(false);
-      if (error.message == "Firebase: Error (auth/invalid-credential).") {
+      if (error.message === "Firebase: Error (auth/invalid-credential).") {
         setError("Usuario no existente. Email o contraseña inválida");
-      } else if (
-        error.message == "Firebase: Error (auth/network-request-failed)."
-      ) {
+      } else if (error.message === "Firebase: Error (auth/network-request-failed).") {
         setError("Opss. Revise su conexión a Internet");
       }
       console.log(error.message);
@@ -111,7 +118,7 @@ const Login = () => {
                 className={global.password_input}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                type={passwordVisible ? "text" : "password"} //"password"
+                type={passwordVisible ? "text" : "password"}
                 placeholder="Contraseña"
                 id="password"
               />
@@ -124,11 +131,15 @@ const Login = () => {
             </div>
             <div className="options">
               <label className="switch">
-                <input type="checkbox" />
+                <input 
+                  type="checkbox" 
+                  checked={rememberMe}
+                  onChange={(e) => setRememberMe(e.target.checked)}
+                />
                 <span className="slider round"></span>
               </label>
               <p>Recuérdame</p>
-              <a href="#">¿Olvidaste tu contraseña?</a>
+              <p><Link to="/password-recovery">¿Olvidaste tu contraseña?</Link></p> 
             </div>
             <button className={global.btn1} type="submit">
               Iniciar Sesión
