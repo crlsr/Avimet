@@ -16,6 +16,8 @@ import Notfound from "./pages/NotFound/Notfound";
 import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
+import PasswordRecovery from './pages/LoginSignUp/PasswordRecovery';
+
 
 function App() {
   /*const [user, setUser] = useState(null);
@@ -40,6 +42,7 @@ function App() {
         </Route>
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/password-recovery" element={<PasswordRecovery />} />
       </Routes>
     </Router>
   );
