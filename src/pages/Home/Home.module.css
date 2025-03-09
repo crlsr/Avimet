@@ -1,6 +1,6 @@
 .mainContainer{
-    margin-top: 70vh;
-    display: flex;
+    margin-top: 10vh;
+    display: block;
     flex-direction: column;
 }
 .container1{
@@ -11,3 +11,24 @@
     margin: 0 auto;
     text-align: center;
 }
+
+.tarjetasnoticias_container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 150px;
+    justify-content: center;
+    padding: 10px;
+    align-items: center;
+    width: 80%;
+    max-width: 1150px;
+    margin: 50px auto;
+  }
+  
+  @media (max-width: 991px) {
+    .tarjetasnoticias_container {
+      grid-template-columns: 1fr;
+      gap: 30px;
+      place-items: center;
+      width: 80%;
+    }
+  }

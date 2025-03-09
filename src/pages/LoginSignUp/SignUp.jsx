@@ -167,6 +167,7 @@ const SignUp = () => {
 
   return (
     <>
+      <div className="pageWrapper">
       <div className="container">
         <h1>Regístrate y sé un aventurero más</h1>
         <div className="login-box">
@@ -253,6 +254,7 @@ const SignUp = () => {
       </div>
       <div className="image-container">
         <img src={image} alt="Montaña" className="image_mountain" />
+      </div>
       </div>
     </>
   );

@@ -100,6 +100,7 @@ const Login = () => {
 
   return (
     <>
+      <div className="pageWrapper">
       <div className="container">
         <h1>Bienvenido/a a tu guía aventurera</h1>
         <div className="login-box">
@@ -165,6 +166,7 @@ const Login = () => {
       </div>
       <div className="image-container">
         <img src={image} alt="Montaña" className="image_mountain" />
+      </div>
       </div>
     </>
   );
