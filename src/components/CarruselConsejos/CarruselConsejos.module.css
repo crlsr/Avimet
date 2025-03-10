@@ -1,21 +1,20 @@
 .carruselConsejos {
   width: 100%;
-  padding: 50px 0;
+  padding: 20px 0;
+  position: relative;
 }
 
 .swiper {
-  width: 90%;
-  padding-top: 50px;
-  padding-bottom: 50px;
-  
+  width: 80%;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .swiperSlide {
   background-position: center;
   background-size: cover;
-  width: 300px;
-  height: 600px;
-  border-radius: 25px;
+  border-radius: 15px;
+  height: auto;
 }
 
 .evenSlide {
@@ -36,7 +35,7 @@
 
 .tarjetaConsejo {
   border-radius: 8px;
-  padding: 20px;
+  padding: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -44,127 +43,64 @@
   transition: all 0.3s ease;
 }
 
-.swiperSlide-active .tarjetaConsejo {
-  transform: scale(1.1);
-}
-
 .imagenConsejo {
-  width: 30%;
-  height: 150px;
+  width: 60%;
+  max-width: 120px;
+  height: auto;
   border-radius: 8px;
+  object-fit: cover;
 }
 
 .tituloConsejo {
   font-weight: bold;
-  margin-bottom: 1px;
+  margin: 10px 0;
   text-align: center;
   font-family: "Instrument Serif", serif;
-  font-size: 55px;
+  font-size: 22px;
 }
 
 .descripcionConsejo {
-  font-size: 1.25em;
-  margin-bottom: 15px;
+  font-size: 14px;
+  margin-bottom: 10px;
   text-align: center;
   font-family: "Roboto", "Inter", sans-serif;
   color: #FFF;
-  padding: 20px;
+  padding: 10px;
 }
+
 :global(.swiper-button-next),
 :global(.swiper-button-prev) {
   color: #000;
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+:global(.swiper-button-next) {
+  right: 10px;
+}
+
+:global(.swiper-button-prev) {
+  left: 10px;
+}
+
+:global(.swiper-button-next:after),
+:global(.swiper-button-prev:after) {
+  font-size: 20px;
 }
 
 :global(.swiper-pagination-bullet-active) {
   background: #000;
 }
 
-/* Estilos responsivos */
-@media (max-width: 1550px) {
-  .swiperSlide {
-    width: 250px;
-    height: 450px;
-  }
-
-  .imagenConsejo {
-    height: 100px;
-  }
-
-  .tituloConsejo {
-    font-size: 30px;
-  }
-
-  .descripcionConsejo {
-    font-size: 15px;
-  }
-}
-
-@media (max-width: 1100px) {
-  .swiperSlide {
-    width: 250px;
-    height: 450px;
-  }
-
-  .imagenConsejo {
-    height: 100px;
-  }
-
-  .tituloConsejo {
-    font-size: 27px;
-  }
-
-  .descripcionConsejo {
-    font-size: 12px;
-  }
-}
-
-@media (max-width: 800px) {
-  .swiperSlide {
-    width: 250px;
-    height: auto;
-  }
-
-  .imagenConsejo {
-    height: 100px;
-  }
-
-  .tituloConsejo {
-    font-size: 22px;
-  }
-
-  .descripcionConsejo {
-    font-size: 13px;
-  }
-}
-
-@media (max-width: 480px) {
-  .swiperSlide {
-    width: 120px;
-    height: auto;
-  }
-
-  .imagenConsejo {
-    height: 70px;
-    width: 70px;
-  }
-
-  .tituloConsejo {
-    font-size: 21px;
-  }
-
-  .descripcionConsejo {
-    font-size: 13px;
-  }
-}
-
-@media (max-width: 350px) {
-  .swiperSlide {
-    width: 120px;
-    height: auto;
-  }
-
-  .imagenConsejo {
-    height: 70px;
+/* Responsive styles */
+@media (max-width: 1024px) {
+  .swiper {
+    width: 90%;
   }
 
   .tituloConsejo {
@@ -172,6 +108,70 @@
   }
 
   .descripcionConsejo {
-    font-size: 13px;
+    font-size: 12px;
+  }
+
+  .imagenConsejo {
+    width: 50%;
+    max-width: 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  .swiper {
+    width: 95%;
+  }
+
+  .tituloConsejo {
+    font-size: 18px;
+  }
+
+  .descripcionConsejo {
+    font-size: 11px;
+  }
+
+  .imagenConsejo {
+    width: 45%;
+    max-width: 90px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carruselConsejos {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px 0;
+  }
+
+  .swiper {
+    width: 100%;
+  }
+
+  .tituloConsejo {
+    font-size: 16px;
+  }
+
+  .descripcionConsejo {
+    font-size: 10px;
+  }
+
+  .imagenConsejo {
+    width: 40%;
+    max-width: 80px;
+  }
+
+  :global(.swiper-button-next),
+  :global(.swiper-button-prev) {
+    width: 30px;
+    height: 30px;
+  }
+
+  :global(.swiper-button-next:after),
+  :global(.swiper-button-prev:after) {
+    font-size: 16px;
+  }
+
+  .tarjetaConsejo {
+    padding: 10px;
   }
 }

@@ -10,6 +10,11 @@ function TipsNews() {
     <>
       <div className={styles.mainContainer}>
         <div className={styles.container1}>
+          <div className={styles.carouselTitleContainer}>
+            <h2 className={styles.carouselTitle}>
+              Consejos <span className={styles.italicText}>para tu experiencia</span>
+            </h2>
+          </div>
           <CarruselConsejos />
         </div>
         <div className={styles.container2}>
