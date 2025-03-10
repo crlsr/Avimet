@@ -7,7 +7,6 @@
     margin-top: 83px;
     background-color: rgba(217, 245, 222, 0.85);
     background-blend-mode: lighten;
-    /* background-image: url('../../assets/sabas-nieves.png'); */
     background-repeat: no-repeat;
     background-size: cover;
     padding: 40px 120px;
@@ -208,42 +207,120 @@
     line-height: 16px;
   }
   
-  @media (width<=991px) {
-    .card-container {
-      max-width: 100%;
-      padding-left: 20px;
-      padding-right: 20px;
-    }
-    
-    .guide-card-container {
-        max-width: 100%;
-        padding-left: 20px;
-        padding-right: 20px;
-      }
-    
-    .content-wrapper {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0;
-      }
-
-    .destination-image {
-        margin-top: 40px;
-      }
-    
-    .text-content {
-        max-width: 100%;
-        margin-top: 40px;
-      }
-    
-    .description {
-        max-width: 100%;
-      }
-  }
-
-.info-section {
+  .info-section {
     display: flex;
     flex-flow: column;
     align-items: center;
     gap: 98px;
+    padding-bottom: 10px;
 }
+  
+  @media (width<1100px) {
+    .map-container {
+      flex-flow: column;
+      justify-content: center;
+      align-items: center;
+      gap: 50px;
+      width: 100%;
+      padding: 40px 0;
+  }
+
+  .about-container {
+    align-items: center;
+    font-size: 35px;
+    gap: 20px;
+    width: 100%;
+}
+
+  .map-banner {
+   height: fit-content;
+  }
+
+  .destination-card {
+    width: 80%;
+    height:auto;
+  }
+  .card-container {
+    max-width: 80%;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  .guide-card-container {
+      max-width: 80%;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  
+  .content-wrapper {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+
+    .guide-content.content-wrapper {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      flex-direction: column-reverse;
+    }
+
+  .guide-image {
+      align-self: flex-end;
+    }
+  
+  .text-content {
+      max-width: 100%;
+      margin-top: 40px;
+    }
+  
+  .description {
+      max-width: 100%;
+    }
+  }
+
+  @media (width<=650px) {
+    .header-container {
+      height: 50vh;
+  }
+
+    .map {
+      width: 80%;
+      height:auto;
+    }
+
+    .return-button {
+      left: 50px;
+    }
+    
+    .arrow-back {
+      width: 10px;
+    }
+  }
+
+  @media (width<=480px) {
+    .header-container {
+      height: 40vh;
+      padding: 20px 60px
+  }
+
+  .guide-image {
+    width: 90%;
+    height: auto;
+  }
+
+  .destination-image {
+    width: 90%;
+    height: auto;
+  }
+
+  .return-button {
+    top: 25px;
+    left: 40px;
+  }
+  
+  .arrow-back {
+    width: 10px;
+  }
+  }

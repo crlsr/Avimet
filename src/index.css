@@ -53,3 +53,14 @@ button {
 .btn-tertiary:hover {
     color: #1b4332;
 }
+
+ @media (width<=480px) {
+    button {
+        padding: 8px 35px;
+        font-size: 12px;
+    }
+
+    .btn-tertiary {
+        font-size: 10px;
+    }
+ }
