@@ -1,11 +1,10 @@
 import React from "react";
-import "./LoginSignUp/LoginSignup.css";
-import ProductCarousel from "../components/ProductCarousel/ProductCarousel";
-import TarjetaDestinos, { destinosData } from "../components/TarjetaDestinos/TarjetaDestinos";
-import TarjetaMisionVision from "../components/TarjetaMisionVision/TarjetaMisionVision";
+import "./auth/LoginSignup.css";
+import ProductCarousel from "../components/productCarousel/ProductCarousel";
+import TarjetaDestinos, { destinosData } from "../components/tarjetaDestinos/TarjetaDestinos";
+import TarjetaMisionVision from "../components/tarjetaMisionVision/TarjetaMisionVision";
 import TarjetaNoticias, { noticiasData } from "../components/TarjetaNoticias/TarjetaNoticias";
-import TarjetaHome, { homeData } from "../components/TarjetaHome/TarjetaHome";
-
+import TarjetaHome, { homeData } from "../components/tarjetaHome/TarjetaHome";
 const Home = () => {
     return (
         <>
@@ -46,8 +45,8 @@ const Home = () => {
             botonTexto={homeData.botonTexto}
             imagen={homeData.imagen}
           />
-          </div>
-
+        </div>
+        
         </>
 
     )
