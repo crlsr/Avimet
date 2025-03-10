@@ -1,6 +1,6 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, EffectCoverflow } from 'swiper/modules';
+import { Navigation, EffectCoverflow, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/effect-coverflow';
@@ -56,11 +56,15 @@ function CarruselConsejos() {
   return (
     <div className={styles.carruselConsejos}>
       <Swiper
-        modules={[Navigation, EffectCoverflow]}
+        modules={[Navigation, EffectCoverflow, Autoplay]}
         navigation
         effect={'coverflow'}
         centeredSlides={true}
         loop={true}
+        autoplay={{
+          delay: 5000, 
+          disableOnInteraction: false,
+        }}
         coverflowEffect={{
           rotate: 0,
           stretch: 0,
