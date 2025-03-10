@@ -1,0 +1,177 @@
+.carruselConsejos {
+  width: 100%;
+  padding: 50px 0;
+}
+
+.swiper {
+  width: 90%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  
+}
+
+.swiperSlide {
+  background-position: center;
+  background-size: cover;
+  width: 300px;
+  height: 600px;
+  border-radius: 25px;
+}
+
+.evenSlide {
+  background-color: #003428; 
+}
+
+.oddSlide {
+  background-color: #0DA665; 
+}
+
+.evenSlide .tituloConsejo {
+  color: #A3E96C;
+}
+
+.oddSlide .tituloConsejo {
+  color: #003428;
+}
+
+.tarjetaConsejo {
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  transition: all 0.3s ease;
+}
+
+.swiperSlide-active .tarjetaConsejo {
+  transform: scale(1.1);
+}
+
+.imagenConsejo {
+  width: 30%;
+  height: 150px;
+  border-radius: 8px;
+}
+
+.tituloConsejo {
+  font-weight: bold;
+  margin-bottom: 1px;
+  text-align: center;
+  font-family: "Instrument Serif", serif;
+  font-size: 55px;
+}
+
+.descripcionConsejo {
+  font-size: 1.25em;
+  margin-bottom: 15px;
+  text-align: center;
+  font-family: "Roboto", "Inter", sans-serif;
+  color: #FFF;
+  padding: 20px;
+}
+:global(.swiper-button-next),
+:global(.swiper-button-prev) {
+  color: #000;
+}
+
+:global(.swiper-pagination-bullet-active) {
+  background: #000;
+}
+
+/* Estilos responsivos */
+@media (max-width: 1550px) {
+  .swiperSlide {
+    width: 250px;
+    height: 450px;
+  }
+
+  .imagenConsejo {
+    height: 100px;
+  }
+
+  .tituloConsejo {
+    font-size: 30px;
+  }
+
+  .descripcionConsejo {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .swiperSlide {
+    width: 250px;
+    height: 450px;
+  }
+
+  .imagenConsejo {
+    height: 100px;
+  }
+
+  .tituloConsejo {
+    font-size: 27px;
+  }
+
+  .descripcionConsejo {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 800px) {
+  .swiperSlide {
+    width: 250px;
+    height: auto;
+  }
+
+  .imagenConsejo {
+    height: 100px;
+  }
+
+  .tituloConsejo {
+    font-size: 22px;
+  }
+
+  .descripcionConsejo {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .swiperSlide {
+    width: 120px;
+    height: auto;
+  }
+
+  .imagenConsejo {
+    height: 70px;
+    width: 70px;
+  }
+
+  .tituloConsejo {
+    font-size: 21px;
+  }
+
+  .descripcionConsejo {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 350px) {
+  .swiperSlide {
+    width: 120px;
+    height: auto;
+  }
+
+  .imagenConsejo {
+    height: 70px;
+  }
+
+  .tituloConsejo {
+    font-size: 20px;
+  }
+
+  .descripcionConsejo {
+    font-size: 13px;
+  }
+}

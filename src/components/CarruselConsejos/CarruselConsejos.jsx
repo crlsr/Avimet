@@ -1,109 +1,103 @@
 import React from 'react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import './CarruselConsejos.css';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, EffectCoverflow } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/effect-coverflow';
+import styles from './CarruselConsejos.module.css';
 
 // Importa las imágenes que vas a usar
-import imagen1 from '../../assets/Avila.png.jpg';
-import imagen2 from '../../assets/Avila.png.jpg';
-import imagen3 from '../../assets/Avila.png.jpg';
-import imagen4 from '../../assets/Avila.png.jpg';
-import imagen5 from '../../assets/Avila.png.jpg';
+import imagen1 from '../../assets/ImagenConsejo1.png';
+import imagen2 from '../../assets/ImagenConsejo2.png';
+import imagen3 from '../../assets/ImagenConsejo3.png';
+
+
 
 const consejos = [
   {
     id: 1,
-    titulo: "Consejo 1",
-    descripcion: "Descripción del consejo 1. Aquí va información útil para los aventureros.",
+    titulo: "Planificación",
+    descripcion: "Investiga la ruta que planeas tomar y asegúrate de que se ajuste a tu nivel de experiencia y condición física. Intenta comenzar temprano en la mañana para evitar el sol más fuerte y tener tiempo suficiente para disfrutar del camino y regresar con luz del día.",
     imagen: imagen1
   },
   {
     id: 2,
-    titulo: "Consejo 2",
-    descripcion: "Descripción del consejo 2. Más información útil para los aventureros.",
+    titulo: "Respeta tu entorno",
+    descripcion: "El Ávila es un parque nacional, así que respeta la naturaleza. No dejes basura y sigue los senderos designados para no dañar la flora y fauna locales. Lleva contigo una bolsa para recoger tus desechos y haz todo lo posible por mantener el área limpia y preservada.",
     imagen: imagen2
   },
   {
     id: 3,
-    titulo: "Consejo 3",
-    descripcion: "Descripción del consejo 3. Consejos adicionales para una mejor experiencia.",
+    titulo: "Prepárate apropiadamente",
+    descripcion: "Lleva ropa cómoda y adecuada para la caminata, zapatos deportivos con buen agarre, y una mochila con agua, snacks energéticos (como frutas y nueces), y protector solar. El clima puede variar, así que lleva una chaqueta ligera.",
     imagen: imagen3
   },
   {
     id: 4,
-    titulo: "Consejo 4",
-    descripcion: "Descripción del consejo 4. Información importante para la seguridad.",
-    imagen: imagen4
+    titulo: "Organiza tu itinerario",
+    descripcion: "Antes de salir, revisa el pronóstico del tiempo para evitar sorpresas. Planea el tiempo que dedicarás a la caminata, descansos y regreso. Comienza temprano, así disfrutarás del recorrido con tranquilidad y evitarás caminar de noche.",
+    imagen: imagen1
   },
   {
     id: 5,
-    titulo: "Consejo 5",
-    descripcion: "Descripción del consejo 5. Últimos consejos para disfrutar al máximo.",
-    imagen: imagen5
+    titulo: "Cuida la fauna y flora",
+    descripcion: "Recuerda que estás en un espacio protegido. Evita tocar o alimentar a los animales, y no recolectes plantas o flores. Mantente siempre en los caminos marcados para minimizar el impacto ambiental y ayuda a conservar el ecosistema del parque.",
+    imagen: imagen2
+  },
+  {
+    id: 6,
+    titulo: "Equipo esencial",
+    descripcion: "Además de agua y alimentos, lleva un pequeño botiquín de primeros auxilios, linterna con baterías extra y un silbato para emergencias. Usa ropa transpirable, gorra o sombrero, y protector solar para protegerte de los cambios climáticos.",
+    imagen: imagen3
   }
 ];
 
-function SampleNextArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={`${className} custom-arrow next-arrow`}
-      style={{ ...style, display: "block" }}
-      onClick={onClick}
-    />
-  );
-}
-
-function SamplePrevArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={`${className} custom-arrow prev-arrow`}
-      style={{ ...style, display: "block" }}
-      onClick={onClick}
-    />
-  );
-}
-
 function CarruselConsejos() {
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        }
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        }
-      }
-    ]
-  };
-
   return (
-    <div className="carrusel-consejos">
-      <Slider {...settings}>
+    <div className={styles.carruselConsejos}>
+      <Swiper
+        modules={[Navigation, EffectCoverflow]}
+        navigation
+        effect={'coverflow'}
+        centeredSlides={true}
+        loop={true}
+        coverflowEffect={{
+          rotate: 0,
+          stretch: 0,
+          depth: 100,
+          modifier: 2.5,
+        }}
+        breakpoints={{
+          0: {
+            slidesPerView: 1,
+            slidesToShow: 1,
+          },
+          481: {
+            slidesPerView: 2,
+            slidesToShow: 2,
+          },
+          801: {
+            slidesPerView: 3,
+            slidesToShow: 3,
+          },
+        }}
+        className={styles.swiper}
+      >
         {consejos.map((consejo) => (
-          <div key={consejo.id} className="tarjeta-consejo">
-            <img src={consejo.imagen} alt={consejo.titulo} className="imagen-consejo" />
-            <h3 className="titulo-consejo">{consejo.titulo}</h3>
-            <p className="descripcion-consejo">{consejo.descripcion}</p>
-          </div>
+          <SwiperSlide
+            key={consejo.id}
+            className={`${styles.swiperSlide} ${
+              consejo.id % 2 === 0 ? styles.evenSlide : styles.oddSlide
+            }`}
+          >
+            <div className={styles.tarjetaConsejo}>
+              <img src={consejo.imagen} alt={consejo.titulo} className={styles.imagenConsejo} />
+              <h3 className={styles.tituloConsejo}>{consejo.titulo}</h3>
+              <p className={styles.descripcionConsejo}>{consejo.descripcion}</p>
+            </div>
+          </SwiperSlide>
         ))}
-      </Slider>
+      </Swiper>
     </div>
   );
 }
