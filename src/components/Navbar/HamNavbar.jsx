@@ -1,9 +1,10 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { UserContext } from "../../context/UserContext";
 import { getAuth, signOut } from "firebase/auth";
 import appFirebase from "../../../credenciales";
+import { getFirestore, collection, getDocs } from "firebase/firestore";
 
 import styles from "./Navbar.module.css";
 import global from "../../global.module.css";
@@ -12,11 +13,39 @@ import profilePhoto from "../../assets/foto-predeterminada.png";
 import { IoIosSearch } from "react-icons/io";
 
 const auth = getAuth(appFirebase);
+const db = getFirestore(appFirebase);
 
 export const MenuHamburguesa = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { logged, profile } = useContext(UserContext);
   const navigation = useNavigate();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [destinations, setDestinations] = useState([]);
+  const [filteredDestinations, setFilteredDestinations] = useState([]);
+
+  useEffect(() => {
+    const fetchDestinations = async () => {
+      const querySnapshot = await getDocs(collection(db, "destinations"));
+      const data = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setDestinations(data);
+    };
+
+    fetchDestinations();
+  }, []);
+
+  useEffect(() => {
+    if (searchTerm.trim() === "") {
+      setFilteredDestinations([]);
+    } else {
+      const filtered = destinations.filter((dest) =>
+        dest.destination.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredDestinations(filtered);
+    }
+  }, [searchTerm, destinations]);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -24,6 +53,24 @@ export const MenuHamburguesa = () => {
 
   const handleLogout = async () => {
     await signOut(auth);
+  };
+
+  const handleSearch = () => {
+    if (searchTerm.trim() === "") return;
+
+    const matchedDestination = destinations.find(
+      (dest) => dest.destination.toLowerCase() === searchTerm.toLowerCase()
+    );
+
+    if (matchedDestination) {
+      navigation(
+        `/destinations/${matchedDestination.destination
+          .replace(/\s+/g, "-")
+          .toLowerCase()}`
+      );
+    } else {
+      navigation(`/busqueda?q=${searchTerm.replace(/\s+/g, "-")}`);
+    }
   };
 
   return (
@@ -61,7 +108,11 @@ export const MenuHamburguesa = () => {
           </li>
           <li>
             {logged ? (
-              <Link to="/reserve" className={styles.navbar_link} onClick={toggleMenu}>
+              <Link
+                to="/reserve"
+                className={styles.navbar_link}
+                onClick={toggleMenu}
+              >
                 Reserva tu viaje
               </Link>
             ) : (
@@ -75,12 +126,32 @@ export const MenuHamburguesa = () => {
             )}
           </li>
           <li className={styles.search_container}>
-            <IoIosSearch className={styles.search_icon} />
-            <input
-              type="text"
-              placeholder="Buscar..."
-              className={styles.search_input}
-            />
+            <div className={styles.search_box}>
+              <IoIosSearch
+                className={styles.search_icon}
+                onClick={handleSearch}
+              />
+              <input
+                type="text"
+                placeholder="Buscar un destino..."
+                className={styles.search_input}
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              {filteredDestinations.length > 0 && (
+                <ul className={styles.suggestions_list}>
+                  {filteredDestinations.map((dest) => (
+                    <li
+                      key={dest.id}
+                      className={styles.suggestion_item}
+                      onClick={() => navigation(`/destinations/${dest.slug}`)}
+                    >
+                      {dest.destination}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
           </li>
           <li>
             <div className={styles.auth_container}>
