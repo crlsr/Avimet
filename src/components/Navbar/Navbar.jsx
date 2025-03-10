@@ -38,13 +38,13 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            <Link to="/profile" className={styles.navbar_link}>
+            <Link to="/destination" className={styles.navbar_link}>
               Destinos
             </Link>
           </li>
           <li>
             {logged ? (
-              <Link to="/" className={styles.navbar_link}>
+              <Link to="/reserve" className={styles.navbar_link}>
                 Reserva tu viaje
               </Link>
             ) : (

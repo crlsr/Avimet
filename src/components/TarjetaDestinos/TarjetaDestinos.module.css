@@ -58,7 +58,7 @@
   width: 100%;
 }
 
-@media (max-width: 935px) {
+@media (max-width: 1130px) {
   .tarjetaDestino {
     flex-direction: column;
     height: auto;

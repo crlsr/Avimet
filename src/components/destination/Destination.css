@@ -58,7 +58,7 @@
     justify-content: center;
     height: 80vh;
     width: 100%;
-    background-color: #1b4332;
+    background-color: #003428;
     padding-bottom: 50px;
 }
 
@@ -127,7 +127,7 @@
   }
   
   .card-container {
-    background-color: #1b4332;
+    background-color: #003428;
     border-radius: 26px;
     width: 100%;
     padding: 32px 47px;
@@ -185,7 +185,7 @@
   }
   
   .guide-title {
-    color: #1b4332;
+    color: #003428;
     font-size: 42px;
     font-weight: lighter;
     font-family: Instrument Serif;

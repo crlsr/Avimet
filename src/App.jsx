@@ -13,7 +13,8 @@ import Login from "./pages/auth/Login";
 import Home from "./pages/Home/Home";
 import SignUp from "./pages/auth/SignUp";
 import Profile from "./pages/Profile";
-import NotFound from './pages/NotFound/Notfound'
+import NotFound from './pages/NotFound/Notfound';
+import TipsNews from './pages/TipsNews/TipsNews';
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import PasswordRecovery from './pages/auth/PasswordRecovery';
@@ -39,6 +40,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/destinations/:slug" element={<Destination />}/>
+            <Route path="/tips-news" element={<TipsNews />} />
             <Route path="*" element={<NotFound />}/>
           </Route>
         </Route>

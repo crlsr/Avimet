@@ -115,7 +115,8 @@
 }
 
 .errorButton:hover {
-  background-color: #004d3b;
+  background-color: #a3e96c;
+  color: #003428;
 }
 
 .errorButton:focus {

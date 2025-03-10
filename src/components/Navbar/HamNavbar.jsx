@@ -52,7 +52,7 @@ export const MenuHamburguesa = () => {
           </li>
           <li>
             <Link
-              to="/profile"
+              to="/destination"
               className={styles.navbar_link}
               onClick={toggleMenu}
             >
@@ -61,7 +61,7 @@ export const MenuHamburguesa = () => {
           </li>
           <li>
             {logged ? (
-              <Link to="/" className={styles.navbar_link} onClick={toggleMenu}>
+              <Link to="/reserve" className={styles.navbar_link} onClick={toggleMenu}>
                 Reserva tu viaje
               </Link>
             ) : (
