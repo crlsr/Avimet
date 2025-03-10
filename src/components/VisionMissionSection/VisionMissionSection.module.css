@@ -1,10 +1,10 @@
 .container {
   justify-content: center;
   gap: 24px;
-  max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
   display: flex;
+  width: 80%;
 }
 
 @media (width<=991px) {
@@ -20,7 +20,7 @@
   box-sizing: border-box;
   background-color: #003428;
   border-radius: 30px;
-  width: 476px;
+  width: 50%;
   height: 354px;
   padding: 45px 41px;
 }

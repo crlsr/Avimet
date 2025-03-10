@@ -9,10 +9,6 @@ const VisionMissionSection = () => {
 
   return (
     <>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Roboto&display=swap"
-        rel="stylesheet"
-      />
       <section className={styles.container}>
         <InfoCard
           title="Visión"

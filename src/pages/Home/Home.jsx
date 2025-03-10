@@ -1,14 +1,13 @@
 import React from "react";
 import styles from "./Home.module.css";
+import { Link } from "react-router-dom";
 
 import MainCard from "../../components/MainCardSection/MainCardSection";
 import AvilaMountain from "../../components/AvilaMountain/AvilaMountain";
-import TarjetaDestinos, { destinosData } from "../../components/TarjetaDestinos/TarjetaDestinos";
-import TarjetaNoticias, { noticiasData } from "../../components/TarjetaNoticias/TarjetaNoticias";
+import TarjetaDestinos, {
+  destinosData,
+} from "../../components/TarjetaDestinos/TarjetaDestinos";
 import VisionMissionSection from "../../components/VisionMissionSection/VisionMissionSection";
-import CarruselConsejos from "../../components/CarruselConsejos/CarruselConsejos";
-
-
 
 const Home = () => {
   return (
@@ -20,35 +19,30 @@ const Home = () => {
         <div className={styles.container2}>
           <AvilaMountain />
         </div>
-        <div className="tarjetas-container">
-        {destinosData.map((destino, index) => (
-          <TarjetaDestinos
-            key={index}
-            imagen={destino.imagen}
-            titulo={destino.titulo}
-            descripcion={destino.descripcion}
-            colorClase={destino.colorClase} // Pasa la clase de color aquí
-          />
-        ))}
-        </div>
-        <div className={styles.tarjetasnoticias_container}>
-          {noticiasData.map((noticia, index) => (
-            <TarjetaNoticias
+        <div className={styles.container3}>
+          <h1 className={styles.title}>
+            Explora los <span className={styles.titleMiddle}>destinos</span>{" "}
+            <br />
+            más populares de la montaña
+          </h1>
+
+          {destinosData.map((destino, index) => (
+            <TarjetaDestinos
               key={index}
-              imagen={noticia.imagen}
-              titulo={noticia.titulo}
-              fecha={noticia.fecha}
-              descripcion={noticia.descripcion}
+              imagen={destino.imagen}
+              titulo={destino.titulo}
+              descripcion={destino.descripcion}
+              colorClase={destino.colorClase}
+              direccion={destino.direccion}
             />
           ))}
-          </div>
+          <Link to="/destination" className={styles.viewMore}>
+            <a className={styles.linkViewMore} >ver más destinos</a>
+          </Link>
+        </div>
         <div className={styles.container3}>
           <VisionMissionSection />
-      </div>
-      <div className="carruselconsejos-container">
-              <h2>Consejos para Aventureros</h2>
-              <CarruselConsejos />
-            </div>
+        </div>
       </div>
     </>
   );

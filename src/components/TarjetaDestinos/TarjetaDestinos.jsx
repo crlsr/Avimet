@@ -1,15 +1,17 @@
 import React from "react";
 import image1 from '../../assets/Avila.png.jpg'
 import styles from './TarjetaDestinos.module.css'
+import {useNavigate } from "react-router-dom";
 
-const TarjetaDestinos = ({ imagen, titulo, descripcion, colorClase }) => {
+const TarjetaDestinos = ({ imagen, titulo, descripcion, colorClase, direccion }) => {
+  const navigation = useNavigate();
   return (
     <div className={`${styles.tarjetaDestino} ${styles?.[colorClase]}`}>
       <img src={imagen} alt={titulo} className={styles.imagenDestino} />
       <div className={styles.contenidoDestino}>
         <h2 className={styles.tituloDestino}>{titulo}</h2>
         <p className={styles.descripcionDestino}>{descripcion}</p>
-        <button className={`btn-secondary ${styles.btnMasInfo}`}>Más información</button>
+        <button className={`btn-quaternary ${styles.btnMasInfo}`} onClick={() => navigation(direccion)}>Más información</button>
       </div>
     </div>
   );
@@ -22,12 +24,21 @@ export const destinosData = [
         imagen: image1,
         titulo: "Quebrada Quintero",
         descripcion: "La Quebrada Quintero, cerca de Municipio Sucre, Miranda, es un bellísimo destino paradisíaco lleno de rocas y un ambiente natural perfecto para disfrutar junto a amigos o familia. Esta ruta de 6.3 km tarda alrededor de 2h 38 m en ser recorrida, no suele ser un recorrido muy movido, siendo una de las rutas más sencillas de realizar si solo deseas pasar un buen rato.",
-        colorClase: "darkgreen" 
+        colorClase: "darkgreen" ,
+        direccion: "/destinations/quebrada-quintero"
     },
     {
         imagen: image1,
-        titulo: "Quebrada Quintero",
-        descripcion: "La Quebrada Quintero, cerca de Municipio Sucre, Miranda, es un bellísimo destino paradisíaco lleno de rocas y un ambiente natural perfecto para disfrutar junto a amigos o familia. Esta ruta de 6.3 km tarda alrededor de 2h 38 m en ser recorrida, no suele ser un recorrido muy movido, siendo una de las rutas más sencillas de realizar si solo deseas pasar un buen rato.",
-        colorClase: "lightgreen" 
+        titulo: "Sabas Nieves",
+        descripcion: "Sabas Nieves es uno de los principales puntos de entrada del Parque Nacional El Ávila en Caracas, Venezuela. Popular entre los amantes del senderismo, esta ruta ofrece una mezcla de desafíos moderados y paisajes fascinantes. El sendero serpentea a través de frondosos bosques, conducente a vistas panorámicas de la ciudad, y es el lugar ideal para aquellos que buscan una escapada natural sin alejarse demasiado de la urbe.",
+        colorClase: "lightgreen" ,
+        direccion: "/destinations/sabas-nieves"
     },
+    {
+      imagen: image1,
+      titulo: "Pico Naiguata",
+      descripcion: "El Pico Naiguatá es una majestuosa cima ubicada en el Parque Nacional El Ávila, cercano a Caracas, Venezuela. Con una altitud de aproximadamente 2.765 metros (sobre el nivel del mar), el pico ofrece vistas panorámicas espectaculares de la ciudad y el Mar Caribe. Amado por los excursionistas y escaladores, el Pico Naiguatá es un símbolo natural de fortaleza y belleza, invitando a los aventureros a disfrutar de su entorno rico en biodiversidad y paisajes impresionantes",
+      colorClase: "darkgreen" ,
+      direccion: "/destinations/pico-naiguata"
+  },
 ];
