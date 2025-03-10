@@ -62,7 +62,9 @@
   flex-flow: column;
   gap: 12px;
 }
-
+.recovery{
+  width: 100%;
+}
 form {
   display: flex;
   flex-direction: column;
@@ -116,6 +118,30 @@ a {
   opacity: 0;
   width: 0;
   height: 0;
+}
+
+.pageWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.boton-recovery{
+  padding: 10px;
+  border-radius: 10px;
+  width: 100%;
+  gap: 12px; 
+  font-weight: bold;
+  background-color: #003428;
+  color: white;
+  margin: 10px 0px;
+}
+
+.boton-recovery:hover {
+  background-color: #a3e96c;
+  color: #003428;
 }
 
 .slider {

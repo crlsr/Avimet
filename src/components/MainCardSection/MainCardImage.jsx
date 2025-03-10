@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./MainCard.module.css";
-import imageAvila from '../../assets/Avila.png.jpg';
+import imageAvila from '../../assets/home/background-avila.jpg'
 
 function HeroImage() {
   return (

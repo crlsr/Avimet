@@ -63,3 +63,14 @@ button {
     background-color: #d9f5de;
     color: #003428;
 }
+
+ @media (width<=480px) {
+    button {
+        padding: 8px 35px;
+        font-size: 12px;
+    }
+
+    .btn-tertiary {
+        font-size: 10px;
+    }
+ }

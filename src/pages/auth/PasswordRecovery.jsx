@@ -59,7 +59,7 @@ const PasswordRecovery = () => {
     <div className="pageWrapper">
       <div className="container">
         <h1>Recuperación de Contraseña</h1>
-        <div className="login-box">
+        <div className="login-box recovery">
           <h2>Ingrese su correo electrónico</h2>
           <form onSubmit={handlePasswordRecovery} onChange={() => setError("")}>
             <input
@@ -70,7 +70,7 @@ const PasswordRecovery = () => {
               placeholder="Email"
               id="email"
             />
-            <button className={global.btn1} type="submit" disabled={loading}>
+            <button className='boton-recovery' type="submit" disabled={loading}>
               {loading ? "Enviando..." : "Recuperar Contraseña"}
             </button>
           </form>

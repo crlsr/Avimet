@@ -1,7 +1,14 @@
 import * as React from "react";
 import styles from "./AvilaMountain.module.css";
 import ProductCarousel from "../productCarousel/ProductCarousel";
-import image from '../../assets/background-avila.jpg'
+import image1 from '../../assets/home/carousel1.png'
+import image2 from '../../assets/home/carousel2.png'
+import image3 from '../../assets/home/carousel3.png'
+import image4 from '../../assets/home/carousel4.png'
+import image5 from '../../assets/home/background-avila.jpg'
+import image6 from '../../assets/pico-naiguata/pico-naiguata-carousel-image-3.png'
+import image7 from '../../assets/pico-naiguata/pico-naiguata-carousel-image-1.png'
+import image8 from '../../assets/quebrada-quintero/quebrada-quintero-carousel-image-3.png'
 
 function AvilaMountainHero() {
   return (
@@ -9,7 +16,7 @@ function AvilaMountainHero() {
       <div>
         <div className={styles.Carousel}>
           <ProductCarousel 
-            images={[image,image,image,image,image,image,image,image]}
+            images={[image1,image2,image3,image4,image5,image6,image7,image8]}
             className=""
           />
         </div>

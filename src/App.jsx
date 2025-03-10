@@ -13,11 +13,11 @@ import Login from "./pages/auth/Login";
 import Home from "./pages/Home/Home";
 import SignUp from "./pages/auth/SignUp";
 import Profile from "./pages/Profile";
+import NotFound from './pages/NotFound/Notfound'
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import PasswordRecovery from './pages/auth/PasswordRecovery';
 import Destination from "./pages/Destination";
-import NotFound from "./pages/NotFound/NotFound";
 
 
 function App() {
@@ -39,7 +39,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/destinations/:slug" element={<Destination />}/>
-            <Route path="*" element={<NotFound />} />
+            <Route path="*" element={<NotFound />}/>
           </Route>
         </Route>
         <Route path="/signup" element={<SignUp />} />

@@ -1,6 +1,6 @@
 .mainContainer {
     background: linear-gradient(rgba(0, 52, 40, 0.731), rgba(0, 52, 40, 0.731)), 
-                url("../../assets/background-avila.jpg") center/cover no-repeat;
+                url("../../assets/home/background-avila.jpg") center/cover no-repeat;
     display: flex;
     flex-direction: column;
     align-items: center;

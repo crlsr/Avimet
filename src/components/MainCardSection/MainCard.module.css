@@ -113,7 +113,7 @@
   .heroImage {
     border-width: 4px;
     border-radius: 24px 80px 16px 65px;
-    width: 80%;
+    width: 100%;
     height: 200px;
   }
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import DescriptionCard from './DescriptionCard'
 import GuideCard from './GuideCard'
 import './Destination.css'
+import InputBG from '../commentSection/InputBG'
 
 
 export default function InfoSection({description , descriptionTitle , descriptionImage , guide , guideDescription , guideImage }) {
@@ -17,7 +18,7 @@ export default function InfoSection({description , descriptionTitle , descriptio
                 guide={guide}
                 description={guideDescription}
             />
-            {/* Aqui el componente comentarios */}
+            <InputBG/>
         </div>
         
     )
