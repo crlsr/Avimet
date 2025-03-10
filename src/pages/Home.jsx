@@ -1,10 +1,12 @@
 import React from "react";
-import "./auth/LoginSignup.css";
+
 import ProductCarousel from "../components/productCarousel/ProductCarousel";
 import TarjetaDestinos, { destinosData } from "../components/tarjetaDestinos/TarjetaDestinos";
 import TarjetaMisionVision from "../components/tarjetaMisionVision/TarjetaMisionVision";
 import TarjetaNoticias, { noticiasData } from "../components/TarjetaNoticias/TarjetaNoticias";
 import TarjetaHome, { homeData } from "../components/tarjetaHome/TarjetaHome";
+import SearchBar from "../components/SearchBar/SearchBar";
+
 const Home = () => {
     return (
         <>
@@ -45,6 +47,10 @@ const Home = () => {
             botonTexto={homeData.botonTexto}
             imagen={homeData.imagen}
           />
+        </div>
+
+        <div>
+          <SearchBar />
         </div>
         
         </>

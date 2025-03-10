@@ -1,9 +1,11 @@
 import React, {useState, useEffect} from "react";
-import './SearchBar.css';
-import { db } from "firebase";
+import styles from './SearchBar.module.css';
+import { doc, getDoc, getFirestore } from "firebase/firestore";
+import appFirebase from "../../../credenciales";
 import { collection, query, where, getDocs } from "firebase/firestore";
+import { IoIosSearch } from "react-icons/io";
 
-
+const db = getFirestore(appFirebase);
 function SearchBar(){
 
     const [searchTerm, setSearchTerm] = useState(""); // Estado para el término de búsqueda
