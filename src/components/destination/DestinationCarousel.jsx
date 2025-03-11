@@ -1,5 +1,5 @@
 import React from "react"
-import ProductCarousel from '../productCarousel/ProductCarousel';
+import ProductCarousel from '../ProductCarousel/ProductCarousel';
 import './Destination.css'
 
 export default function DestinationCarousel( { images } ) {
