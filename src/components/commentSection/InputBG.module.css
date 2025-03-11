@@ -2,12 +2,10 @@
   color: gray;
   background-color: #f2f2f2;
   border-radius: 13.992px;
-  width: 100%;
   max-width: 334px;
   padding: 16px;
   font-family:
-    Roboto,
-    -apple-system,
+    "Roboto",
     Helvetica,
     sans-serif;
   font-size: 9px;

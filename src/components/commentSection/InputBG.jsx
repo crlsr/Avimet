@@ -1,26 +1,24 @@
-"use client";
 import * as React from "react";
 import styles from "./InputBG.module.css";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 import appFirebase from "../../credenciales";
-import { getFirestore } from "firebase/firestore";
- 
+import { doc, getFirestore, setDoc} from "firebase/firestore";
+import {v4 as uuidv4} from "uuid";
+
 
 function StarRating({ rating, onRatingChange }) {
   const stars = [1, 2, 3, 4, 5];
 
   return (
     <div className={styles.starRating}>
-        {stars.map((star) => (
+      {stars.map((star) => (
         <button
           key={star}
           className={`${styles.starButton} ${
-             star <= rating ? styles.starActive : ""
+            star <= rating ? styles.starActive : ""
           }`}
           onClick={() => onRatingChange(star)}
-          onMouseEnter={() => setHover(star)}
-          onMouseLeave={() => setHover(0)}
           aria-label={`Rate ${star} stars`}
         >
           ★
@@ -28,7 +26,7 @@ function StarRating({ rating, onRatingChange }) {
       ))}
     </div>
   );
-};
+}
 
 function ReviewInput({ value, placeholder, onChange }) {
   return (
@@ -61,10 +59,10 @@ function ActionButtons({ onSend, onCancel }) {
   );
 }
 
-function InputBG() {
-  const [review, setReview] = React.useState("");
-  const [rating, setRating] = React.useState(0);
+function InputBG(destino) {
   const { logged, profile } = React.useContext(UserContext);
+  const [rating, setRating] = React.useState(0);
+  const [review, setReview] = React.useState("");
   const db = getFirestore(appFirebase);
   const navigate = useNavigate();
 
@@ -72,44 +70,56 @@ function InputBG() {
     setReview(e.target.value);
   };
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if(logged === true){
       if (rating === 0) {
         alert("Porfavor, selecione un rating");
         return;
       }
-      console.log("Mandando comentario:", { rating, review });
-      alert(logged)
+
+      try{
+        const commentId = uuidv4();
+        await setDoc(doc(db, "comments", commentId), {
+          autor: profile.name,
+          autor_id: profile.uid,
+          comment : review,
+          stars: rating,
+          destino: destino.destino,
+          CreationDate: new Date(),
+        });
+        console.log("Mandando comentario:", { rating, review });
+        handleCancel();
+      } catch(error){
+        console.error("Error al almacenar el comentario:", error);
+      }
       // Here you would typically send the data to your backend
-      handleCancel(); // Reset form after sending
     } else{
       navigate("./Login");
       handleCancel();
     }
+    
   };
 
-      const handleCancel = () => {
-      setRating(0);
-      setReview("");
-    }
+  const handleCancel = () => {
+    setRating(0);
+    setReview("");
+  };
 
   return (
     <section className={styles.inputBg}>
       <div className={styles.reviewContainer}>
-         <StarRating rating={rating} onRatingChange={setRating} />
-         <div className={styles.inputWrapper}>
-           <ReviewInput
-             value={review}
-             placeholder="Escribir una reseña..."
-             onChange={handleReviewChange}
-           />
-         </div>
+        <StarRating rating={rating} onRatingChange={setRating} />
+        <div className={styles.inputWrapper}>
+          <ReviewInput
+            value={review}
+            placeholder="Escribir una reseña..."
+            onChange={handleReviewChange}
+          />
+        </div>
         <ActionButtons onSend={handleSend} onCancel={handleCancel} />
       </div>
     </section>
   );
 }
-  
-
 
 export default InputBG;
