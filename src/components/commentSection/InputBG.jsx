@@ -3,7 +3,8 @@ import styles from "./InputBG.module.css";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 import appFirebase from "../../credenciales";
-import { getFirestore } from "firebase/firestore";
+import { doc, getFirestore, setDoc} from "firebase/firestore";
+import {v4 as uuidv4} from "uuid";
 
 
 function StarRating({ rating, onRatingChange }) {
@@ -58,7 +59,7 @@ function ActionButtons({ onSend, onCancel }) {
   );
 }
 
-function InputBG() {
+function InputBG(destino) {
   const { logged, profile } = React.useContext(UserContext);
   const [rating, setRating] = React.useState(0);
   const [review, setReview] = React.useState("");
@@ -69,16 +70,29 @@ function InputBG() {
     setReview(e.target.value);
   };
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if(logged === true){
       if (rating === 0) {
         alert("Porfavor, selecione un rating");
         return;
       }
-      console.log("Mandando comentario:", { rating, review });
-      alert(logged)
+
+      try{
+        const commentId = uuidv4();
+        await setDoc(doc(db, "comments", commentId), {
+          autor: profile.name,
+          autor_id: profile.uid,
+          comment : review,
+          stars: rating,
+          destino: destino.destino,
+          CreationDate: new Date(),
+        });
+        console.log("Mandando comentario:", { rating, review });
+        handleCancel();
+      } catch(error){
+        console.error("Error al almacenar el comentario:", error);
+      }
       // Here you would typically send the data to your backend
-      handleCancel(); // Reset form after sending
     } else{
       navigate("./Login");
       handleCancel();

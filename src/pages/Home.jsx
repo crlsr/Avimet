@@ -6,6 +6,11 @@ import TarjetaMisionVision from "../components/tarjetaMisionVision/TarjetaMision
 import TarjetaNoticias, { noticiasData } from "../components/TarjetaNoticias/TarjetaNoticias";
 import TarjetaHome, { homeData } from "../components/tarjetaHome/TarjetaHome";
 
+{/* 
+import InputBG from "../components/commentSection/InputBG";
+import CommentBox from "../components/commentSection/CommentBox";
+*/}
+
 const Home = () => {
     return (
         <>
@@ -47,7 +52,12 @@ const Home = () => {
             imagen={homeData.imagen}
           />
         </div>
-
+        {/*
+        <div className="comment-section">
+          <InputBG destino = "aguacate"/>
+          <CommentBox destino={"aguacate"}/>
+        </div>
+        */}
         </>
 
     )
