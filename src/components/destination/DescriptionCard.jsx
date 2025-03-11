@@ -1,7 +1,9 @@
 import React from "react";
+import {useNavigate } from "react-router-dom";
 import "./Destination.css";
 
 function DescriptionCard({ image , description , title}) {
+  const navigation = useNavigate();
   return (
     <section className='destination-card'>
       <div className='card-container'>
@@ -16,7 +18,7 @@ function DescriptionCard({ image , description , title}) {
                 <p className='description'>
                     {description}
                 </p>
-                <button className='btn-secondary'>
+                <button className='btn-quaternary' onClick={() => navigation('/tips-news')}>
                     Ver consejos
                 </button>
             </div>

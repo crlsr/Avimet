@@ -26,7 +26,7 @@ function AvilaMountainHero() {
           <h1 className={styles.title}>
             <span className={styles.titleStart}>El Ávila, </span>
             <span className={styles.titleEnd}>
-              el Guardian Natural de Caracas
+              el Guardián Natural de Caracas
             </span>
           </h1>
           <p className={styles.description}>

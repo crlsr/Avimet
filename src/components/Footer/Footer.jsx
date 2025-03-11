@@ -20,13 +20,13 @@ export default function Footer() {
             </Link>
           </li>
           <li>
-            <Link to="/profile" className={styles.footer_link}>
+            <Link to="/destination" className={styles.footer_link}>
               Destinos
             </Link>
           </li>
           <li>
             {logged ? (
-              <Link to="/" className={styles.footer_link}>
+              <Link to="/reserve" className={styles.footer_link}>
                 Reserva tu viaje
               </Link>
             ) : (

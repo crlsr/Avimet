@@ -172,3 +172,37 @@
     height: 40px;
   }
 }
+
+.search_box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.suggestions_list {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 100%;
+
+  padding: 0;
+  background: #d9f5de;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 10;
+  color:#003428;
+  font-weight: 500;
+}
+
+.suggestion_item {
+  padding: 10px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.suggestion_item:hover {
+  background: #a3e96c;
+}
+

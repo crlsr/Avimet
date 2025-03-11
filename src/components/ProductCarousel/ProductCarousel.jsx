@@ -37,7 +37,7 @@ function ProductCarousel( {images = [], className = "" } ) {
         slidesToScroll: 1,
         autoplay: true, 
         autoplaySpeed: 2500,
-        sEase: "linear", // Movimiento suave
+        sEase: "linear", 
         pauseOnHover: false,
         responsive: [
             {
