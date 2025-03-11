@@ -36,7 +36,7 @@ const Home = () => {
               direccion={destino.direccion}
             />
           ))}
-          <Link to="/destination" className={styles.viewMore}>
+          <Link to="/destinations" className={styles.viewMore}>
             <a className={styles.linkViewMore} >ver más destinos</a>
           </Link>
         </div>
