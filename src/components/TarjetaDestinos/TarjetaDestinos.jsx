@@ -6,15 +6,15 @@ import imgPicoNaiguata from "../../assets/home/pico-naiguata.png"
 import imgSabasNieves from "../../assets/home/sabas-nieves.png"
 
 
-const TarjetaDestinos = ({ imagen, titulo, descripcion, colorClase, direccion }) => {
+const TarjetaDestinos = ({ imagen, titulo, descripcion, colorClase, direccion, diseñoTarjeta, diseñoBoton, diseñoImagen}) => {
   const navigation = useNavigate();
   return (
-    <div className={`${styles.tarjetaDestino} ${styles?.[colorClase]}`}>
-      <img src={imagen} alt={titulo} className={styles.imagenDestino} />
-      <div className={styles.contenidoDestino}>
+    <div className={`${styles.tarjetaDestino} ${styles?.[colorClase]} ${diseñoTarjeta}`}>
+      <img src={imagen} alt={titulo} className={`${styles.imagenDestino} ${diseñoImagen}`} />
+      <div className={`${styles.contenidoDestino}`}>
         <h2 className={styles.tituloDestino}>{titulo}</h2>
         <p className={styles.descripcionDestino}>{descripcion}</p>
-        <button className={`btn-quaternary ${styles.btnMasInfo}`} onClick={() => navigation(direccion)}>Más información</button>
+        <button className={`btn-quaternary ${styles.btnMasInfo} ${diseñoBoton}`} onClick={() => navigation(direccion)}>Más información</button>
       </div>
     </div>
   );
