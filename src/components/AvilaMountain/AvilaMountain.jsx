@@ -1,6 +1,6 @@
 import * as React from "react";
 import styles from "./AvilaMountain.module.css";
-import ProductCarousel from "../productCarousel/ProductCarousel";
+import ProductCarousel from "../ProductCarousel/ProductCarousel";
 import image1 from '../../assets/home/carousel1.png'
 import image2 from '../../assets/home/carousel2.png'
 import image3 from '../../assets/home/carousel3.png'
