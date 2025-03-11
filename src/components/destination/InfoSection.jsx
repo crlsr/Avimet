@@ -2,9 +2,6 @@ import React from "react";
 import DescriptionCard from "./DescriptionCard";
 import GuideCard from "./GuideCard";
 import "./Destination.css";
-import InputBG from "../commentSection/InputBG";
-import CommentBox from "../commentSection/CommentBox";
-
 export default function InfoSection({
   description,
   descriptionTitle,
