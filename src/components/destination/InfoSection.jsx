@@ -3,6 +3,7 @@ import DescriptionCard from './DescriptionCard'
 import GuideCard from './GuideCard'
 import './Destination.css'
 import InputBG from '../commentSection/InputBG'
+import CommentBox from '../commentSection/CommentBox'
 
 
 export default function InfoSection({description , descriptionTitle , descriptionImage , guide , guideDescription , guideImage }) {
@@ -18,7 +19,10 @@ export default function InfoSection({description , descriptionTitle , descriptio
                 guide={guide}
                 description={guideDescription}
             />
-            <InputBG/>
+            <div className="comment-section">
+                <InputBG destino = "aguacate"/>
+                <CommentBox destino={"aguacate"}/>
+            </div> 
         </div>
         
     )

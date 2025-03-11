@@ -99,7 +99,7 @@ export const MenuHamburguesa = () => {
           </li>
           <li>
             <Link
-              to="/destination"
+              to="/destinations"
               className={styles.navbar_link}
               onClick={toggleMenu}
             >

@@ -81,7 +81,7 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            <Link to="/destination" className={styles.navbar_link}>
+            <Link to="/destinations" className={styles.navbar_link}>
               Destinos
             </Link>
           </li>
