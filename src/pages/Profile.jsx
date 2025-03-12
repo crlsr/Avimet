@@ -34,7 +34,7 @@ export default function Profile() {
         setEmail(profile.email || '');
         setPhone(profile.phone || '');
         setPassword(profile.password || '');
-        setProfilePicture(profile.profilePicture || default_picture);
+        setProfilePicture(profile.profilePicture ? `${profile.profilePicture}?timestamp=${new Date().getTime()}` : default_picture);
         setLinkToVisible(false);
         setEditable(false);
         setEditPassword(false);
@@ -54,25 +54,19 @@ export default function Profile() {
             const fileExt = file.name.split('.').pop();
             const fileName = `${profile.uid}.${fileExt}`;
             const filePath = `${fileName}`;
-            
-            // Use upsert to overwrite the file if it already exists
+
+            // Sobreescritura de la imagen de perfil en supabase
             let { error: uploadError } = await supabaseProfiles.storage.from('profiles').upload(filePath, file, {
                 upsert: true
             });
             if (uploadError) throw uploadError;
-            
-            // Set the file's access policy to public
-            await supabaseProfiles.storage.from('profiles').update(filePath, {
-                cacheControl: '3600',
-                upsert: true
-            });
-    
+
             const { data: url } = await supabaseProfiles.storage.from('profiles').getPublicUrl(filePath);
             if (profile.uid) {
                 const docRef = doc(db, 'users', profile.uid);
                 await updateDoc(docRef, { profilePicture: url.publicUrl });
             }
-            setProfilePicture(url.publicUrl);
+            setProfilePicture(`${url.publicUrl}?timestamp=${new Date().getTime()}`);
             setFile(null);
             setUploadingPic(false);
         } catch (error) {
