@@ -75,7 +75,9 @@ const SignUp = () => {
       await setDoc(doc(db, "users", nameRegister.user.uid), {
         name: name,
         email: email,
+        password: password,
         phone: phone,
+        profilePicture: null,
         uid: nameRegister.user.uid,
         creationDate: new Date(),
         provider: "email",
@@ -122,10 +124,13 @@ const SignUp = () => {
         await setDoc(doc(db, "users", fbUser.user.uid), {
           name: fbUser.user.displayName,
           email: fbUser.user.email,
-          phone: phone,
+          password: '',
+          phone: '',
+          profilePicture: null,
           uid: fbUser.user.uid,
           creationDate: new Date(),
           provider: "facebook",
+          
         });
         setLoading(false);
         navigation("/");
@@ -150,10 +155,13 @@ const SignUp = () => {
         await setDoc(doc(db, "users", googleUser.user.uid), {
           name: googleUser.user.displayName,
           email: googleUser.user.email,
-          phone: phone,
+          password: '',
+          phone: '',
+          profilePicture: null,
           uid: googleUser.user.uid,
           creationDate: new Date(),
           provider: "google",
+          
         });
         setLoading(false);
         navigation("/");
