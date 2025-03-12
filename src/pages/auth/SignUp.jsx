@@ -200,7 +200,7 @@ const SignUp = () => {
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               className={global.input_field}
-              type="text"
+              type="tlf"
               placeholder="Teléfono"
               id="phone"
             />
