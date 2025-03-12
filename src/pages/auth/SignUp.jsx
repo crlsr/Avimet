@@ -124,8 +124,8 @@ const SignUp = () => {
         await setDoc(doc(db, "users", fbUser.user.uid), {
           name: fbUser.user.displayName,
           email: fbUser.user.email,
-          password: '',
-          phone: '',
+          password: 'facebookSignIn',
+          phone: fbUser.user.phoneNumber || 'No hay un número de teléfono registrado',
           profilePicture: null,
           uid: fbUser.user.uid,
           creationDate: new Date(),
@@ -155,8 +155,8 @@ const SignUp = () => {
         await setDoc(doc(db, "users", googleUser.user.uid), {
           name: googleUser.user.displayName,
           email: googleUser.user.email,
-          password: '',
-          phone: '',
+          password: 'googleSignIn',
+          phone: googleUser.user.phoneNumber || 'Número de teléfono no registrado',
           profilePicture: null,
           uid: googleUser.user.uid,
           creationDate: new Date(),

@@ -1,23 +1,13 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { UserContext } from '../context/UserContext';
 import styles from './Profile.module.css';
 import global from "../global.module.css";
 import default_picture from "../assets/no-profile-picture.png";
 import ReadModifyInput from '../components/ReadModifyInput/ReadModifyInput';
 import ToggleButton from '../components/ToggleButton/ToggleButton';
-
-
-//import supabaseProfiles from "../../credenciales";
-import appFirebase from "../../credenciales";
-
-import { getFirestore, doc, updateDoc } from "firebase/firestore";
-
-import TarjetaDestinos, {
-    destinosData,
-} from "../components/TarjetaDestinos/TarjetaDestinos";
-
-const db = getFirestore(appFirebase);
-
+import {supabaseProfiles, db} from "../../credenciales";
+import {doc, updateDoc } from "firebase/firestore";
+import TarjetaDestinos, { destinosData } from "../components/TarjetaDestinos/TarjetaDestinos";
 
 export default function Profile() {
     const { profile } = useContext(UserContext);
@@ -25,96 +15,82 @@ export default function Profile() {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@correo\.unimet\.edu\.ve$/;
 
     const [linkToVisible, setLinkToVisible] = useState(false);
+    const [editPassword, setEditPassword] = useState(false);
     const [editable, setEditable] = useState(false);
-    const [isEditing, setIsEditing] = useState (false)
+    const [isEditing, setIsEditing] = useState(false);
     const [name, setName] = useState(profile.name || '');
     const [email, setEmail] = useState(profile.email || '');
     const [phone, setPhone] = useState(profile.phone || '');
     const [password, setPassword] = useState(profile.password || '');
-    const [profilePicture, setProfilePicture] = useState(profile.picture || null);
+    const [profilePicture, setProfilePicture] = useState(profile.profilePicture || default_picture);
     const [focusedInput, setFocusedInput] = useState(null);
     const [error, setError] = useState("");
     const [authenticated, setAuthenticated] = useState(null);
-
-    /*
     const [file, setFile] = useState(null);
-    const [uploadingPic, setUploadingPic] = useState(null);
-    const [fileUrl, setFileUrl] = useState(null);
-    */
+    const [uploadingPic, setUploadingPic] = useState(false);
+
     useEffect(() => {
         setName(profile.name || '');
         setEmail(profile.email || '');
         setPhone(profile.phone || '');
         setPassword(profile.password || '');
-        
-        if (profilePicture == null){
-            setProfilePicture(default_picture)
-        } else {
-            setProfilePicture(profile.profilePicture)
-        }
-        
+        setProfilePicture(profile.profilePicture || default_picture);
         setLinkToVisible(false);
         setEditable(false);
-        setIsEditing(false)
+        setEditPassword(false);
+        setIsEditing(false);
     }, [profile]);
-/*
-    const handleFileChange = event => {
-        setFile(event.target.files[0])
-    }
 
-    const selectFile = () => (event) => {
-        return (
-            <input 
-                type='file'
-                className={global.input_field}
-                onChange={handleFileChange}
-            > Seleccionar archivo </input>
-        )
-    }
+    const handleFileChange = (event) => setFile(event.target.files[0]);
+
     const handleUpload = async () => {
         try {
             setUploadingPic(true);
-
-            if (!file){
-                setError('Por favor seleccione un archivo válido.')
-                return false;
+            if (!file) {
+                setError('Por favor seleccione un archivo válido.');
+                setUploadingPic(false);
+                return;
             }
-
-            const fileExt = file.name.split('.').pop()
-            const fileName = `${Math.random()}.${fileExt}`;
+            const fileExt = file.name.split('.').pop();
+            const fileName = `${profile.uid}.${fileExt}`;
             const filePath = `${fileName}`;
-
-            let {data, failure} = await supabaseProfiles.storage
-                .from('profiles')
-                .upload(filePath, file);
-
-            if (failure){
-                throw failure;
+            
+            // Use upsert to overwrite the file if it already exists
+            let { error: uploadError } = await supabaseProfiles.storage.from('profiles').upload(filePath, file, {
+                upsert: true
+            });
+            if (uploadError) throw uploadError;
+            
+            // Set the file's access policy to public
+            await supabaseProfiles.storage.from('profiles').update(filePath, {
+                cacheControl: '3600',
+                upsert: true
+            });
+    
+            const { data: url } = await supabaseProfiles.storage.from('profiles').getPublicUrl(filePath);
+            if (profile.uid) {
+                const docRef = doc(db, 'users', profile.uid);
+                await updateDoc(docRef, { profilePicture: url.publicUrl });
             }
-
-            const {data:url} = await supabaseProfiles.storage
-                .from('profiles')
-                .getPublicUrl(filePath)
-
-            setFile(url.publicUrl)
-        } catch (e){
-            setError(e.message)
+            setProfilePicture(url.publicUrl);
+            setFile(null);
+            setUploadingPic(false);
+        } catch (error) {
+            setError(error.message);
+            setUploadingPic(false);
         }
+    };
 
+    const triggerFileInput = () => document.getElementById('fileInput').click();
 
-    }
-
-*/
     const functAuthentication = async (e) => {
         e.preventDefault();
-
         try {
-            if (password.length < 8){
-                setError('Su nueva contraseña debe contener al menos 8 caracteres.')
+            if (password.length < 8) {
+                setError('Su nueva contraseña debe contener al menos 8 caracteres.');
                 return false;
             }
-
-            if (name === "" || phone === "" || password === "") {
+            if (!name || !phone || !password) {
                 setError("Los campos introducidos no pueden estar vacíos");
                 return false;
             }
@@ -126,23 +102,20 @@ export default function Profile() {
                 setError("El correo debe ser @correo.unimet.edu.ve");
                 return false;
             }
-
             return true;
-        
         } catch (error) {
             console.log(error);
             setError(error.message);
-        
-            if (error.message === "Firebase: Error (auth/email-already-in-use).") {
+            if (error.message.includes("auth/email-already-in-use")) {
                 setError("El correo ya está en uso");
-            } else if (error.message === "Firebase: Error (auth/network-request-failed).") {
+            } else if (error.message.includes("auth/network-request-failed")) {
                 setError("Oops. Revise su conexión a Internet");
-            } else if (error.message === "Firebase: Password should be at least 6 characters (auth/weak-password).") {
+            } else if (error.message.includes("auth/weak-password")) {
                 setError("Su contraseña debe tener por lo menos 6 carácteres");
-            } else if (error.message === "Firebase: Error (auth/invalid-email).") {
+            } else if (error.message.includes("auth/invalid-email")) {
                 setError("Email invalido");
             }
-            return false
+            return false;
         }
     };
 
@@ -151,22 +124,14 @@ export default function Profile() {
             console.error('Profile ID is undefined');
             return;
         }
-
         try {
             const docRef = doc(db, 'users', profile.uid);
-
-            await updateDoc(docRef, { 
-                name: name || profile.name, 
-                phone: phone || profile.phone, 
-                password: password || profile.password 
-            });
+            await updateDoc(docRef, { name: name || profile.name, phone: phone || profile.phone, password: password || profile.password });
             console.log('Profile updated successfully');
         } catch (error) {
             console.error('Error updating profile:', error);
         }
     };
-
-    
 
     const handleChange = (setFunction, input) => (event) => {
         console.log(`Updating state with value: ${event.target.value}`);
@@ -177,35 +142,29 @@ export default function Profile() {
     const editAction = () => {
         setLinkToVisible(true);
         setEditable(true);
-        setIsEditing(true)
+        setEditPassword(profile.user && profile.user.provider === 'email');
+        setIsEditing(true);
         console.log('editando');
     };
 
     const saveData = async () => {
-        const dummyEvent = {
-            preventDefault: () => {}
-        };
-    
-       
+        const dummyEvent = { preventDefault: () => {} };
         const isAuthenticated = await functAuthentication(dummyEvent);
-    
         if (!isAuthenticated) {
             setLinkToVisible(true);
             setEditable(true);
             setIsEditing(true);
-            setAuthenticated(false)
+            setAuthenticated(false);
             console.log('Authentication failed, data not saved');
             return;
         }
-
         await updateProfile();
         setLinkToVisible(false);
         setEditable(false);
         setIsEditing(false);
-        setAuthenticated(true)
+        setAuthenticated(true);
         setError(null);
         console.log('guardado');
-    
     };
 
     return (
@@ -220,7 +179,7 @@ export default function Profile() {
                         define_class={styles.inputField}
                         design={global.input_field}
                         input_type='text'
-                        input_placeholder={profile.name}
+                        input_placeholder={profile.name || 'Nombre y Apellido'}
                         input_id='name'
                         editing={editable}
                         onChange={handleChange(setName, 'name')}
@@ -229,13 +188,13 @@ export default function Profile() {
                     />
                     <p>ㅤEmail</p>
                     <ReadModifyInput
-                        value = {email}
+                        value={email}
                         define_class={styles.inputField}
                         design={global.input_field}
                         input_type='email'
-                        input_placeholder={profile.email}
+                        input_placeholder={profile.email || 'Email'}
                         input_id='email'
-                        editing={editable}
+                        editing={false}
                         onChange={handleChange(setEmail, 'email')}
                         shouldFocus={focusedInput === 'email'}
                         autoComplete={profile.email}
@@ -245,7 +204,7 @@ export default function Profile() {
                         value={phone}
                         define_class={styles.inputField}
                         design={global.input_field}
-                        input_type='text'
+                        input_type='tlf'
                         input_placeholder={profile.phone || 'Introduzca su número de teléfono'}
                         input_id='phone'
                         editing={editable}
@@ -261,15 +220,28 @@ export default function Profile() {
                         input_type='password'
                         input_placeholder={profile.password || 'Introduzca una nueva contraseña'}
                         input_id='password'
-                        editing={editable}
+                        editing={editPassword}
                         onChange={handleChange(setPassword, 'password')}
                         shouldFocus={focusedInput === 'password'}
                         autoComplete={profile.password}
                     />
                 </form>
                 <div className={styles.pictureContainer}>
-                    <img src={default_picture} className={styles.profilePic} />
-                    {linkToVisible && <p className={styles.linkTo} > Editar foto</p>}
+                    <img src={profilePicture} className={styles.profilePic} alt="Profile" />
+                    {linkToVisible && (
+                        <>
+                            <p className={styles.linkTo} onClick={triggerFileInput}> Cambiar foto </p>
+                            <input
+                                type="file"
+                                id="fileInput"
+                                style={{ display: 'none' }}
+                                onChange={handleFileChange}
+                            />
+                            <button className={`${global.btn1} ${styles.selectFileButton}`} onClick={handleUpload} disabled={uploadingPic}>
+                                {uploadingPic ? 'Subiendo...' : 'Subir foto'}
+                            </button>
+                        </>
+                    )}
                 </div>
             </div>
             <div className={styles.disappearingButton}>
@@ -279,7 +251,7 @@ export default function Profile() {
                     info2='Guardar cambios'
                     onDisappear={editAction}
                     onClick={saveData}
-                    isEditing = {isEditing}
+                    isEditing={isEditing}
                     authenticated={authenticated}
                 />
                 {error && <div className={styles.error}>{error}</div>}
@@ -291,25 +263,20 @@ export default function Profile() {
                 <div className={styles.destinationBox}>
                     <div>
                         {destinosData.map((destino, index) => (
-                        <TarjetaDestinos 
-                            diseñoTarjeta = {styles.destinationItem}
-                            diseñoBoton={styles.destinationButton}
-                            diseñoImagen={styles.destinationImage}
-                            key={index}
-                            imagen={destino.imagen}
-                            titulo={destino.titulo}
-                            colorClase={"lightgreen"}
-                            direccion={destino.direccion}
-                        />
-                        ))} 
+                            <TarjetaDestinos
+                                diseñoTarjeta={styles.destinationItem}
+                                diseñoBoton={styles.destinationButton}
+                                diseñoImagen={styles.destinationImage}
+                                key={index}
+                                imagen={destino.imagen}
+                                titulo={destino.titulo}
+                                colorClase={"lightgreen"}
+                                direccion={destino.direccion}
+                            />
+                        ))}
                     </div>
-                     
                 </div>
             </div>
         </div>
     );
 }
-
-
-
-

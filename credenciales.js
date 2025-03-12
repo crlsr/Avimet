@@ -30,9 +30,9 @@ const providerGoogle = new GoogleAuthProvider();
 const providerFacebook = new FacebookAuthProvider();
 
 //Supabase perfiles
-const supabaseProfileUrl = 'https://uwodgmgxyjbphknsqjbv.supabase.co'
-const supabaseProfileKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV3b2RnbWd4eWpicGhrbnNxamJ2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE1NTY1NjEsImV4cCI6MjA1NzEzMjU2MX0.mv3cq8zA--BqfkAjxX18yX87OrfNh9609eeV2n2Ltlk'
-const supabaseProfiles = createClient(supabaseProfileUrl, supabaseProfileKey)
+const supabaseUrl = 'https://uwodgmgxyjbphknsqjbv.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV3b2RnbWd4eWpicGhrbnNxamJ2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE1NTY1NjEsImV4cCI6MjA1NzEzMjU2MX0.mv3cq8zA--BqfkAjxX18yX87OrfNh9609eeV2n2Ltlk';
+const supabaseProfiles = createClient(supabaseUrl, supabaseKey);
 
 // Acceder a firestore
 const db = getFirestore(appFirebase);
