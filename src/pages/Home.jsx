@@ -48,11 +48,6 @@ const Home = () => {
             imagen={homeData.imagen}
           />
         </div>
-
-        <div>
-          <SearchBar />
-        </div>
-        
         </>
 
     )

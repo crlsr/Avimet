@@ -1,14 +1,17 @@
-.slick-list {
-    margin: 0 10%;
-}
+
 
 .slide-current {
     padding: 0;
     position: fixed;
 }
 
-@media (min-width: 768px) {
+.slick-slide {
+    margin: 0 10px;
+    width: fit-content;
+}
+
+/* @media (min-width: 768px) {
     .slick-slide {
         margin: 0;
     }
-}
+} */

@@ -9,13 +9,17 @@ const auth = getAuth(appFirebase);
 */
 
 //importando los componentes
-import Login from "./pages/LoginSignUp/Login";
-import Home from "./pages/Home";
-import SignUp from "./pages/LoginSignUp/SignUp";
-import Notfound from "./pages/Notfound";
+import Login from "./pages/auth/Login";
+import Home from "./pages/Home/Home";
+import SignUp from "./pages/auth/SignUp";
 import Profile from "./pages/Profile";
+import NotFound from './pages/NotFound/Notfound';
+import TipsNews from './pages/TipsNews/TipsNews';
 import Navbar from "./components/Navbar/Navbar";
-import Footer from "./components/Footer/Footer"
+import Footer from "./components/Footer/Footer";
+import PasswordRecovery from './pages/auth/PasswordRecovery';
+import Destination from "./pages/Destination";
+
 
 function App() {
   /*const [user, setUser] = useState(null);
@@ -31,15 +35,18 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route element ={<Footer />}>
-        <Route element={<Navbar />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="*" element={<Notfound />} />
-        </Route>
+        <Route element={<Footer />}>
+          <Route element={<Navbar />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/destinations/:slug" element={<Destination />}/>
+            <Route path="/tips-news" element={<TipsNews />} />
+            <Route path="*" element={<NotFound />}/>
+          </Route>
         </Route>
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/password-recovery" element={<PasswordRecovery />} />
       </Routes>
     </Router>
   );

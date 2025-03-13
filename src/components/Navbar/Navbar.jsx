@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
-
 import { UserContext } from "../../context/UserContext";
 import appFirebase from "../../../credenciales";
 import { getAuth, signOut } from "firebase/auth";
+import { getFirestore, collection, getDocs } from "firebase/firestore";
 
 import styles from "./Navbar.module.css";
 import global from "../../global.module.css";
@@ -14,14 +14,57 @@ import { IoIosSearch } from "react-icons/io";
 import { MenuHamburguesa } from "./HamNavbar";
 
 const auth = getAuth(appFirebase);
+const db = getFirestore(appFirebase);
 
 export default function Navbar() {
   const navigation = useNavigate();
   const { logged, profile } = useContext(UserContext);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [destinations, setDestinations] = useState([]);
+  const [filteredDestinations, setFilteredDestinations] = useState([]);
+
+  useEffect(() => {
+    const fetchDestinations = async () => {
+      const querySnapshot = await getDocs(collection(db, "destinations"));
+      const data = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setDestinations(data);
+    };
+
+    fetchDestinations();
+  }, []);
+
+  useEffect(() => {
+    if (searchTerm.trim() === "") {
+      setFilteredDestinations([]);
+    } else {
+      const filtered = destinations.filter((dest) =>
+        dest.destination.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredDestinations(filtered);
+    }
+  }, [searchTerm, destinations]);
 
   const handleLogout = async () => {
     await signOut(auth);
   };
+
+  const handleSearch = () => {
+    if (searchTerm.trim() === "") return;
+  
+    const matchedDestination = destinations.find(
+      (dest) => dest.destination.toLowerCase() === searchTerm.toLowerCase()
+    );
+  
+    if (matchedDestination) {
+      navigation(`/destinations/${matchedDestination.destination.replace(/\s+/g, "-").toLowerCase()}`);
+    } else {
+      navigation(`/busqueda?q=${searchTerm.replace(/\s+/g, "-")}`);
+    }
+  };
+  
 
   return (
     <>
@@ -38,13 +81,13 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            <Link to="/profile" className={styles.navbar_link}>
+            <Link to="/destinations" className={styles.navbar_link}>
               Destinos
             </Link>
           </li>
           <li>
             {logged ? (
-              <Link to="/" className={styles.navbar_link}>
+              <Link to="/reserve" className={styles.navbar_link}>
                 Reserva tu viaje
               </Link>
             ) : (
@@ -54,12 +97,29 @@ export default function Navbar() {
             )}
           </li>
           <li className={styles.search_container}>
-            <IoIosSearch className={styles.search_icon} />
-            <input
-              type="text"
-              placeholder="Buscar..."
-              className={styles.search_input}
-            />
+            <div className={styles.search_box}>
+            <IoIosSearch className={styles.search_icon} onClick={handleSearch} />
+              <input
+                type="text"
+                placeholder="Buscar un destino..."
+                className={styles.search_input}
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              {filteredDestinations.length > 0 && (
+                <ul className={styles.suggestions_list}>
+                  {filteredDestinations.map((dest) => (
+                    <li
+                      key={dest.id}
+                      className={styles.suggestion_item}
+                      onClick={() => navigation(`/destinations/${dest.slug}`)}
+                    >
+                      {dest.destination}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
           </li>
           <li>
             <div className={styles.auth_container}>
