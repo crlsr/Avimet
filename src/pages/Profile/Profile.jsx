@@ -1,13 +1,13 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { UserContext } from '../context/UserContext';
+import { UserContext } from '../../context/UserContext';
 import styles from './Profile.module.css';
-import global from "../global.module.css";
-import default_picture from "../assets/no-profile-picture.png";
-import ReadModifyInput from '../components/ReadModifyInput/ReadModifyInput';
-import ToggleButton from '../components/ToggleButton/ToggleButton';
-import {supabaseProfiles, db} from "../../credenciales";
+import global from "../../global.module.css";
+import default_picture from "../../assets/no-profile-picture.png";
+import ReadModifyInput from '../../components/ReadModifyInput/ReadModifyInput';
+import ToggleButton from '../../components/ToggleButton/ToggleButton';
+import {supabaseProfiles, db} from "../../../credenciales";
 import {doc, updateDoc } from "firebase/firestore";
-import TarjetaDestinos, { destinosData } from "../components/TarjetaDestinos/TarjetaDestinos";
+import TarjetaDestinos, { destinosData } from "../../components/TarjetaDestinos/TarjetaDestinos";
 
 export default function Profile() {
     const { profile } = useContext(UserContext);

@@ -93,9 +93,11 @@
 }
 
 .profilePic{
-  width: 80%;
-  height: 80%;
   align-self: center;
+  width: 300px; /* Adjust size as needed */
+  height: 300px; /* Adjust size as needed */
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .profileContainer h1 {
@@ -241,8 +243,6 @@
   }
 
   .profilePic{
-    width: 70%;
-    height: 70%;
     align-self: center;
   }
 
@@ -296,8 +296,8 @@
   }
 
   .profilePic{
-    width: 70%;
-    height: 70%;
+    max-width: 200px;
+    max-height: 200px;
     align-self: center;
   }
   .passwordInput{
@@ -309,9 +309,11 @@
   }
 }
 
-@media (max-width: 1599px) {
-  .imageContainer {
-    margin-bottom: -35px;
+@media (max-width: 250px) {
+  .profilePic{
+    max-width: 100px;
+    max-height: 100px;
+    align-self: center;
   }
 }
   
