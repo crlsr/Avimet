@@ -35,7 +35,6 @@ function ReviewInput({ value, placeholder, onChange }) {
       placeholder={placeholder}
       onChange={onChange}
       value={value}
-      aria-label="Write a review"
     />
   );
 }
@@ -80,7 +79,7 @@ function InputBG(destino) {
       try{
         const commentId = uuidv4();
         await setDoc(doc(db, "comments", commentId), {
-          autor: profile.name || "Anonymous", // Add this line to ensure the autor field has a valid value
+          autor: profile.name,
           autor_id: profile.uid,
           comment : review,
           stars: rating,
