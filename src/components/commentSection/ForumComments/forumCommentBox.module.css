@@ -1,0 +1,26 @@
+.forumContent {
+    background-color: #fff;
+    border-radius: 15.313px;
+    width: 812px;
+    height: 755px;
+    margin-bottom: 42px;
+    box-shadow:
+      0 62.271px 17.354px #0000,
+      0 39.813px 15.823px #00000003,
+      0 22.458px 13.271px #0000000d,
+      0 9.698px 9.698px #00000017,
+      0 2.552px 5.615px #0000001a;
+  }
+
+  @media (width <= 991px) {
+    .interactionBox {
+      width: 90%;
+      height: 600px;
+    }
+  }
+  
+  @media (width <= 640px) {
+    .interactionBox {
+      height: 400px;
+    }
+  }

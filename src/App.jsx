@@ -22,6 +22,8 @@ import PasswordRecovery from './pages/auth/PasswordRecovery';
 import Destination from "./pages/Destination";
 import BookingPage from './components/booking/BookingPage';
 
+import Forum from "./pages/Forum/Forum"
+
 
 
 function App() {
@@ -46,6 +48,7 @@ function App() {
             <Route path="/booking" element={<BookingPage />} />
             <Route path="/tips-news" element={<TipsNews />} />
             <Route path="*" element={<NotFound />}/>
+            <Route path="/Forum" element={<Forum />}/>
           </Route>
         </Route>
         <Route path="/signup" element={<SignUp />} />
