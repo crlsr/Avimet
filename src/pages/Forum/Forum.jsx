@@ -20,7 +20,6 @@ function Forum() {
 
       <ForumCommentBox />
       <ForumCommentBar />
-
     </main>
   );
 }

@@ -4,13 +4,13 @@
     width: 100%;
     max-width: 800px;
     display: flex;
-  }
-  
-  @media (width <= 640px) {
+}
+
+@media (width <=640px) {
     .inputContainer {
-      flex-direction: column;
+        flex-direction: column;
     }
-  }
+}
 
 .inputField {
     color: #003428;
@@ -21,21 +21,22 @@
     flex: 1;
     padding: 6px 22px;
     font-family: Roboto, sans-serif;
-    font-size: 10px;
+    font-size: 15px;
     font-weight: 600;
     line-height: 17px;
     resize: none;
-  }
+}
 
-  .actionArea {
+.actionArea {
     flex-shrink: 0;
-  }
-  
-  @media (width <= 640px) {
+}
+
+@media (width <=640px) {
     .inputField {
-      width: 100%;
+        width: 100%;
     }
+
     .actionArea {
-      align-self: flex-end;
+        align-self: flex-end;
     }
-  }
+}
