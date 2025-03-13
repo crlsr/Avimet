@@ -1,5 +1,6 @@
 //import { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import React from "react";
 
 //importacion de modulos de firebase
 /*
@@ -19,6 +20,8 @@ import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import PasswordRecovery from './pages/auth/PasswordRecovery';
 import Destination from "./pages/Destination";
+import BookingPage from './components/booking/BookingPage';
+
 
 
 function App() {
@@ -40,6 +43,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/destinations/:slug" element={<Destination />}/>
+            <Route path="/booking" element={<BookingPage />} />
             <Route path="/tips-news" element={<TipsNews />} />
             <Route path="*" element={<NotFound />}/>
           </Route>

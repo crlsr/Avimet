@@ -1,0 +1,137 @@
+.bookingPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background-color: #d9f5de; 
+  min-height: 88vh;
+  flex-direction: column; 
+}
+
+.contentContainer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem; /* Adjust the gap between the calendar and booking card as needed */
+}
+
+.bookingCard {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 660px;
+  overflow: hidden;
+  font-family: sans-serif;
+  height: 670px;
+  padding: 20px;
+  margin-top: 10px;
+}
+
+.priceInput {
+  width: 100px; 
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  text-align: right;
+  appearance: none; 
+  padding-left: 1.5rem; 
+}
+
+.priceInput::before {
+  content: '$';
+  position: absolute;
+  left: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  font-size: 1rem;
+}
+
+.headerSection {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.destinationImage {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.titleSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.titleSection h1 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.titleSection p {
+  margin: 0;
+  color: #555;
+  font-size: 1rem;
+}
+
+.detailsSection {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding: 1rem;
+}
+
+.detailsRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.detailsRow h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.detailsRow p {
+  margin: 0;
+  color: #666;
+}
+
+.price {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.totalSection {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  font-weight: 600;
+}
+
+.comments-section {
+  padding: 1rem;
+  border-top: 1px solid #ddd;
+}
+
+.bookButton {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #073c30;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.bookButton:hover {
+  background-color: #b0f779;
+}
