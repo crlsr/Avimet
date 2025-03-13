@@ -1,14 +1,14 @@
 .commentCard {
-    background-color: #fff;
+    background-color: #D9F5DE;
     border: 1.238px solid #efefef;
     border-radius: 7.429px;
     align-items: center;
     gap: 9.906px;
-    width: 481px;
-    padding: 9.906px;
+    width: 100%;
+    padding: 9.906px;   
     display: flex;
     box-shadow: 12.382px 4.953px 49.528px #0000000a;
-    margin: 0 auto;
+    margin: 20px auto;
 }
 
 .userInfoContainer {
@@ -59,7 +59,7 @@
     color: #868686;
     align-self: stretch;
     font-family: Manrope, sans-serif;
-    font-size: 10px;
+    font-size: 12.5px;
     font-weight: 500;
     line-height: 15px;
 }

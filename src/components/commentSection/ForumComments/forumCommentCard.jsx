@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./forumCommentCard.module.css";
 
-const CommentComponent = ({ avatarText, userName, comment }) => {
+const CommentCard = ({ avatarText, userName, comment }) => {
   return (
     <div className={styles.commentCard}>
       <div className={styles.userInfoContainer}>
@@ -15,4 +15,4 @@ const CommentComponent = ({ avatarText, userName, comment }) => {
   );
 };
 
-export default CommentComponent;
+export default CommentCard;
