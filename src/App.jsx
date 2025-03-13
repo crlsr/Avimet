@@ -21,6 +21,7 @@ import Footer from "./components/Footer/Footer";
 import PasswordRecovery from './pages/auth/PasswordRecovery';
 import Destination from "./pages/Destination";
 import BookingPage from './components/booking/BookingPage';
+import DestinationSearch from "./pages/DestinationSearch/DestinationSearch";
 
 
 
@@ -45,6 +46,7 @@ function App() {
             <Route path="/destinations/:slug" element={<Destination />}/>
             <Route path="/booking" element={<BookingPage />} />
             <Route path="/tips-news" element={<TipsNews />} />
+            <Route path="/DestinationSearch" element= {<DestinationSearch />}></Route>
             <Route path="*" element={<NotFound />}/>
           </Route>
         </Route>
