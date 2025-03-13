@@ -12,7 +12,7 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  gap: 2rem; /* Adjust the gap between the calendar and booking card as needed */
+  gap: 2rem; 
 }
 
 .bookingCard {
@@ -130,8 +130,31 @@
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s;
+  margin-bottom: 25px;
 }
 
 .bookButton:hover {
   background-color: #b0f779;
+}
+
+.carouselTitle {
+  color: #003428;
+  font-family: "Instrument Serif", "Roboto", sans-serif;
+  font-size: 3rem; 
+  margin: 20px;
+  margin-top: 67px;
+}
+
+.italicText {
+  font-style: italic;
+  color: #a3e96c; 
+}
+
+.calendarSection {
+  color: #003428;
+  margin-bottom: 10px;
+  font-family: Instrument Serif, serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 125%;
 }

@@ -4,7 +4,7 @@ import BannerTitle from "../banner/BannerTitle"
 import "./Destination.css"
 import { ArrowBackIcon } from "../../assets/icons/ArrowBackIcon"
 
-export default function DestinationHeader({ titulo, subtitulo, image, difficulty, estimatedTime, distance, guide, descriptionTitle }) {
+export default function DestinationHeader({ titulo, subtitulo, image, difficulty, estimatedTime, distance, guide, descriptionTitle, dateDisponible }) {
     const navigate = useNavigate();
 
     const handleReturn = useCallback(() => {
@@ -21,10 +21,11 @@ export default function DestinationHeader({ titulo, subtitulo, image, difficulty
                 estimatedTime,
                 distance, 
                 guide,
-                descriptionTitle
+                descriptionTitle,
+                dateDisponible
             }
         });
-    }, [navigate, titulo, subtitulo, image, difficulty, estimatedTime, distance, guide, descriptionTitle]);
+    }, [navigate, titulo, subtitulo, image, difficulty, estimatedTime, distance, guide, descriptionTitle, dateDisponible]);
 
     return (
         <div className="header-container" style={{ backgroundImage: `url(${image})`}}>
