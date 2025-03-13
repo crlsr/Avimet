@@ -5,10 +5,12 @@ import { Link } from "react-router-dom";
 import MainCard from "../../components/MainCardSection/MainCardSection";
 import AvilaMountain from "../../components/AvilaMountain/AvilaMountain";
 import TarjetaDestinos, {
-  destinosData,
-} from "../../components/TarjetaDestinos/TarjetaDestinos";
+  destinosData, 
+} from "../../components/tarjetaDestinos/TarjetaDestinos";
 import VisionMissionSection from "../../components/VisionMissionSection/VisionMissionSection";
 import CarruselConsejos from "../../components/CarruselConsejos/CarruselConsejos";
+import { destinosData } from "../../components/tarjetaDestinos/TarjetaDestinos";
+import FiltroTags from "../../components/FiltroTags/FiltroTags";
 
 const Home = () => {
   return (
@@ -43,6 +45,10 @@ const Home = () => {
         </div>
         <div className={styles.container3}>
           <VisionMissionSection />
+        </div>
+
+        <div>
+          <FiltroTags options={{}} selectedTags={{}}/>
         </div>
   
       </div>
