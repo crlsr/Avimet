@@ -12,9 +12,13 @@ const FiltroTags = ({ options, selectedTags}) => {
     // Referencia a la colección en Firestore
     const itemsRef = collection(db, "tags");
     // Todo
+    options = [];
     if (selectedTags.length != 0){
-        options = [];
+      const q = query(itemsRef);
+    } else{
+      const q = query(itemsRef, where("nombre", "in", selectedTags));
     }
+    
     const toggleDropdown = () => {
       setIsOpen(!isOpen);
     };
