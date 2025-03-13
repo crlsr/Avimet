@@ -40,3 +40,39 @@
         align-self: flex-end;
     }
 }
+
+.iconButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.2s ease-in-out;
+    background-color: #33511d;
+  }
+  
+  .iconButton:hover {
+    background-color: rgba(163, 233, 108, 0.1);
+  }
+  
+  .iconButton:focus {
+    outline: 2px solid #33511d;
+    outline-offset: 2px;
+  }
+  
+  .iconButton:active {
+    transform: scale(0.95);
+  }
+  
+  .iconButton:disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+  }
+  
+  .iconButton :global(.paper-plane-icon) {
+    width: 24px;
+    height: 24px;
+    color: #a3e96c;
+  }
