@@ -9,6 +9,7 @@ const db = getFirestore(appFirebase);
 const FiltroTags = ({ options, selectedTags }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [filteredOptions, setFilteredOptions] = useState(options); // Estado para las opciones filtradas
+    const [selectedOption, setSelectedOption] = useState(null); // Estado para la opción seleccionada
 
     const fetchData = async () => {
         const itemsRef = collection(db, "tags");
@@ -42,6 +43,16 @@ const FiltroTags = ({ options, selectedTags }) => {
         setIsOpen(!isOpen);
     };
 
+    const handleOptionClick = (option) => {
+        setSelectedOption(option); // Actualiza la opción seleccionada
+        console.log(`Seleccionaste: ${option}`);
+        selectedTags.push(option);
+        console.log(selectedTags);
+                                                                                                                                                                                                                                                                                                                                    const new_arr = filteredOptions.filter(item => item !== option);
+        setFilteredOptions(new_arr);
+        setIsOpen(false); // Cierra el menú después de seleccionar
+    };
+
     return (
         <div className={styles.FiltroTags}>
             <button onClick={toggleDropdown} className={styles.FiltroTagsButton}>
@@ -50,7 +61,11 @@ const FiltroTags = ({ options, selectedTags }) => {
             {isOpen && (
                 <ul className={styles.FiltroTagsMenu}>
                     {filteredOptions.map((option, index) => (
-                        <li key={index} onClick={() => console.log(`Seleccionaste: ${option}`)}>
+                        <li
+                            key={index}
+                            onClick={() => handleOptionClick(option)} // Maneja el clic en la opción
+                            className={selectedOption === option ? styles.selected : ''} // Aplica clase si es la opción seleccionada
+                        >
                             {option}
                         </li>
                     ))}

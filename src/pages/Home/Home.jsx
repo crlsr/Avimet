@@ -9,7 +9,6 @@ import TarjetaDestinos, {
 } from "../../components/tarjetaDestinos/TarjetaDestinos";
 import VisionMissionSection from "../../components/VisionMissionSection/VisionMissionSection";
 import CarruselConsejos from "../../components/CarruselConsejos/CarruselConsejos";
-import { destinosData } from "../../components/tarjetaDestinos/TarjetaDestinos";
 import FiltroTags from "../../components/FiltroTags/FiltroTags";
 
 const Home = () => {
@@ -48,7 +47,7 @@ const Home = () => {
         </div>
 
         <div>
-          <FiltroTags options={{}} selectedTags={{}}/>
+          <FiltroTags options={[]} selectedTags={[]}/>
         </div>
   
       </div>
