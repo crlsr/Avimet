@@ -6,19 +6,18 @@
 }
 
 .FiltroTagsButton {
-    padding: 10px 20px;
-    background-color: #007bff; /* Color del botón */
-    color: white;
-    border: none;
-    border-radius: 5px; /* Bordes redondeados */
+    background-color: #d9f5de;
+    color: #003428;
+    border: 1px solid #003428;
+    border-radius: 12px;
+    padding: 10px;
+    margin-left: 10px;
     cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-}
-
+  }
+  
 .FiltroTagsButton:hover {
-    background-color: #0056b3; /* Color al pasar el mouse */
-}
+    background-color: #00342811;
+  }
 
 .FiltroTagsMenu {
     position: absolute;

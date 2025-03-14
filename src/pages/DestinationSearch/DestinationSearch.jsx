@@ -25,7 +25,7 @@ export default function DestinationSearch() {
 
   //Arreglar (no debe de meterse 4 veces mas en la funcion)
   async function getDestinations(selectedTags) {
-    console.log(selectedTags);
+    console.log(selectedTags)
     if (selectedTags.length === 0) {
       const querySnapshot = await getDocs(collection(db, "destinations"));
       const destinationsList = querySnapshot.docs.map((doc) => doc.data());
@@ -43,18 +43,13 @@ export default function DestinationSearch() {
         const data = doc.data();
         dests.push(data.dest);
       });
-      console.log(dests);
       const AllDest = collection(db, "destinations");
       const queryDest = query(AllDest, where("slug", "in", dests));
       const destSnapshot = await getDocs(queryDest);
       const destinationsList = destSnapshot.docs.map((doc) => doc.data());
-      setFilteredDestinations(destinationsList);
+      setDestinations(destinationsList);
     }
   }
-
-  useEffect(() => {
-    getDestinations(selectedTags);
-  }, [params]);
 
   useEffect(() => {
     const filtered = destinations.filter((dest) =>

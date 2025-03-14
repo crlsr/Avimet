@@ -45,10 +45,11 @@ const FiltroTags = ({ options, selectedTags }) => {
 
   const handleOptionClick = (option) => {
     setSelectedOption(option); // Actualiza la opción seleccionada
-    console.log(`Seleccionaste: ${option}`);
-    selectedTags.push(option);
-    const new_arr = filteredOptions.filter((item) => item !== option);
-    setFilteredOptions(new_arr);
+    if(selectedTags.includes(option)){
+      selectedTags.splice(selectedTags.indexOf(option), 1);
+    } else {
+      selectedTags.push(option);
+    }
     setIsOpen(false); // Cierra el menú después de seleccionar
     return selectedTags;
   };
@@ -56,7 +57,7 @@ const FiltroTags = ({ options, selectedTags }) => {
   return (
     <div className={styles.FiltroTags}>
       <button onClick={toggleDropdown} className={styles.FiltroTagsButton}>
-        Menú Desplegable
+        Filtros
       </button>
       {isOpen && (
         <ul className={styles.FiltroTagsMenu}>
