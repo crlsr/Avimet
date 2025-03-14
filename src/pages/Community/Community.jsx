@@ -3,10 +3,24 @@ import styles from './Community.module.css';
 import ViewUser from '../../components/ViewUser/ViewUser';
 import { collection, getDocs, doc, deleteDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../../credenciales";
+import { useContext } from 'react';
+import { UserContext } from '../../context/UserContext';
 
 export default function Community () {
     const [estudiantes, setEstudiantes] = useState([]);
     const [guias, setGuias] = useState([]);
+    const { logged, profile } = useContext(UserContext);
+
+    useEffect(() => {
+        if (!logged) {
+            return;
+        } else {
+            if (profile.userType !== 'admin') {
+                window.location.href = '/*';
+            }
+        }
+    }, [logged, profile]);
+
 
     const fetchUsers = async () => {
         const estudiantesList = [];
@@ -32,7 +46,7 @@ export default function Community () {
         try {
             await deleteDoc(doc(db, "users", userId));
             console.log(`User with ID ${userId} deleted successfully`);
-            fetchUsers(); // Refresh the user lists after deletion
+            fetchUsers();
         } catch (error) {
             console.error("Error deleting user: ", error);
         }
@@ -43,7 +57,7 @@ export default function Community () {
             const userRef = doc(db, "users", userId);
             await updateDoc(userRef, { userType: newType });
             console.log(`User with ID ${userId} updated to ${newType} successfully`);
-            fetchUsers(); // Refresh the user lists after update
+            fetchUsers();
         } catch (error) {
             console.error("Error updating user type: ", error);
         }
