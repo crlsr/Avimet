@@ -3,7 +3,14 @@ import styles from "./DestinationSearch.module.css";
 import TarjetaDestinos from "../../components/tarjetaDestinos/TarjetaDestinos";
 import { useParams } from "react-router-dom";
 import appFirebase from "../../credenciales";
-import { collection, getDoc, getDocs, getFirestore, query, where } from "firebase/firestore";
+import {
+  collection,
+  getDoc,
+  getDocs,
+  getFirestore,
+  query,
+  where,
+} from "firebase/firestore";
 import { IoIosSearch } from "react-icons/io";
 import FiltroTags from "../../components/FiltroTags/FiltroTags";
 
@@ -12,42 +19,42 @@ const db = getFirestore(appFirebase);
 export default function DestinationSearch() {
   const params = useParams();
   const [destinations, setDestinations] = useState([]);
-  const [searchTerm, setSearchTerm] = useState(""); 
-  const [filteredDestinations, setFilteredDestinations] = useState([]); 
-  const selectedTags = [];
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredDestinations, setFilteredDestinations] = useState([]);
+  const [selectedTags, setSelectedTags] = useState([]);
 
+  //Arreglar (no debe de meterse 4 veces mas en la funcion)
   async function getDestinations(selectedTags) {
-
-    if(selectedTags.length === 0){
+    console.log(selectedTags);
+    if (selectedTags.length === 0) {
       const querySnapshot = await getDocs(collection(db, "destinations"));
       const destinationsList = querySnapshot.docs.map((doc) => doc.data());
       setDestinations(destinationsList);
-    } else{
-
+    } else {
       const destinationCollection = collection(db, "filtrospordestino");
-      const queryCollection = query(destinationCollection, where("tag", "in", selectedTags));
+      const queryCollection = query(
+        destinationCollection,
+        where("tag", "in", selectedTags)
+      );
       const destinationSnapshot = await getDocs(queryCollection);
       //Filtramos los documentos
       const dests = [];
       destinationSnapshot.forEach((doc) => {
         const data = doc.data();
         dests.push(data.dest);
-      })
-
+      });
+      console.log(dests);
       const AllDest = collection(db, "destinations");
-      const queryDest = query(AllDest, where("destination", "in", dests));
+      const queryDest = query(AllDest, where("slug", "in", dests));
       const destSnapshot = await getDocs(queryDest);
       const destinationsList = destSnapshot.docs.map((doc) => doc.data());
       setFilteredDestinations(destinationsList);
-
     }
-    
-  } 
+  }
 
   useEffect(() => {
     getDestinations(selectedTags);
   }, [params]);
-
 
   useEffect(() => {
     const filtered = destinations.filter((dest) =>
@@ -80,8 +87,11 @@ export default function DestinationSearch() {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
-        <FiltroTags options={[]} selectedTags={selectedTags}/>
-        
+        <FiltroTags
+          options={[]}
+          selectedTags={selectedTags}
+          onChange={getDestinations(selectedTags)}
+        />
       </div>
 
       {/* Destinos */}
