@@ -6,8 +6,9 @@ import default_picture from "../../assets/no-profile-picture.png";
 import ReadModifyInput from '../../components/ReadModifyInput/ReadModifyInput';
 import ToggleButton from '../../components/ToggleButton/ToggleButton';
 import {supabaseProfiles, db} from "../../../credenciales";
-import {doc, updateDoc } from "firebase/firestore";
-import TarjetaDestinos, { destinosData } from "../../components/TarjetaDestinos/TarjetaDestinos";
+import {doc, updateDoc} from "firebase/firestore";
+import TarjetaDestinos from "../../components/TarjetaDestinos/TarjetaDestinos";
+import { getUserReservations, getDestinationById } from '../../services/reservationService';
 
 export default function Profile() {
     const { profile } = useContext(UserContext);
@@ -28,6 +29,8 @@ export default function Profile() {
     const [authenticated, setAuthenticated] = useState(null);
     const [file, setFile] = useState(null);
     const [uploadingPic, setUploadingPic] = useState(false);
+    const [destinations, setDestinations] = useState([]);
+    const [imageUrls, setImageUrls] = useState([]);
 
     useEffect(() => {
         setName(profile.name || '');
@@ -40,6 +43,53 @@ export default function Profile() {
         setEditPassword(false);
         setIsEditing(false);
     }, [profile]);
+
+    useEffect(() => {
+        const fetchReservations = async () => {
+            const reservations = await getUserReservations(profile.uid);
+            console.log('User reservations:', reservations);
+            setDestinations(reservations);
+        };
+        fetchReservations();
+    }, [profile]);
+
+    useEffect(() => {
+        const fetchAllImages = async () => {
+            const promises = destinations.map((_, index) => fetchFirstImage(index));
+            await Promise.all(promises);
+        };
+        fetchAllImages();
+    }, [destinations]);
+
+    const fetchFirstImage = async (index) => {
+    if (destinations.length > 0) {
+        const firstImageUrl = await getFirstImageOfDestination(destinations[index].destinationId);
+        console.log('First image URL:', firstImageUrl);
+        setImageUrls(prevState => {
+            const newState = [...prevState];
+            newState[index] = firstImageUrl;
+            return newState;
+        });
+        return firstImageUrl;
+    } else {
+        console.log('No destinations available');
+    }
+};
+
+    const getFirstImageOfDestination = async (destinationId) => {
+        try {
+            const destination = await getDestinationById(destinationId); // Fetch destination details from the database
+            console.log('Fetched destination:', destination);
+    
+            if (destination && destination.images.carouselUrls && destination.images.carouselUrls.length > 0) {
+                return destination.images.carouselUrls[0];
+            }
+            return null;
+        } catch (error) {
+            console.error('Error fetching destination:', error);
+            return null;
+        }
+    };
 
     const handleFileChange = (event) => setFile(event.target.files[0]);
 
@@ -161,6 +211,8 @@ export default function Profile() {
         console.log('guardado');
     };
 
+    getFirstImageOfDestination(destinations[0]?.destinationId);
+
     return (
         <div className={styles.profileContainer}>
             <h1>Perfil de usuario</h1>
@@ -256,16 +308,17 @@ export default function Profile() {
                 </h1>
                 <div className={styles.destinationBox}>
                     <div>
-                        {destinosData.map((destino, index) => (
+                        {destinations.map((destino, index) => (
                             <TarjetaDestinos
                                 diseñoTarjeta={styles.destinationItem}
                                 diseñoBoton={styles.destinationButton}
                                 diseñoImagen={styles.destinationImage}
                                 key={index}
-                                imagen={destino.imagen}
-                                titulo={destino.titulo}
+                                imagen={imageUrls[index]}
+                                titulo={destino.excursionTitle}
+                                descripcion={destino.date}
                                 colorClase={"lightgreen"}
-                                direccion={destino.direccion}
+                                direccion={`/destinations/${destino.destinationId}`}
                             />
                         ))}
                     </div>

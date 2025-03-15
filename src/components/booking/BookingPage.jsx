@@ -15,7 +15,7 @@ import CustomAlert from '../common/CustomAlert';
 const BookingPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { titulo, subtitulo, estimatedTime, image, guide, descriptionTitle, dateDisponible } = location.state;
+  const { titulo, subtitulo, estimatedTime, image, guide, descriptionTitle, dateDisponible, slug } = location.state;
   const [selectedDate, setSelectedDate] = useState('');
   const [price, setPrice] = useState(10);
   const [showPaypal, setShowPaypal] = useState(false);
@@ -31,7 +31,7 @@ const BookingPage = () => {
   };
   const [lastConfirmedPrice, setLastConfirmedPrice] = useState(null);
   const [lastConfirmedDate, setLastConfirmedDate] = useState(null);
-
+  
   useEffect(() => {
     const fetchUserData = async () => {
       if (logged && profile.uid) {
@@ -82,6 +82,7 @@ const BookingPage = () => {
     userEmail: userData?.email || profile.email,
     userId: profile.uid,
     userName: userData?.name || profile.name,
+    excursionId: slug,
     paymentDetails: {
       create_time: details.create_time,
       id: details.id,
@@ -99,8 +100,6 @@ const BookingPage = () => {
 
   // Redirigir a la página de factura
   navigate('/factura', { state: facturaData });
-  
-  
     setShowPaypal(false);
     setSelectedDate('');
   };

@@ -1,24 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import styles from './Community.module.css';
 import ViewUser from '../../components/ViewUser/ViewUser';
 import { collection, getDocs, doc, deleteDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../../credenciales";
-import { useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
+//import withAuthorization from '../WithAuthorization';
 
-export default function Community () {
+const Community = () => {
     const [estudiantes, setEstudiantes] = useState([]);
     const [guias, setGuias] = useState([]);
     const { logged, profile } = useContext(UserContext);
 
+
     useEffect(() => {
-        if (!logged) {
-            return;
-        } else {
-            if (profile.userType !== 'admin') {
-                window.location.href = '/*';
-            }
-        }
+        fetchUsers();
     }, [logged, profile]);
 
 
@@ -62,11 +57,7 @@ export default function Community () {
             console.error("Error updating user type: ", error);
         }
     };
-
-    useEffect(() => {
-        fetchUsers();
-    }, []);
-
+    
     return (
         <div className={styles.container}>
             <h1> Comunidad </h1>
@@ -111,3 +102,6 @@ export default function Community () {
         </div>
     );
 }
+
+//const AuthorizedCommunity = withAuthorization(Community, ['admin']);
+export default Community;

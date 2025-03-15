@@ -42,6 +42,7 @@ export default function Destination() {
                     guide={destination?.routeGuide}
                     descriptionTitle={destination?.descriptionTitle}
                     dateDisponible={destination?.dateDisponible}
+                    slug={destination?.slug}
                 />
                 <MapBanner
                     image={destination?.images.mapUrl}

@@ -155,7 +155,7 @@
 
 .destinationBox {
   height: auto;
-  width: 60%;
+  width: 100%;
   background-color: #003428;
   border-radius: 30px;
   padding: 5%;
@@ -172,8 +172,8 @@
 }
 
 .destinationImage {
-  width: 30%;
-  height: 40%;
+  width: 40%;
+  height: 50%;
   border: 5px solid #a3e96c;
   border-radius: 55px 20px 55px 20px;
 }
