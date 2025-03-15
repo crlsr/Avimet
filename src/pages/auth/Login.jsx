@@ -7,9 +7,10 @@ import googleLogo from "../../assets/google.png";
 import facebookLogo from "../../assets/facebook.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
+
 import appFirebase from "../../../credenciales";
 import { getAuth, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import { getFirestore, doc, getDoc } from "firebase/firestore";
+import { getFirestore, doc, getDoc, collection, query, where, getDocs } from "firebase/firestore";
 
 import {
   authProviders,
@@ -76,6 +77,35 @@ const Login = () => {
         return;
       }
       setLoading(true);
+  
+      // Primero, verificamos si es un admin
+      const adminsRef = collection(db, "admins");
+      const q = query(adminsRef, where("admin", "==", email));
+      const querySnapshot = await getDocs(q);
+  
+      if (!querySnapshot.empty) {
+        // Es un admin
+        const adminDoc = querySnapshot.docs[0];
+        const adminData = adminDoc.data();
+  
+        if (adminData.password === password) {
+          // Contraseña correcta para admin
+          alert("Has iniciado sesión como administrador");
+          localStorage.setItem('adminSession', JSON.stringify({ email }));
+          setEmail("");
+          setPassword("");
+          setLoading(false);
+          navigation("/");
+          console.log("Admin logged in: " + email);          
+          return;
+        } else {
+          setError("Contraseña incorrecta para administrador");
+          setLoading(false);
+          return;
+        }
+      }
+  
+      // Si no es admin, procedemos con la autenticación normal de usuario
       const user = await signInWithEmailAndPassword(auth, email, password);
       if (rememberMe) {
         localStorage.setItem('rememberedUser', JSON.stringify({ email, password }));

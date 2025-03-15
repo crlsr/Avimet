@@ -21,6 +21,7 @@ import Footer from "./components/Footer/Footer";
 import PasswordRecovery from './pages/auth/PasswordRecovery';
 import Destination from "./pages/Destination";
 import BookingPage from './components/booking/BookingPage';
+import Factura from "./components/Factura/Factura";
 
 
 
@@ -44,6 +45,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/destinations/:slug" element={<Destination />}/>
             <Route path="/booking" element={<BookingPage />} />
+            <Route path="/factura" element={<Factura />} />
             <Route path="/tips-news" element={<TipsNews />} />
             <Route path="*" element={<NotFound />}/>
           </Route>
