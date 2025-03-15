@@ -273,7 +273,7 @@ export default function Profile() {
                     />
                 </form>
                 <div className={styles.pictureContainer}>
-                    <img src={profilePicture} className={styles.profilePic} alt="Profile" />
+                    <img src={profilePicture} className={styles.profilePic} alt="Profile" loading="lazy" />
                     {linkToVisible && (
                         <>
                             <p className={styles.linkTo} onClick={triggerFileInput}> Cambiar foto </p>

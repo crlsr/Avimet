@@ -129,7 +129,7 @@ export default function Navbar() {
                     <img
                       className={styles.user_info}
                       src={profilePhoto}
-                      alt={profile.email}
+                      alt={profile?.email || "User Profile"}
                     />
                   </Link>
                   <button className={global.btn3} onClick={handleLogout}>
