@@ -73,25 +73,33 @@ const BookingPage = () => {
   }, [price, selectedDate, lastConfirmedPrice, lastConfirmedDate]);
 
   const handlePaymentSuccess = (details, data) => {
-    console.log('Payment completed successfully. Payment details:', details);
-    showAlert(`¡Pago completado con éxito!\nID de transacción: ${details.id}\nUsuario: ${userData?.name || profile.name}\nID de usuario: ${profile.uid}`, "success");
-    
-    saveReservation({
-      userId: profile.uid,
-      userName: userData?.name || profile.name,
-      userEmail: userData?.email || profile.email,
-      excursionTitle: titulo,
-      date: selectedDate,
-      price: price,
-      paymentDetails: {
-        transactionId: details.id,
-        status: details.status,
-        payerEmail: details.payer.email_address,
-      }
-    });
+  console.log('Payment completed successfully. Payment details:', details);
+
+  const facturaData = {
+    date: selectedDate,
+    excursionTitle: titulo,
+    price: price,
+    userEmail: userData?.email || profile.email,
+    userId: profile.uid,
+    userName: userData?.name || profile.name,
+    paymentDetails: {
+      create_time: details.create_time,
+      id: details.id,
+      status: details.status,
+      intent: details.intent,
+      payer: details.payer,
+      links: details.links,
+      update_time: details.update_time,
+      transactionId: details.id,
+      payerEmail: details.payer.email_address,
+    }
+  };
+
+  saveReservation(facturaData);
+
+  // Redirigir a la página de factura
+  navigate('/factura', { state: facturaData });
   
-    // Close the PayPal window
-    window.close();
   
     setShowPaypal(false);
     setSelectedDate('');

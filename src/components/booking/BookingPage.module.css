@@ -22,7 +22,7 @@
   width: 660px;
   overflow: hidden;
   font-family: sans-serif;
-  height: 670px;
+  height: auto;
   padding: 20px;
   margin-top: 10px;
 }
