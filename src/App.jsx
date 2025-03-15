@@ -1,13 +1,5 @@
-//import { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import React from "react";
-
-//importacion de modulos de firebase
-/*
-import appFirebase from "./credenciales";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-const auth = getAuth(appFirebase);
-*/
 
 //importando los componentes
 import Login from "./pages/auth/Login";
@@ -23,19 +15,10 @@ import Destination from "./pages/Destination";
 import BookingPage from './components/booking/BookingPage';
 import Factura from "./components/Factura/Factura";
 import DestinationSearch from "./pages/DestinationSearch/DestinationSearch";
+import DestinationManage from "./pages/admin/DestinationManage/DestinationManage";
 
 
 function App() {
-  /*const [user, setUser] = useState(null);
-  onAuthStateChanged(auth, (userFirebase) => {
-    if (userFirebase) {
-      setUser(userFirebase);
-    } else {
-      setUser(null);
-    }
-  });
-  */
-
   return (
     <Router>
       <Routes>
@@ -49,6 +32,7 @@ function App() {
             <Route path="/tips-news" element={<TipsNews />} />
             <Route path="*" element={<NotFound />}/>
             <Route path="/destinations" element={<DestinationSearch />} />
+            <Route path="/destinations-manage" element={<DestinationManage />} />
           </Route>
         </Route>
         <Route path="/signup" element={<SignUp />} />
