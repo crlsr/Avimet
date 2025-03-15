@@ -22,7 +22,7 @@ import PasswordRecovery from './pages/auth/PasswordRecovery';
 import Destination from "./pages/Destination";
 import BookingPage from './components/booking/BookingPage';
 import Factura from "./components/Factura/Factura";
-
+import DestinationSearch from "./pages/DestinationSearch/DestinationSearch";
 
 
 function App() {
@@ -48,6 +48,7 @@ function App() {
             <Route path="/factura" element={<Factura />} />
             <Route path="/tips-news" element={<TipsNews />} />
             <Route path="*" element={<NotFound />}/>
+            <Route path="/destinations" element={<DestinationSearch />} />
           </Route>
         </Route>
         <Route path="/signup" element={<SignUp />} />
