@@ -1,17 +1,20 @@
-import React from "react"
-import "./BannerTitle.css"
+import React from "react";
+import "./BannerTitle.css";
 
-export default function BannerTitle({titulo, subtitulo, botonTexto}) {
-
+export default function BannerTitle({ titulo, subtitulo, botonTexto, onButtonClick }) {
     const [primeraParte, ...resto] = titulo.split(" ");
 
-    return(
+    return (
         <div className="contenido">
             <p className="subtitulo">{subtitulo}</p>
             <h1 className="titulo">
                 <span className="primeraParte">{primeraParte}</span> {resto.join(" ")}
             </h1>
-            <button className="btn-primary">{botonTexto}</button>
+            {botonTexto && (
+                <button className="btn-primary" onClick={onButtonClick}>
+                    {botonTexto}
+                </button>
+            )}
         </div>
-    )
+    );
 }

@@ -36,6 +36,12 @@ export default function Destination() {
                     image={destination?.images.bannerUrl}
                     titulo={destination?.destination}
                     subtitulo={destination?.title} 
+                    estimatedTime={destination?.estimatedTime}
+                    difficulty={destination?.difficulty}
+                    distance={destination?.distance}
+                    guide={destination?.routeGuide}
+                    descriptionTitle={destination?.descriptionTitle}
+                    dateDisponible={destination?.dateDisponible}
                 />
                 <MapBanner
                     image={destination?.images.mapUrl}
