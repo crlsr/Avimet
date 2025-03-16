@@ -62,19 +62,40 @@ export default function Profile() {
     }, [destinations]);
 
     const fetchFirstImage = async (index) => {
-    if (destinations.length > 0) {
-        const firstImageUrl = await getFirstImageOfDestination(destinations[index].destinationId);
-        console.log('First image URL:', firstImageUrl);
-        setImageUrls(prevState => {
-            const newState = [...prevState];
-            newState[index] = firstImageUrl;
-            return newState;
-        });
-        return firstImageUrl;
-    } else {
-        console.log('No destinations available');
-    }
-};
+        if (destinations.length > 0) {
+            const firstImageUrl = await getFirstImageOfDestination(destinations[index].destinationId);
+            console.log('First image URL:', firstImageUrl);
+            setImageUrls(prevState => {
+                const newState = [...prevState];
+                newState[index] = firstImageUrl;
+                return newState;
+            });
+            return firstImageUrl;
+        } else {
+            console.log('No destinations available');
+        }
+    };
+
+    const getResults = () => {
+        if (destinations.length > 0) {
+            return (
+                destinations.map((destino, index) => (
+                <TarjetaDestinos
+                    diseñoTarjeta={styles.destinationItem}
+                    diseñoBoton={styles.destinationButton}
+                    diseñoImagen={styles.destinationImage}
+                    key={index}
+                    imagen={imageUrls[index]}
+                    titulo={destino.excursionTitle}
+                    descripcion={destino.date}
+                    colorClase={"lightgreen"}
+                    direccion={`/destinations/${destino.destinationId}`}
+                />
+            )))
+        } else {
+            return <h1>No hay destinos disponibles</h1>;
+        }
+    };
 
     const getFirstImageOfDestination = async (destinationId) => {
         try {
@@ -308,19 +329,7 @@ export default function Profile() {
                 </h1>
                 <div className={styles.destinationBox}>
                     <div>
-                        {destinations.map((destino, index) => (
-                            <TarjetaDestinos
-                                diseñoTarjeta={styles.destinationItem}
-                                diseñoBoton={styles.destinationButton}
-                                diseñoImagen={styles.destinationImage}
-                                key={index}
-                                imagen={imageUrls[index]}
-                                titulo={destino.excursionTitle}
-                                descripcion={destino.date}
-                                colorClase={"lightgreen"}
-                                direccion={`/destinations/${destino.destinationId}`}
-                            />
-                        ))}
+                        {getResults()}
                     </div>
                 </div>
             </div>
