@@ -6,11 +6,13 @@ import appFirebase from "../../../../credenciales";
 import {
   collection,
   getDocs,
+  deleteDoc,
+  doc,
   getFirestore,
   setDoc,
-  doc,
 } from "firebase/firestore";
 import { IoIosSearch } from "react-icons/io";
+import { IoMdClose } from "react-icons/io"; // Icono para eliminar filtros
 
 const db = getFirestore(appFirebase);
 
@@ -19,24 +21,35 @@ export default function DestinationSearch() {
   const [destinations, setDestinations] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredDestinations, setFilteredDestinations] = useState([]);
+  const [showFilterMenu, setShowFilterMenu] = useState(false);
+  const [filters, setFilters] = useState([]); // Lista de filtros desde Firebase
   const [showForm, setShowForm] = useState(false);
   const [categoryName, setCategoryName] = useState("");
   const [categoryDescription, setCategoryDescription] = useState("");
   const [statusMessage, setStatusMessage] = useState("");
 
+  useEffect(() => {
+    getDestinations();
+    getTags(); // Cargar filtros desde Firebase
+  }, [params]);
+
   async function getDestinations() {
     const querySnapshot = await getDocs(collection(db, "destinations"));
     const destinationsList = querySnapshot.docs.map((doc) => ({
-      id: doc.id, 
-      ...doc.data(), 
+      id: doc.id,
+      ...doc.data(),
     }));
     setDestinations(destinationsList);
   }
-  
 
-  useEffect(() => {
-    getDestinations();
-  }, [params]);
+  async function getTags() {
+    const querySnapshot = await getDocs(collection(db, "tags"));
+    const tagsList = querySnapshot.docs.map((doc) => ({
+      id: doc.id, // ID del documento en Firebase
+      ...doc.data(),
+    }));
+    setFilters(tagsList);
+  }
 
   useEffect(() => {
     const filtered = destinations.filter((dest) =>
@@ -44,6 +57,15 @@ export default function DestinationSearch() {
     );
     setFilteredDestinations(filtered);
   }, [searchTerm, destinations]);
+
+  const handleRemoveFilter = async (filterId) => {
+    try {
+      await deleteDoc(doc(db, "tags", filterId));
+      setFilters(filters.filter((filter) => filter.id !== filterId)); // Actualizar UI
+    } catch (error) {
+      console.error("Error eliminando el filtro:", error);
+    }
+  };
 
   const handleCreateCategory = () => {
     setShowForm(!showForm);
@@ -65,6 +87,10 @@ export default function DestinationSearch() {
         descrip: categoryDescription,
       });
       setStatusMessage("Categoría agregada con éxito");
+
+      // Actualizar la lista de filtros sin recargar
+      setFilters([...filters, { id: newId.toString(), nombre: categoryName, descrip: categoryDescription }]);
+
       setTimeout(() => {
         setCategoryName("");
         setCategoryDescription("");
@@ -85,6 +111,8 @@ export default function DestinationSearch() {
         </h1>
         <hr className={styles.separator} />
       </div>
+
+      {/* Caja de Búsqueda */}
       <div className={styles.searchBox}>
         <div className={styles.searchContainer}>
           <IoIosSearch className={styles.searchIcon} />
@@ -97,11 +125,41 @@ export default function DestinationSearch() {
           />
         </div>
       </div>
+
+      <div className={styles.filterContainer}>
+        <button
+          className={styles.filterButton}
+          onClick={() => setShowFilterMenu(!showFilterMenu)}
+        >
+          Eliminar Filtros ▼
+        </button>
+
+        {showFilterMenu && (
+          <div className={styles.filterDropdown}>
+            {filters.length > 0 ? (
+              filters.map((filter) => (
+                <div key={filter.id} className={styles.filterItem}>
+                  <span>{filter.nombre}</span>
+                  <IoMdClose
+                    className={styles.removeFilterIcon}
+                    onClick={() => handleRemoveFilter(filter.id)}
+                  />
+                </div>
+              ))
+            ) : (
+              <p className={styles.noFilters}>No hay filtros disponibles</p>
+            )}
+          </div>
+        )}
+      </div>
+
       <div className={styles.createContainer}>
         <button className={styles.createTag} onClick={handleCreateCategory}>
           Crear nueva categoría
         </button>
       </div>
+
+      {/* Formulario para agregar categoría */}
       <div className={`${styles.formContainer} ${showForm ? styles.show : ""}`}>
         <input
           type="text"
@@ -125,6 +183,8 @@ export default function DestinationSearch() {
         </button>
         <p className={styles.statusMessage}>{statusMessage}</p>
       </div>
+
+      {/* Contenedor de destinos */}
       <div className={styles.destinationContainer}>
         <DestinationEdit
           titulo={"Nueva excursión"}
