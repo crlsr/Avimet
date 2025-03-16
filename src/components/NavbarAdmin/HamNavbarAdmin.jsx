@@ -1,23 +1,19 @@
-import React, { useContext, useState, useEffect } from "react";
-import { Link, Outlet, useNavigate } from "react-router-dom";
-import { UserContext } from "../../context/UserContext";
-import appFirebase from "../../../credenciales";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
+import appFirebase from "../../../credenciales";
 import { getFirestore, collection, getDocs } from "firebase/firestore";
-import styles from "./Navbar.module.css";
+import styles from "./NavbarAdmin.module.css";
 import global from "../../global.module.css";
 import avimetLogo from "../../assets/avimet-logo.png";
-import profilePhoto from "../../assets/foto-predeterminada.png";
 import { IoIosSearch } from "react-icons/io";
-
-import { MenuHamburguesa } from "./HamNavbar";
 
 const auth = getAuth(appFirebase);
 const db = getFirestore(appFirebase);
 
-export default function Navbar() {
+export const MenuHamburguesa = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const navigation = useNavigate();
-  const { logged, profile } = useContext(UserContext);
   const [searchTerm, setSearchTerm] = useState("");
   const [destinations, setDestinations] = useState([]);
   const [filteredDestinations, setFilteredDestinations] = useState([]);
@@ -46,6 +42,10 @@ export default function Navbar() {
     }
   }, [searchTerm, destinations]);
 
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
   const handleLogout = async () => {
     await signOut(auth);
   };
@@ -69,34 +69,46 @@ export default function Navbar() {
   };
 
   return (
-    <>
-      <nav className={styles.navbar}>
-        <ul className={styles.navbar_list}>
-          <li className={styles.logo}>
-            <Link to="/">
-              <img src={avimetLogo} alt="Avimet" />
-            </Link>
-          </li>
+    <div className={styles.menuContainer}>
+      <div className={styles.mobileHeader}>
+        <Link to="/">
+          <img src={avimetLogo} alt="Avimet" className={styles.logoMobile} />
+        </Link>
+        <div className={styles.menuIcon} onClick={toggleMenu}>
+          ☰
+        </div>
+      </div>
+
+      <div className={`${styles.menu} ${isOpen ? styles.menuOpen : ""}`}>
+        <div className={styles.menuHeader}>
+          <span className={styles.closeIcon} onClick={toggleMenu}>
+            ✖
+          </span>
+        </div>
+
+        <ul className={styles.menuList}>
           <li>
-            <Link to="/" className={styles.navbar_link}>
+            <Link to="/" className={styles.navbar_link} onClick={toggleMenu}>
               Home
             </Link>
           </li>
           <li>
-            <Link to="/destinations" className={styles.navbar_link}>
-              Destinos
+            <Link
+              to="/destinations-manage"
+              className={styles.navbar_link}
+              onClick={toggleMenu}
+            >
+              Editar Destinos
             </Link>
           </li>
           <li>
-            {logged ? (
-              <Link to="/reserve" className={styles.navbar_link}>
-                Reserva tu viaje
-              </Link>
-            ) : (
-              <Link to="/login" className={styles.navbar_link}>
-                Reserva tu viaje
-              </Link>
-            )}
+            <Link
+              to="/community"
+              className={styles.navbar_link}
+              onClick={toggleMenu}
+            >
+              Comunidad
+            </Link>
           </li>
           <li className={styles.search_container}>
             <div className={styles.search_box}>
@@ -128,37 +140,13 @@ export default function Navbar() {
           </li>
           <li>
             <div className={styles.auth_container}>
-              {logged ? (
-                <>
-                  <Link to="/profile">
-                    <img
-                      className={styles.user_info}
-                      src={
-                        profile?.profilePicture
-                          ? profile.profilePicture
-                          : profilePhoto
-                      }
-                      alt={profile?.email || "User Profile"}
-                    />
-                  </Link>
-                  <button className={global.btn3} onClick={handleLogout}>
-                    Cerrar sesión
-                  </button>
-                </>
-              ) : (
-                <button
-                  className={global.btn3}
-                  onClick={() => navigation("/login")}
-                >
-                  Iniciar Sesión
-                </button>
-              )}
+              <button className={global.btn3} onClick={handleLogout}>
+                Cerrar sesión
+              </button>
             </div>
           </li>
         </ul>
-        <MenuHamburguesa />
-      </nav>
-      <Outlet />
-    </>
+      </div>
+    </div>
   );
-}
+};

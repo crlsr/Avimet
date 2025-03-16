@@ -1,23 +1,20 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import { UserContext } from "../../context/UserContext";
 import appFirebase from "../../../credenciales";
 import { getAuth, signOut } from "firebase/auth";
 import { getFirestore, collection, getDocs } from "firebase/firestore";
-import styles from "./Navbar.module.css";
+import styles from "./NavbarAdmin.module.css";
 import global from "../../global.module.css";
 import avimetLogo from "../../assets/avimet-logo.png";
-import profilePhoto from "../../assets/foto-predeterminada.png";
 import { IoIosSearch } from "react-icons/io";
 
-import { MenuHamburguesa } from "./HamNavbar";
+import { MenuHamburguesa } from "./HamNavbarAdmin";
 
 const auth = getAuth(appFirebase);
 const db = getFirestore(appFirebase);
 
 export default function Navbar() {
   const navigation = useNavigate();
-  const { logged, profile } = useContext(UserContext);
   const [searchTerm, setSearchTerm] = useState("");
   const [destinations, setDestinations] = useState([]);
   const [filteredDestinations, setFilteredDestinations] = useState([]);
@@ -83,20 +80,14 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            <Link to="/destinations" className={styles.navbar_link}>
-              Destinos
+            <Link to="/destinations-manage" className={styles.navbar_link}>
+              Editar Rutas
             </Link>
           </li>
           <li>
-            {logged ? (
-              <Link to="/reserve" className={styles.navbar_link}>
-                Reserva tu viaje
-              </Link>
-            ) : (
-              <Link to="/login" className={styles.navbar_link}>
-                Reserva tu viaje
-              </Link>
-            )}
+            <Link to="/community" className={styles.navbar_link}>
+              Comunidad
+            </Link>
           </li>
           <li className={styles.search_container}>
             <div className={styles.search_box}>
@@ -128,31 +119,9 @@ export default function Navbar() {
           </li>
           <li>
             <div className={styles.auth_container}>
-              {logged ? (
-                <>
-                  <Link to="/profile">
-                    <img
-                      className={styles.user_info}
-                      src={
-                        profile?.profilePicture
-                          ? profile.profilePicture
-                          : profilePhoto
-                      }
-                      alt={profile?.email || "User Profile"}
-                    />
-                  </Link>
-                  <button className={global.btn3} onClick={handleLogout}>
-                    Cerrar sesión
-                  </button>
-                </>
-              ) : (
-                <button
-                  className={global.btn3}
-                  onClick={() => navigation("/login")}
-                >
-                  Iniciar Sesión
-                </button>
-              )}
+              <button className={global.btn3} onClick={handleLogout}>
+                Cerrar sesión
+              </button>
             </div>
           </li>
         </ul>

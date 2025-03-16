@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./DestinationManage.module.css";
-import TarjetaDestinos from "../../../components/TarjetaDestinos/TarjetaDestinos";
+import DestinationEdit from "../../../components/DestinationEdit/DestinationEdit";
 import { useParams } from "react-router-dom";
 import appFirebase from "../../../../credenciales";
 import {
@@ -26,9 +26,13 @@ export default function DestinationSearch() {
 
   async function getDestinations() {
     const querySnapshot = await getDocs(collection(db, "destinations"));
-    const destinationsList = querySnapshot.docs.map((doc) => doc.data());
+    const destinationsList = querySnapshot.docs.map((doc) => ({
+      id: doc.id, 
+      ...doc.data(), 
+    }));
     setDestinations(destinationsList);
   }
+  
 
   useEffect(() => {
     getDestinations();
@@ -122,15 +126,20 @@ export default function DestinationSearch() {
         <p className={styles.statusMessage}>{statusMessage}</p>
       </div>
       <div className={styles.destinationContainer}>
+        <DestinationEdit
+          titulo={"Nueva excursión"}
+          dirreccion={"/create-new-destination"}
+          new={true}
+        />
         {filteredDestinations.length > 0 ? (
           filteredDestinations.map((dest, index) => (
-            <TarjetaDestinos
+            <DestinationEdit
               key={index}
+              id={dest.id}
               imagen={dest.images.bannerUrl}
               titulo={dest.destination}
-              descripcion={dest.description}
-              colorClase={index % 2 === 0 ? "darkgreen" : "lightgreen"}
-              dirreccion={dest.slug}
+              direccion={dest.slug}
+              new={false}
             />
           ))
         ) : (

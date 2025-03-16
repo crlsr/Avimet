@@ -160,12 +160,16 @@ export const MenuHamburguesa = () => {
                   <Link to="/profile">
                     <img
                       className={styles.user_info}
-                      src={profilePhoto}
+                      src={
+                        profile?.profilePicture
+                          ? profile.profilePicture
+                          : profilePhoto
+                      }
                       alt={profile?.email || "User Profile"}
                     />
                   </Link>
                   <button className={global.btn3} onClick={handleLogout}>
-                    Logout
+                    Cerrar sesión
                   </button>
                 </>
               ) : (
