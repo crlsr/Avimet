@@ -1,5 +1,5 @@
 import { doc, getDoc, updateDoc, arrayUnion, collection, addDoc, getDocs, query, where } from "firebase/firestore";
-import { db } from "../credenciales.js";
+import { db } from "../../credenciales.js";
 
 export const saveReservation = async (reservationData) => {
   // This is where you'd typically make an API call to your backend

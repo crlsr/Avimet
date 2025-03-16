@@ -7,7 +7,7 @@ import Calendario from '../Calendario/Calendario';
 import PayPalButton from './PayPalButton'; 
 import { saveReservation } from '../../services/reservationService';
 import { UserContext } from "../../context/UserContext";
-import appFirebase from "../../credenciales";
+import appFirebase from "../../../credenciales";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 import CustomAlert from '../common/CustomAlert';
 
@@ -72,6 +72,7 @@ const BookingPage = () => {
     }
   }, [price, selectedDate, lastConfirmedPrice, lastConfirmedDate]);
 
+  // eslint-disable-next-line no-unused-vars
   const handlePaymentSuccess = (details, data) => {
   console.log('Payment completed successfully. Payment details:', details);
 

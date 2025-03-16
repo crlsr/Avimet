@@ -22,8 +22,9 @@ import PasswordRecovery from './pages/auth/PasswordRecovery';
 import Destination from "./pages/Destination";
 import BookingPage from './components/booking/BookingPage';
 import Factura from "./components/Factura/Factura";
-
 import Community from './pages/Community/Community';
+import DestinationSearch from "./pages/DestinationSearch/DestinationSearch";
+import DestinationManage from "./pages/admin/DestinationManage/DestinationManage";
 
 
 function App() {
@@ -50,6 +51,8 @@ function App() {
             <Route path="/tips-news" element={<TipsNews />} />
             <Route path="*" element={<NotFound />}/>
             <Route path="/community" element={<Community />} />
+            <Route path="/destinations" element={<DestinationSearch />} />
+            <Route path="/destinations-manage" element={<DestinationManage />} />
           </Route>
         </Route>
         <Route path="/signup" element={<SignUp />} />

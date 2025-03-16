@@ -1,7 +1,7 @@
 import styles from "./CommentBox.module.css";
 import React, { useEffect, useState } from 'react';
 import { getFirestore,query, collection, getDocs, where } from 'firebase/firestore';
-import appFirebase from '../../credenciales';
+import appFirebase from '../../../credenciales';
 import CommentComponent from "./commentComponent"; // Asegúrate de importar el componente Comment
 
 
