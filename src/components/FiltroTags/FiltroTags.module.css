@@ -40,7 +40,6 @@
 .FiltroTagsMenu li {
     padding: 10px 15px; /* Espaciado interno */
     background-color: #f0f0f0; /* Color de fondo de las opciones */
-    border-radius: 5px; /* Bordes redondeados */
     cursor: pointer;
     transition: background-color 0.3s; /* Transición suave */
 }

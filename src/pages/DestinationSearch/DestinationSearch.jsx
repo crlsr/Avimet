@@ -106,7 +106,7 @@ export default function DestinationSearch() {
               titulo={dest.destination}
               descripcion={dest.description}
               colorClase={index % 2 === 0 ? "darkgreen" : "lightgreen"}
-              dirreccion={dest.slug}
+              direccion={dest.slug}
             />
           ))
         ) : (
