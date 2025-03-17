@@ -11,6 +11,8 @@ import {doc, updateDoc} from "firebase/firestore";
 import TarjetaDestinos from "../../components/TarjetaDestinos/TarjetaDestinos";
 import { getUserReservations, getDestinationById } from '../../services/reservationService';
 
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+
 export default function Profile() {
     const { profile, logged } = useContext(UserContext);
     const navigation = useNavigate();
@@ -33,7 +35,7 @@ export default function Profile() {
     const [uploadingPic, setUploadingPic] = useState(false);
     const [destinations, setDestinations] = useState([]);
     const [imageUrls, setImageUrls] = useState([]);
-    //const [showPassword, setShowPassword] = useState(false);
+    const [passwordVisible, setPasswordVisible] = useState(false);
 
     useEffect(() => {
         if (!logged) {
@@ -49,6 +51,7 @@ export default function Profile() {
         setEditable(false);
         setEditPassword(false);
         setIsEditing(false);
+        setPasswordVisible(false);
         console.log('Profile updated:', profile);
     }, [profile]);
 
@@ -182,6 +185,7 @@ export default function Profile() {
             console.log(error);
             setError(error.message);
             if (error.message.includes("auth/email-already-in-use")) {
+
                 setError("El correo ya está en uso");
             } else if (error.message.includes("auth/network-request-failed")) {
                 setError("Oops. Revise su conexión a Internet");
@@ -219,6 +223,7 @@ export default function Profile() {
         setEditable(true);
         if (profile.provider == 'email'){
             setEditPassword(true);
+            setPasswordVisible(true);
         }
         setIsEditing(true);
         console.log('editando');
@@ -243,6 +248,7 @@ export default function Profile() {
         setEditPassword(false)
         setAuthenticated(true);
         setError(null);
+        setPasswordVisible(false)
         console.log('guardado');
     };
 
@@ -298,7 +304,7 @@ export default function Profile() {
                         value={password}
                         define_class={styles.inputField}
                         design={styles.passwordInput}
-                        input_type='password'
+                        input_type= {passwordVisible ? "text" : "password"}
                         input_placeholder={profile.password || 'Introduzca una nueva contraseña'}
                         input_id='password'
                         editing={editPassword}
