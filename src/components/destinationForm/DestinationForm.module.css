@@ -1,0 +1,94 @@
+.container {
+    margin-top: 200px;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputContainer {
+    display: flex;
+    flex-flow: row;
+    gap: 85px;
+}
+
+.textInputs {
+    display: flex;
+    flex-direction: column;
+    width: 380px;
+    gap: 8px;
+}
+
+.imageInputs {
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+}
+
+.imageContainer {
+    width: min-content;
+    align-self: center;
+}
+
+.abtInputs {
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+}
+
+.abt {
+    width: 85px;
+}
+
+.textarea {
+    height: 200px;
+    width: 100%;
+}
+
+.labelInput {
+    width: min-content;
+}
+
+.label {
+    font-size: 11px;
+    color: #333333;
+    width: fit-content;
+}
+
+.imageMainInput {
+    max-width: 200px;
+}
+
+.previewMain {
+    border: #003428 solid 3px;
+    width: 400px;
+    height: 265px;
+    object-fit: cover;
+    border-radius: 120px 35px;
+}
+
+.subImages {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.previewSub {
+    object-fit: cover;
+    width: 190px;
+    height: 126px;
+    border-radius: 57px 17px;
+    border: #003428 solid 3px;
+}
+
+.previewBottom {
+    object-fit: cover;
+    width: 95px;
+    height: 60px;
+    border-radius: 29px 9px;
+    border: #003428 solid 3px;
+}

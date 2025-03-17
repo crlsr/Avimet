@@ -138,7 +138,7 @@ export default function DestinationSearch() {
               id={dest.id}
               imagen={dest.images.bannerUrl}
               titulo={dest.destination}
-              direccion={dest.slug}
+              direccion={"/edit-destination/:slug"}
               new={false}
             />
           ))

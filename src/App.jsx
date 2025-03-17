@@ -25,6 +25,7 @@ import Factura from "./components/Factura/Factura";
 import Community from './pages/Community/Community';
 import DestinationSearch from "./pages/DestinationSearch/DestinationSearch";
 import DestinationManage from "./pages/admin/DestinationManage/DestinationManage";
+import DestinationCreate from "./pages/admin/destinationCreate/DestinationCreate";
 
 
 function App() {
@@ -53,6 +54,7 @@ function App() {
             <Route path="/community" element={<Community />} />
             <Route path="/destinations" element={<DestinationSearch />} />
             <Route path="/destinations-manage" element={<DestinationManage />} />
+            <Route path="/create-new-destination" element={<DestinationCreate/>} />
           </Route>
         </Route>
         <Route path="/signup" element={<SignUp />} />
