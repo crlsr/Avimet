@@ -88,7 +88,7 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            <Link to="/foro" className={styles.navbar_link}>
+            <Link to="/Forum" className={styles.navbar_link}>
               Foro
             </Link>
           </li>

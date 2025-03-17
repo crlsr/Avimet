@@ -19,6 +19,8 @@ import DestinationManage from "./pages/admin/DestinationManage/DestinationManage
 import NavbarAdmin from "./components/NavbarAdmin/NavbarAdmin";
 import FooterAdmin from "./components/FooterAdmin/FooterAdmin";
 import Contact from "./pages/Contact/Contact";
+import Forum from "./pages/Forum/Forum"
+
 
 // Importando Firebase
 import appFirebase from "../credenciales";
@@ -71,6 +73,7 @@ function App() {
             <Route path="/tips-news" element={<TipsNews />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/destinations" element={<DestinationSearch />} />
+            <Route path="/Forum" element={<Forum />}/>
             <Route path="*" element={<NotFound />} />
             <Route path="/community" element={userType === "admin" ? <Community /> : <Navigate to="/" />} />
             <Route path="/destinations-manage" element={userType === "admin" ? <DestinationManage /> : <Navigate to="/" />} />
