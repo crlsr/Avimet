@@ -155,7 +155,7 @@
 
 .destinationBox {
   height: auto;
-  width: 100%;
+  width: auto;
   background-color: #003428;
   border-radius: 30px;
   padding: 5%;
