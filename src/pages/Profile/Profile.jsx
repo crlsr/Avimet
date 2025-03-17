@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { UserContext } from '../../context/UserContext';
+import { useNavigate } from 'react-router-dom';
 import styles from './Profile.module.css';
 import global from "../../global.module.css";
 import default_picture from "../../assets/no-profile-picture.png";
@@ -11,7 +12,8 @@ import TarjetaDestinos from "../../components/TarjetaDestinos/TarjetaDestinos";
 import { getUserReservations, getDestinationById } from '../../services/reservationService';
 
 export default function Profile() {
-    const { profile } = useContext(UserContext);
+    const { profile, logged } = useContext(UserContext);
+    const navigation = useNavigate();
     const phoneRegex = /^\+58-\d{4}-\d{3}-\d{4}$/;
     const emailRegex = /^[a-zA-Z0-9._%+-]+@correo\.unimet\.edu\.ve$/;
 
@@ -34,6 +36,10 @@ export default function Profile() {
     //const [showPassword, setShowPassword] = useState(false);
 
     useEffect(() => {
+        if (!logged) {
+            navigation('/login');
+        }
+
         setName(profile.name || '');
         setEmail(profile.email || '');
         setPhone(profile.phone || '');
