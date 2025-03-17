@@ -31,6 +31,7 @@ export default function Profile() {
     const [uploadingPic, setUploadingPic] = useState(false);
     const [destinations, setDestinations] = useState([]);
     const [imageUrls, setImageUrls] = useState([]);
+    //const [showPassword, setShowPassword] = useState(false);
 
     useEffect(() => {
         setName(profile.name || '');
@@ -42,13 +43,16 @@ export default function Profile() {
         setEditable(false);
         setEditPassword(false);
         setIsEditing(false);
+        console.log('Profile updated:', profile);
     }, [profile]);
 
     useEffect(() => {
         const fetchReservations = async () => {
-            const reservations = await getUserReservations(profile.uid);
-            console.log('User reservations:', reservations);
-            setDestinations(reservations);
+            if (profile && profile.uid) {
+                const reservations = await getUserReservations(profile.uid);
+                console.log('User reservations:', reservations);
+                setDestinations(reservations);
+            }
         };
         fetchReservations();
     }, [profile]);
@@ -204,10 +208,12 @@ export default function Profile() {
         setFunction(event.target.value);
     };
 
-    const editAction = () => {
+    const editAction = () => {; 
         setLinkToVisible(true);
         setEditable(true);
-        setEditPassword(profile.user && profile.user.provider === 'email');
+        if (profile.provider == 'email'){
+            setEditPassword(true);
+        }
         setIsEditing(true);
         console.log('editando');
     };
@@ -220,6 +226,7 @@ export default function Profile() {
             setEditable(true);
             setIsEditing(true);
             setAuthenticated(false);
+            setEditPassword(true)
             console.log('Authentication failed, data not saved');
             return;
         }
@@ -227,6 +234,7 @@ export default function Profile() {
         setLinkToVisible(false);
         setEditable(false);
         setIsEditing(false);
+        setEditPassword(false)
         setAuthenticated(true);
         setError(null);
         console.log('guardado');
@@ -326,6 +334,16 @@ export default function Profile() {
             <div className={styles.destinationContainer}>
                 <h1 className={styles.titleVariant}>
                     <span className={styles.firstPart}>Mis</span> destinos
+                </h1>
+                <div className={styles.destinationBox}>
+                    <div>
+                        {getResults()}
+                    </div>
+                </div>
+            </div>
+            <div className={styles.destinationContainer}>
+                <h1 className={styles.titleVariant}>
+                    <span className={styles.firstPart}>Mis</span> favoritos
                 </h1>
                 <div className={styles.destinationBox}>
                     <div>
