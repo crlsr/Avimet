@@ -88,15 +88,14 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            {logged ? (
-              <Link to="/reserve" className={styles.navbar_link}>
-                Reserva tu viaje
-              </Link>
-            ) : (
-              <Link to="/login" className={styles.navbar_link}>
-                Reserva tu viaje
-              </Link>
-            )}
+            <Link to="/foro" className={styles.navbar_link}>
+              Foro
+            </Link>
+          </li>
+          <li>
+            <Link to="/contact" className={styles.navbar_link}>
+              Contáctanos
+            </Link>
           </li>
           <li className={styles.search_container}>
             <div className={styles.search_box}>

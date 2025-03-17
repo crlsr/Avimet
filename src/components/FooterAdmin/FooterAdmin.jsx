@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
-import styles from "./Footer.module.css";
+import styles from "./FooterAdmin.module.css";
 import ig from "../../assets/ig.png";
 import email from "../../assets/email.png";
 import tel from "../../assets/tel.png";
