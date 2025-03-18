@@ -66,6 +66,7 @@ function App() {
           <Route element={userType === "admin" ? <NavbarAdmin /> : <Navbar />}>
             <Route path="/" element={<Home />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/destinations" element={<DestinationSearch />} />
             <Route path="/destinations/:slug" element={<Destination />} />
             <Route path="/booking" element={<BookingPage />} />
             <Route path="/factura" element={<Factura />} />

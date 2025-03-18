@@ -1,6 +1,6 @@
 import styles from "./CommentBox.module.css";
-import React, { useEffect, useState, useContext } from "react";
-import { UserContext } from "../../context/UserContext";
+import React, { useEffect, useState } from "react";
+import CommentComponent from "./CommentComponent"; // Asegúrate de importar el componente Comment
 import {
   getFirestore,
   query,
@@ -9,7 +9,7 @@ import {
   where,
 } from "firebase/firestore";
 import appFirebase from "../../../credenciales";
-import CommentComponent from "./commentComponent"; // Asegúrate de importar el componente Comment
+
 
 function CommentBox({ destino }) {
   const [comments, setComments] = useState([]);

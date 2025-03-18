@@ -1,6 +1,4 @@
-import React, { useContext } from "react";
 import styles from "./CommentComponent.module.css";
-import { UserContext } from "../../context/UserContext"; // Adjust the path as needed
 
 const StarIcon = () => (
   <svg
@@ -17,7 +15,7 @@ const StarIcon = () => (
   </svg>
 );
 
-const CommentComponent = ({ avatarText, userName, comment, picture, rating }) => {
+const CommentComponent = ({ userName, comment, picture, rating }) => {
   return (
     <div className={styles.commentCard}>
       <div className={styles.userInfoContainer}>
@@ -26,7 +24,6 @@ const CommentComponent = ({ avatarText, userName, comment, picture, rating }) =>
               src={picture}
               className={styles.avatarImage}
             />
-            <div className={styles.avatarText}>{avatarText}</div>
         </div>
         <div className={styles.textContent}>
           <div className={styles.userName}>{userName}</div>
