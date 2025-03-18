@@ -17,15 +17,14 @@ const StarIcon = () => (
   </svg>
 );
 
-const CommentComponent = ({ avatarText, userName, comment, rating }) => {
-  const { profile } = useContext(UserContext);
+const CommentComponent = ({ avatarText, userName, comment, picture, rating }) => {
   return (
     <div className={styles.commentCard}>
       <div className={styles.userInfoContainer}>
         <div className={styles.avatar}>
           {profile?.profilePicture ? (
             <img
-              src={profile.profilePicture}
+              src={picture}
               className={styles.avatarImage}
             />
           ) : (

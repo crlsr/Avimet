@@ -1,5 +1,6 @@
 import styles from "./CommentBox.module.css";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { UserContext } from "../../context/UserContext";
 import {
   getFirestore,
   query,
@@ -12,6 +13,7 @@ import CommentComponent from "./commentComponent"; // Asegúrate de importar el 
 
 function CommentBox({ destino }) {
   const [comments, setComments] = useState([]);
+  const { profile } = useContext(UserContext);
   const db = getFirestore(appFirebase);
 
   useEffect(() => {
@@ -44,6 +46,7 @@ function CommentBox({ destino }) {
             avatarText={comment.autor[0]}
             userName={comment.autor}
             comment={comment.comment}
+            picture={profile.profilePicture}
             rating={comment.stars}
           />
         ))}
