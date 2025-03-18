@@ -10,8 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@paypal/react-paypal-js": "^8.8.2",
+    "@supabase/supabase-js": "^2.49.1",
     "@tailwindcss/vite": "^4.0.9",
     "bootstrap": "^5.3.3",
+    "emailjs-com": "^3.2.0",
     "firebase": "^11.4.0",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.9",

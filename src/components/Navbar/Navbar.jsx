@@ -4,7 +4,6 @@ import { UserContext } from "../../context/UserContext";
 import appFirebase from "../../../credenciales";
 import { getAuth, signOut } from "firebase/auth";
 import { getFirestore, collection, getDocs } from "firebase/firestore";
-
 import styles from "./Navbar.module.css";
 import global from "../../global.module.css";
 import avimetLogo from "../../assets/avimet-logo.png";
@@ -53,18 +52,21 @@ export default function Navbar() {
 
   const handleSearch = () => {
     if (searchTerm.trim() === "") return;
-  
+
     const matchedDestination = destinations.find(
       (dest) => dest.destination.toLowerCase() === searchTerm.toLowerCase()
     );
-  
+
     if (matchedDestination) {
-      navigation(`/destinations/${matchedDestination.destination.replace(/\s+/g, "-").toLowerCase()}`);
+      navigation(
+        `/destinations/${matchedDestination.destination
+          .replace(/\s+/g, "-")
+          .toLowerCase()}`
+      );
     } else {
       navigation(`/busqueda?q=${searchTerm.replace(/\s+/g, "-")}`);
     }
   };
-  
 
   return (
     <>
@@ -86,19 +88,21 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            {logged ? (
-              <Link to="/reserve" className={styles.navbar_link}>
-                Reserva tu viaje
-              </Link>
-            ) : (
-              <Link to="/login" className={styles.navbar_link}>
-                Reserva tu viaje
-              </Link>
-            )}
+            <Link to="/Forum" className={styles.navbar_link}>
+              Foro
+            </Link>
+          </li>
+          <li>
+            <Link to="/contact" className={styles.navbar_link}>
+              Contáctanos
+            </Link>
           </li>
           <li className={styles.search_container}>
             <div className={styles.search_box}>
-            <IoIosSearch className={styles.search_icon} onClick={handleSearch} />
+              <IoIosSearch
+                className={styles.search_icon}
+                onClick={handleSearch}
+              />
               <input
                 type="text"
                 placeholder="Buscar un destino..."
@@ -128,12 +132,16 @@ export default function Navbar() {
                   <Link to="/profile">
                     <img
                       className={styles.user_info}
-                      src={profilePhoto}
-                      alt={profile.email}
+                      src={
+                        profile?.profilePicture
+                          ? profile.profilePicture
+                          : profilePhoto
+                      }
+                      alt={profile?.email || "User Profile"}
                     />
                   </Link>
                   <button className={global.btn3} onClick={handleLogout}>
-                    Logout
+                    Cerrar sesión
                   </button>
                 </>
               ) : (

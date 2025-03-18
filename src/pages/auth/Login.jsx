@@ -7,9 +7,10 @@ import googleLogo from "../../assets/google.png";
 import facebookLogo from "../../assets/facebook.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
+
 import appFirebase from "../../../credenciales";
 import { getAuth, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import { getFirestore, doc, getDoc } from "firebase/firestore";
+import { getFirestore, doc, getDoc} from "firebase/firestore";
 
 import {
   authProviders,
@@ -49,7 +50,11 @@ const Login = () => {
         await auth.signOut();
       }
     } catch (error) {
-      setError("Error al iniciar sesión con google: " + error.message);
+      
+      if (error.message == "Firebase: Error (auth/popup-blocked).") {
+        setError("Tu buscador ha bloqueado la ventana emergente de inicio de sesión. Asegúsere de que su buscador no esté bloqueando ventanas emergentes.")
+      }
+      console.log("Error al iniciar sesión con google: " + error.message);
     }
   };
 
@@ -76,27 +81,42 @@ const Login = () => {
         return;
       }
       setLoading(true);
-      const user = await signInWithEmailAndPassword(auth, email, password);
-      if (rememberMe) {
-        localStorage.setItem('rememberedUser', JSON.stringify({ email, password }));
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      const userDoc = await getDoc(doc(db, "users", user.uid));
+  
+      if (userDoc.exists()) {
+        const userData = userDoc.data();
+  
+        if (userData.userType === "admin") {
+          localStorage.setItem("adminSession", JSON.stringify({ email }));
+        }
+        if (rememberMe) {
+          localStorage.setItem("rememberedUser", JSON.stringify({ email, password }));
+        } else {
+          localStorage.removeItem("rememberedUser");
+        }
+  
+        setEmail("");
+        setPassword("");
+        setLoading(false);
+        navigation("/");
       } else {
-        localStorage.removeItem('rememberedUser');
+        setError("Usuario no registrado en la base de datos");
+        setLoading(false);
+        await auth.signOut();
       }
-      setEmail("");
-      setPassword("");
-      setLoading(false);
-      navigation("/");
-      console.log(user.user.email);
     } catch (error) {
       setLoading(false);
-      if (error.message === "Firebase: Error (auth/invalid-credential).") {
+      if (error.message.includes("auth/invalid-credential")) {
         setError("Usuario no existente. Email o contraseña inválida");
-      } else if (error.message === "Firebase: Error (auth/network-request-failed).") {
+      } else if (error.message.includes("auth/network-request-failed")) {
         setError("Opss. Revise su conexión a Internet");
       }
       console.log(error.message);
     }
   };
+  
 
   return (
     <div className="auth-container">

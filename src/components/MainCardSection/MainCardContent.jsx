@@ -11,7 +11,7 @@ function HeroContent() {
         <span className={styles.en}>en </span>
         <span className={styles.avila}>El Ávila</span>
       </h1>
-      <button className={styles.ctaButton} onClick={() => navigation("/destination")} >Empieza la aventura</button>
+      <button className={styles.ctaButton} onClick={() => navigation("/destinations")} >Empieza la aventura</button>
     </article>
   );
 }

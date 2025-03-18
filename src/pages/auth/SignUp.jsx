@@ -75,7 +75,11 @@ const SignUp = () => {
       await setDoc(doc(db, "users", nameRegister.user.uid), {
         name: name,
         email: email,
+        password: password,
         phone: phone,
+        profilePicture: null,
+        userType: 'estudiante',
+        destinations: [],
         uid: nameRegister.user.uid,
         creationDate: new Date(),
         provider: "email",
@@ -122,10 +126,15 @@ const SignUp = () => {
         await setDoc(doc(db, "users", fbUser.user.uid), {
           name: fbUser.user.displayName,
           email: fbUser.user.email,
-          phone: phone,
+          password: 'facebookSignIn',
+          phone: fbUser.user.phoneNumber || 'No hay un número de teléfono registrado',
+          profilePicture: null,
+          userType: 'estudiante',
+          destinations: [],
           uid: fbUser.user.uid,
           creationDate: new Date(),
           provider: "facebook",
+          
         });
         setLoading(false);
         navigation("/");
@@ -143,25 +152,29 @@ const SignUp = () => {
       const googleUser = await googleSignUp();
       const userDoc = await getDoc(doc(db, "users", googleUser.user.uid));
       if (userDoc.exists()) {
-        setLoading(false);
         setError("El usuario ya está registrado. Por favor, inicie sesión.");
         await auth.signOut();
       } else {
         await setDoc(doc(db, "users", googleUser.user.uid), {
           name: googleUser.user.displayName,
           email: googleUser.user.email,
-          phone: phone,
+          password: 'googleSignIn',
+          phone: googleUser.user.phoneNumber || 'Número de teléfono no registrado',
+          profilePicture: null,
+          userType: 'estudiante',
+          destinations: [],
           uid: googleUser.user.uid,
           creationDate: new Date(),
           provider: "google",
+          
         });
-        setLoading(false);
         navigation("/");
       }
     } catch (error) {
-      setLoading(false);
       console.log(error);
       setError(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -192,7 +205,7 @@ const SignUp = () => {
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               className={global.input_field}
-              type="text"
+              type="tlf"
               placeholder="Teléfono"
               id="phone"
             />

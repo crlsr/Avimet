@@ -107,23 +107,14 @@ export const MenuHamburguesa = () => {
             </Link>
           </li>
           <li>
-            {logged ? (
-              <Link
-                to="/reserve"
-                className={styles.navbar_link}
-                onClick={toggleMenu}
-              >
-                Reserva tu viaje
-              </Link>
-            ) : (
-              <Link
-                to="/login"
-                className={styles.navbar_link}
-                onClick={toggleMenu}
-              >
-                Reserva tu viaje
-              </Link>
-            )}
+            <Link to="/Forum" className={styles.navbar_link}>
+              Foro
+            </Link>
+          </li>
+          <li>
+            <Link to="/contact" className={styles.navbar_link}>
+              Contáctanos
+            </Link>
           </li>
           <li className={styles.search_container}>
             <div className={styles.search_box}>
@@ -160,12 +151,16 @@ export const MenuHamburguesa = () => {
                   <Link to="/profile">
                     <img
                       className={styles.user_info}
-                      src={profilePhoto}
-                      alt={profile.email}
+                      src={
+                        profile?.profilePicture
+                          ? profile.profilePicture
+                          : profilePhoto
+                      }
+                      alt={profile?.email || "User Profile"}
                     />
                   </Link>
                   <button className={global.btn3} onClick={handleLogout}>
-                    Logout
+                    Cerrar sesión
                   </button>
                 </>
               ) : (

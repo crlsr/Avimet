@@ -2,9 +2,6 @@ import React, { useState } from 'react';
 import styles from './Calendario.module.css';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
-// Lista de días especiales que se podrían traer desde una base de datos
-const diasEspeciales = ['Enero 1', 'Enero 24', 'Febrero 9', 'Marzo 15', 'Septiembre 13'];
-
 const meses = [
   'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
   'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
@@ -18,10 +15,10 @@ const obtenerDiasDelMes = (anio, mes) => {
 
 const obtenerDiaDeInicio = (anio, mes) => {
   let dia = new Date(anio, mes, 1).getDay();
-  return dia === 0 ? 6 : dia - 1; // Ajuste para iniciar el lunes
+  return dia === 0 ? 6 : dia - 1;
 };
 
-export default function Calendario() {
+export default function Calendario({ onSelectDate, markedDates }) {
   const fechaActual = new Date();
   const [mesActual, setMesActual] = useState(fechaActual.getMonth());
   const [anioActual, setAnioActual] = useState(fechaActual.getFullYear());
@@ -41,26 +38,29 @@ export default function Calendario() {
 
     setMesActual(nuevoMes);
     setAnioActual(nuevoAno);
-    setDiaSeleccionado(null); // Reset al cambiar de mes
+    setDiaSeleccionado(null); 
   };
 
   const seleccionarDia = (dia) => {
     const mesNombre = meses[mesActual];
     const diaEspecial = `${mesNombre} ${dia}`;
 
-    if (!diasEspeciales.includes(diaEspecial)) {
-      return; // Solo permitir seleccionar días especiales
+    if (!markedDates.includes(diaEspecial)) {
+      return; 
     }
 
     if (diaSeleccionado === diaEspecial) {
-      setDiaSeleccionado(null); // Deseleccionar si se presiona el mismo día
+      setDiaSeleccionado(null); 
+      onSelectDate(null);
     } else {
       setDiaSeleccionado(diaEspecial);
+      onSelectDate(diaEspecial);
     }
   };
 
   const esDiaEspecial = (mes, dia) => {
-    return diasEspeciales.includes(`${mes} ${dia}`);
+    const diaString = String(dia).padStart(2, '0'); 
+    return markedDates.includes(`${mes} ${diaString}`);
   };
 
   const totalDias = obtenerDiasDelMes(anioActual, mesActual);

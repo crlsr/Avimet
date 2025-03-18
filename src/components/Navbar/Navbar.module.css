@@ -36,8 +36,10 @@
 }
 
 .user_info {
-  font-size: 1rem;
-  color: white;
+  border-radius: 50%;
+  width: 37px;
+  height: 37px;
+  object-fit: cover;
 }
 
 .search_container {
