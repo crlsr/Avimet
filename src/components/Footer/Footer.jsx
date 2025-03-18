@@ -23,7 +23,7 @@ export default function Footer() {
             </Link>
           </li>
           <li>
-              <Link to="/foro" className={styles.footer_link}>
+              <Link to="/Forum" className={styles.footer_link}>
                 Foro
               </Link>
               

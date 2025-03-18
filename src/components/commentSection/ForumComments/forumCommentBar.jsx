@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./forumCommentBar.module.css";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../../context/UserContext";
-import appFirebase from "../../../credenciales";
+import appFirebase from "../../../../credenciales";
 import { doc, getFirestore, setDoc} from "firebase/firestore";
 import {v4 as uuidv4} from "uuid";
 

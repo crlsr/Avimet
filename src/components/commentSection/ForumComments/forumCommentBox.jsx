@@ -6,7 +6,7 @@ import {
   getDocs,
   where,
 } from "firebase/firestore";
-import appFirebase from "../../../credenciales";
+import appFirebase from "../../../../credenciales";
 import styles from "./forumCommentBox.module.css";
 import CommentCard from "./forumCommentCard";
 

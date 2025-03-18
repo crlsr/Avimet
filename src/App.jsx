@@ -21,9 +21,6 @@ import FooterAdmin from "./components/FooterAdmin/FooterAdmin";
 import Contact from "./pages/Contact/Contact";
 import Forum from "./pages/Forum/Forum"
 
-import Forum from "./pages/Forum/Forum"
-
-
 // Importando Firebase
 import appFirebase from "../credenciales";
 import { getAuth, onAuthStateChanged } from "firebase/auth";

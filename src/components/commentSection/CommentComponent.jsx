@@ -25,7 +25,17 @@ const CommentComponent = ({
   return (
     <div className={styles.commentCard}>
       <div className={styles.userInfoContainer}>
-        <div className={styles.avatar}>{avatarText}</div>
+        <div className={styles.avatar}>{avatarText}
+        <Link to="/profile">
+                    <img
+                      src={
+                        profile?.profilePicture
+                          ? profile.profilePicture
+                          : profilePhoto
+                      }
+                    />
+                  </Link>
+        </div>
         <div className={styles.textContent}>
           <div className={styles.userName}>{userName}</div>
           <div className={styles.commentText}>{comment}</div>

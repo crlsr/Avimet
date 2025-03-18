@@ -8,7 +8,7 @@ import TarjetaDestinos, {
   destinosData,
 } from "../../components/TarjetaDestinos/TarjetaDestinos";
 import VisionMissionSection from "../../components/VisionMissionSection/VisionMissionSection";
-
+import CommentComponent from "../../components/commentSection/commentComponent";
 
 const Home = () => {
   return (
@@ -46,6 +46,7 @@ const Home = () => {
         </div>
   
       </div>
+      <CommentComponent />
     </>
   );
 };

@@ -138,7 +138,7 @@ export default function Profile() {
             const fileExt = file.name.split('.').pop();
             const fileName = `${profile.uid}.${fileExt}`;
             const filePath = `${fileName}`;
-
+            
             // Sobreescritura de la imagen de perfil en supabase
             let { error: uploadError } = await supabaseProfiles.storage.from('profiles').upload(filePath, file, {
                 upsert: true

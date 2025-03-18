@@ -7,7 +7,7 @@ import {
   getDocs,
   where,
 } from "firebase/firestore";
-import appFirebase from "../../credenciales";
+import appFirebase from "../../../credenciales";
 import CommentComponent from "./commentComponent"; // Asegúrate de importar el componente Comment
 
 function CommentBox({ destino }) {
