@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./CommentComponent.module.css";
+import { UserContext } from "../../context/UserContext";
 
 const StarIcon = () => (
   <svg
@@ -16,25 +17,20 @@ const StarIcon = () => (
   </svg>
 );
 
-const CommentComponent = ({
-  avatarText,
-  userName,
-  comment,
-  rating,
-}) => {
+const CommentComponent = ({ avatarText, userName, comment, rating }) => {
+  const { profile } = useContext(UserContext);
   return (
     <div className={styles.commentCard}>
       <div className={styles.userInfoContainer}>
-        <div className={styles.avatar}>{avatarText}
-        <Link to="/profile">
-                    <img
-                      src={
-                        profile?.profilePicture
-                          ? profile.profilePicture
-                          : profilePhoto
-                      }
-                    />
-                  </Link>
+        <div className={styles.avatar}>
+          {profile?.profilePicture ? (
+            <img
+              src={profile.profilePicture}
+              className={styles.avatarImage}
+            />
+          ) : (
+            <div className={styles.avatarText}>{avatarText}</div>
+          )}
         </div>
         <div className={styles.textContent}>
           <div className={styles.userName}>{userName}</div>
