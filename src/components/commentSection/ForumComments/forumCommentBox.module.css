@@ -1,6 +1,6 @@
 .forumContent {
     background-color: #fff;
-    border-radius: 15.313px;
+    border-radius: 15px;
     width: 812px;
     height: 755px;
     margin-bottom: 42px;
@@ -19,6 +19,7 @@
     overflow-y: auto;
     padding: 10px;
     box-sizing: border-box;
+    overflow-x: hidden;
   }
   
   @media (width <=991px) {

@@ -1,70 +1,73 @@
 .inputContainer {
-    align-items: center;
-    gap: 22px;
-    width: 100%;
-    max-width: 800px;
-    display: flex;
+  align-items: center;
+  gap: 22px;
+  width: 100%;
+  max-width: 800px;
+  display: flex;
 }
 
 @media (width <=640px) {
-    .inputContainer {
-        flex-direction: column;
-    }
+  .inputContainer {
+    flex-direction: column;
+  }
 }
 
 .inputField {
-    color: #003428;
-    letter-spacing: 0.251px;
-    background-color: #d9f5de;
-    border: 1px solid #003428;
-    border-radius: 10px;
-    flex: 1;
-    padding: 6px 22px;
-    font-family: Roboto, sans-serif;
-    font-size: 15px;
-    font-weight: 600;
-    line-height: 17px;
-    resize: none;
+  color: #003428;
+  letter-spacing: 0.251px;
+  background-color: #d9f5de;
+  border: 1px solid #003428;
+  border-radius: 10px;
+  flex: 1;
+  padding: 6px 22px;
+  font-family: Roboto, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 17px;
+  resize: none;
 }
 
 .actionArea {
-    flex-shrink: 0;
+  flex-shrink: 0;
 }
 
 @media (width <=640px) {
-    .inputField {
-        width: 100%;
-    }
+  .inputField {
+    width: 100%;
+  }
 
-    .actionArea {
-        align-self: flex-end;
-    }
+  .actionArea {
+    align-self: flex-end;
+  }
 }
 
 .iconButton {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 8px;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
-    transition: all 0.2s ease-in-out;
-    background-color: #33511d;
-  }
-  
-  .iconButton:hover {
-    background-color: #4e9945;
-  }
-  
-  .iconButton:focus {
-    outline: 2px solid #33511d;
-    outline-offset: 2px;
-  }
-  
-  
-  .iconButton :global(.paper-plane-icon) {
-    width: 24px;
-    height: 24px;
-    color: #a3e96c;
-  }
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 0.2s ease-in-out;
+  background-color: #003428;
+}
+
+.iconButton:hover {
+  background-color: #a3e96c;
+  color: #003428;
+}
+
+.iconButton:focus {
+  outline: 2px solid #003428;
+  outline-offset: 2px;
+}
+
+.iconButton:hover .paper-plane-icon{
+    color: #003428;
+}
+.iconButton :global(.paper-plane-icon) {
+  width: 24px;
+  height: 24px;
+  color: #fff;
+}

@@ -37,12 +37,13 @@ export function ForumCommentBar() {
           CreationDate: new Date(),
         });
         console.log("Mandando comentario:", {review}, "de foro");
+        window.location.reload();
         setReview("");
       } catch(error){
         console.log("Error", {error}, " al querer enviar el mensaje");
       }
     } else{
-      navigate("./Login");
+      navigate("../login");
       setReview("");
     }
   }
