@@ -2,65 +2,78 @@ import React, { useState, useEffect } from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import appFirebase from "../../../credenciales";
 import { getFirestore } from "firebase/firestore";
-import styles from "./FiltroTags.module.css"; // Importa el módulo CSS
+import styles from "./PosiblesCandidatos.module.css"; // Importa el módulo CSS
 
 const db = getFirestore(appFirebase);
 
-const FiltroTags = ({ options, selectedSlug }) => {
+const PosiblesCandidatos = ({ options, selectedSlug, selectedGuide }, ) => {
   const [isOpen, setIsOpen] = useState(false);
   const [filteredOptions, setFilteredOptions] = useState(options); // Estado para las opciones filtradas
   const [selectedOption, setSelectedOption] = useState(null); // Estado para la opción seleccionada
+  const [alloptions, setAllowoptions] = useState({});
+  const test = {};
 
-  const fetchData = async () => {
-    const itemsRef = collection(db, "postulaciones");
+  async function fetchData () {
+    const itemsRef = collection(db, 'postulaciones');
     let q;
 
-    if (selectedSlug.length === 0) {
-      q = query(itemsRef);
-    } else {
+    if (selectedSlug.length > 0) {
+      console.log(selectedSlug);
       q = query(itemsRef, where("slug", "in", selectedSlug));
+
+      try {
+        const querySnapshot = await getDocs(q);
+  
+        querySnapshot.forEach((doc) => {
+          test[doc.data().NombrePer + " de id: " + doc.data().idPersona] = doc.data().idPersona; // Asegúrate de que el campo "nombre" exista
+        });
+        
+        const destNames = Object.keys(test);
+        setAllowoptions(test)
+  
+  
+        setFilteredOptions(destNames); // Actualiza el estado con los nombres obtenidos
+      } catch (error) {
+        console.error("Error al obtener documentos: ", error);
+      }
+
+    } else {
+      console.log("vacio")
+      const vacio = [];
+      setFilteredOptions(vacio);
     }
 
-    try {
-      const querySnapshot = await getDocs(q);
-      const names = []; // Array para almacenar los nombres
-
-      querySnapshot.forEach((doc) => {
-        names.push(doc.data().nombre); // Asegúrate de que el campo "nombre" exista
-      });
-
-      setFilteredOptions(names); // Actualiza el estado con los nombres obtenidos
-    } catch (error) {
-      console.error("Error al obtener documentos: ", error);
-    }
+    
   };
 
   useEffect(() => {
+    console.log(selectedSlug)
     fetchData(); // Llama a fetchData cuando el componente se monta
-  }, [selectedTags]); // Dependencia para volver a ejecutar cuando selectedTags cambie
+  }, [selectedSlug]); // Dependencia para volver a ejecutar cuando selectedSlug cambie
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
   const handleOptionClick = (option) => {
+    const chose = alloptions[option];
     setSelectedOption(option); // Actualiza la opción seleccionada
-    if(selectedTags.includes(option)){
-      selectedTags.splice(selectedTags.indexOf(option), 1);
-    } else {
-      selectedTags.push(option);
+    if(selectedGuide.length > 0){
+      selectedGuide.pop();
     }
+
+    selectedGuide.push(chose);
     setIsOpen(false); // Cierra el menú después de seleccionar
-    return selectedTags;
+    return selectedGuide;
   };
 
   return (
-    <div className={styles.FiltroTags}>
-      <button onClick={toggleDropdown} className={styles.FiltroTagsButton}>
-        Filtros
+    <div className={styles.PosiblesCandidatos}>
+      <button onClick={toggleDropdown} className={styles.PosiblesCandidatosButton}>
+        Filtro Persona
       </button>
       {isOpen && (
-        <ul className={styles.FiltroTagsMenu}>
+        <ul className={styles.PosiblesCandidatosMenu}>
           {filteredOptions.map((option, index) => (
             <li
               key={index}
@@ -76,4 +89,4 @@ const FiltroTags = ({ options, selectedSlug }) => {
   );
 };
 
-export default FiltroTags;
+export default PosiblesCandidatos;

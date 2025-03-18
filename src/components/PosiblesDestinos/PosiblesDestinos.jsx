@@ -2,61 +2,66 @@ import React, { useState, useEffect } from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import appFirebase from "../../../credenciales";
 import { getFirestore } from "firebase/firestore";
-import styles from "./FiltroTags.module.css"; // Importa el módulo CSS
+import styles from "./PosiblesDestinos.module.css"; // Importa el módulo CSS
 
 const db = getFirestore(appFirebase);
 
-const FiltroTags = ({ options, selectedSlug }) => {
+const PosiblesDestinos = ({ options, selectedSlug }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [filteredOptions, setFilteredOptions] = useState(options); // Estado para las opciones filtradas
   const [selectedOption, setSelectedOption] = useState(null); // Estado para la opción seleccionada
+  const [alloptions, setAllowoptions] = useState({});
+  const test = {};
 
   const fetchData = async () => {
-    const itemsRef = collection(db, "postulaciones");
+    const itemsRef = collection(db, 'postulaciones');
     let q;
 
     q = query(itemsRef);
 
     try {
       const querySnapshot = await getDocs(q);
-      const names = {}; // Array para almacenar los nombres
-
       querySnapshot.forEach((doc) => {
-        names[doc.data().nombredest] =  doc.data().slug;// Asegúrate de que el campo "nombre" exista
+        test[doc.data().nombredest + " de id: " + doc.data().slug] =  doc.data().slug;// Asegúrate de que el campo "nombre" exista
       });
+      const destNames = Object.keys(test);
+      setAllowoptions(test)
 
-      setFilteredOptions(names); // Actualiza el estado con los nombres obtenidos
-    } catch (error) {
+
+      setFilteredOptions(destNames); // Actualiza el estado con los nombres obtenidos
+    } catch (error) { 
       console.error("Error al obtener documentos: ", error);
     }
   };
 
   useEffect(() => {
     fetchData(); // Llama a fetchData cuando el componente se monta
-  }, [selectedTags]); // Dependencia para volver a ejecutar cuando selectedTags cambie
+    console.log(selectedOption);
+  }, [selectedSlug]); // Dependencia para volver a ejecutar cuando selectedTags cambie
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
   const handleOptionClick = (option) => {
+    const chose = alloptions[option];
     setSelectedOption(option); // Actualiza la opción seleccionada
-    if(selectedTags.includes(option)){
-      selectedTags.splice(selectedTags.indexOf(option), 1);
-    } else {
-      selectedTags.push(option);
+    if(selectedSlug.length > 0){
+      selectedSlug.pop();
     }
+    selectedSlug.push(chose);
+    console.log(selectedSlug);
     setIsOpen(false); // Cierra el menú después de seleccionar
-    return selectedTags;
+    return selectedSlug;
   };
 
   return (
-    <div className={styles.FiltroTags}>
-      <button onClick={toggleDropdown} className={styles.FiltroTagsButton}>
-        Filtros
+    <div className={styles.PosiblesDestinos}>
+      <button onClick={toggleDropdown} className={styles.PosiblesDestinosButton}>
+        Filtro Destino
       </button>
       {isOpen && (
-        <ul className={styles.FiltroTagsMenu}>
+        <ul className={styles.PosiblesDestinosMenu}>
           {filteredOptions.map((option, index) => (
             <li
               key={index}
@@ -72,4 +77,4 @@ const FiltroTags = ({ options, selectedSlug }) => {
   );
 };
 
-export default FiltroTags;
+export default PosiblesDestinos;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styles from "./Home.module.css";
 import { Link } from "react-router-dom";
 
@@ -10,8 +10,14 @@ import TarjetaDestinos, {
 import VisionMissionSection from "../../components/VisionMissionSection/VisionMissionSection";
 import CarruselConsejos from "../../components/CarruselConsejos/CarruselConsejos";
 import FiltroTags from "../../components/FiltroTags/FiltroTags";
+import PosiblesCandidatos from "../../components/PosiblesCandidatos/PosiblesCandidatos";
+import PosiblesDestinos from "../../components/PosiblesDestinos/PosiblesDestinos";
 
 const Home = () => {
+  const [selectedSlug, setselectedSlug] = useState([]);
+  const [selectedGuide, setselectedGuide] = useState([]);
+
+
   return (
     <>
       <div className={styles.mainContainer}>
@@ -48,6 +54,14 @@ const Home = () => {
 
         <div>
           <FiltroTags options={[]} selectedTags={[]}/>
+        </div>
+
+        <div>
+          <PosiblesCandidatos options={[]} selectedGuide={selectedGuide} selectedSlug={selectedSlug} setterSlug={setselectedSlug}/>
+          <PosiblesDestinos 
+          options={[]} 
+          selectedSlug={selectedSlug}
+          setter={setselectedSlug}/>
         </div>
   
       </div>

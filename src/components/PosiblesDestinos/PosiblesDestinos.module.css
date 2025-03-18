@@ -1,11 +1,11 @@
-/* PosiblesCandidatos.module.css */
 
-.PosiblesCandidatos {
+
+.PosiblesDestinos {
     position: relative;
     display: inline-block;
 }
 
-.PosiblesCandidatosButton {
+.PosiblesDestinosButton {
     background-color: #d9f5de;
     color: #003428;
     border: 1px solid #003428;
@@ -15,11 +15,11 @@
     cursor: pointer;
   }
   
-.PosiblesCandidatosButton:hover {
+.PosiblesDestinosButton:hover {
     background-color: #00342811;
   }
 
-.PosiblesCandidatosMenu {
+.PosiblesDestinosMenu {
     position: absolute;
     background-color: white; /* Fondo del menú */
     border: 1px solid #ccc; /* Borde del menú */
@@ -31,7 +31,7 @@
     padding: 0; /* Elimina el padding */
 }
 
-.PosiblesCandidatosMenu li {
+.PosiblesDestinosMenu li {
     padding: 10px 15px; /* Espaciado interno */
     background-color: #f0f0f0; /* Color de fondo de las opciones */
     border-radius: 5px; /* Bordes redondeados */
@@ -39,7 +39,7 @@
     transition: background-color 0.3s; /* Transición suave */
 }
 
-.PosiblesCandidatosMenu li:hover {
+.PosiblesDestinosMenu li:hover {
     background-color: #d9d9d9; /* Color al pasar el mouse sobre las opciones */
 }
 
