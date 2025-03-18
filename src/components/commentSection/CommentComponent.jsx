@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styles from "./CommentComponent.module.css";
-import { UserContext } from "../../context/UserContext";
+import { UserContext } from "../../context/UserContext"; // Adjust the path as needed
 
 const StarIcon = () => (
   <svg

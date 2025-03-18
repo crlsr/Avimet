@@ -19,6 +19,13 @@
   display: flex;
 }
 
+.avatarImage {
+  border-radius: 50%;
+  width: 37px;
+  height: 37px;
+  object-fit: cover;
+}
+
 .avatar {
   color: #fff;
   background: #d3d3d3;
