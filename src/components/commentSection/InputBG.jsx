@@ -82,6 +82,7 @@ function InputBG(destino) {
           autor: profile.name,
           autor_id: profile.uid,
           comment : review,
+          picture : profile.profilePicture || null,
           stars: rating,
           destino: destino.destino,
           CreationDate: new Date(),

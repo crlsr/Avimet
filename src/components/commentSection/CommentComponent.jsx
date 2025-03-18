@@ -22,14 +22,11 @@ const CommentComponent = ({ avatarText, userName, comment, picture, rating }) =>
     <div className={styles.commentCard}>
       <div className={styles.userInfoContainer}>
         <div className={styles.avatar}>
-          {profile?.profilePicture ? (
             <img
               src={picture}
               className={styles.avatarImage}
             />
-          ) : (
             <div className={styles.avatarText}>{avatarText}</div>
-          )}
         </div>
         <div className={styles.textContent}>
           <div className={styles.userName}>{userName}</div>

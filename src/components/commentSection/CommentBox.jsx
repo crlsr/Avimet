@@ -13,7 +13,6 @@ import CommentComponent from "./commentComponent"; // Asegúrate de importar el 
 
 function CommentBox({ destino }) {
   const [comments, setComments] = useState([]);
-  const { profile } = useContext(UserContext);
   const db = getFirestore(appFirebase);
 
   useEffect(() => {
@@ -46,7 +45,7 @@ function CommentBox({ destino }) {
             avatarText={comment.autor[0]}
             userName={comment.autor}
             comment={comment.comment}
-            picture={profile.profilePicture}
+            picture={comment.picture}
             rating={comment.stars}
           />
         ))}
