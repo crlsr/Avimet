@@ -5,7 +5,7 @@ const CommentCard = ({ picture, userName, comment }) => {
   return (
     <div className={styles.commentCard}>
       <div className={styles.userInfoContainer}>
-        <div className={styles.avatarImage}>{picture}</div>
+        <img className={styles.avatarImage} src={picture}/>
         <div className={styles.textContent}>
           <div className={styles.userName}>{userName}</div>
           <div className={styles.commentText}>{comment}</div>
