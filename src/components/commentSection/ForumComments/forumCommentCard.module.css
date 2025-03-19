@@ -1,14 +1,15 @@
 .commentCard {
-    background-color: #D9F5DE;
+    background-color: #fff;
     border: 1.238px solid #efefef;
     border-radius: 7.429px;
     align-items: center;
     gap: 9.906px;
-    width: 100%;
-    padding: 9.906px;   
+    width: 80%;
+    padding: 9.906px;
     display: flex;
     box-shadow: 12.382px 4.953px 49.528px #0000000a;
-    margin: 20px auto;
+    margin: 0 auto;
+    overflow-wrap: break-word;
 }
 
 .userInfoContainer {
@@ -18,9 +19,15 @@
     display: flex;
 }
 
+.avatarImage {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
 .avatar {
     color: #fff;
-    background: #d3d3d3;
     /*
       url(https://cdn.builder.io/api/v1/image/assets/TEMP/eb7c6afc0a3df6fcebea361baa4a29860ad700ce?placeholderIfAbsent=true)
       50% / cover no-repeat;
@@ -40,6 +47,7 @@
 }
 
 .textContent {
+    margin-top: 3%;
     flex-direction: column;
     flex: 1 0 0;
     align-items: flex-start;
@@ -59,15 +67,26 @@
     color: #868686;
     align-self: stretch;
     font-family: Manrope, sans-serif;
-    font-size: 12.5px;
+    font-size: 10px;
     font-weight: 500;
     line-height: 15px;
+    max-width: 300px;
 }
 
 @media (width <=991px) {
     .commentCard {
-        width: 100%;
+        width: 80%;
         max-width: 481px;
+        display: grid;
+    }
+
+    .commentText {
+        max-width: 400px;
+    }
+
+    .avatarImage {
+        width: 30px;
+        height: 30px;
     }
 }
 
@@ -91,5 +110,25 @@
     .commentText {
         font-size: 9px;
         line-height: 13px;
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 500px) {
+    .commentText {
+        max-width: 300px;
+        margin-left: 0px;
+    }
+}
+
+@media (max-width: 479px) {
+    .commentText {
+        max-width: 190px;
+    }
+}
+
+@media (max-width: 360px) {
+    .commentText {
+        max-width: 100px;
     }
 }

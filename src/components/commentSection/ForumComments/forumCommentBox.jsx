@@ -42,7 +42,7 @@ export function ForumCommentBox() {
         <article className={styles.content}>
           {comments.map((comment) => (
             <CommentCard 
-            avatarText={comment.autor[0]}
+            picture={comment.picture}
             userName={comment.autor}
             comment={comment.comment}
             />

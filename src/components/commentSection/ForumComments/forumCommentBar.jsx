@@ -32,6 +32,7 @@ export function ForumCommentBar() {
         await setDoc(doc(db, "comments", commentId), {
           autor: profile.name,
           autor_id: profile.uid,
+          picture: profile.profilePicture || null,
           comment: review,
           destino: "Foro",
           CreationDate: new Date(),

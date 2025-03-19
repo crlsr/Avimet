@@ -1,6 +1,6 @@
 import styles from "./CommentBox.module.css";
 import React, { useEffect, useState } from "react";
-import CommentComponent from "./CommentComponent"; // Asegúrate de importar el componente Comment
+import CommentComponent from "./commentComponent";
 import {
   getFirestore,
   query,
@@ -42,7 +42,6 @@ function CommentBox({ destino }) {
       <article className={styles.content}>
         {comments.map((comment) => (
           <CommentComponent
-            avatarText={comment.autor[0]}
             userName={comment.autor}
             comment={comment.comment}
             picture={comment.picture}
