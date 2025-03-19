@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Postulacion.module.css'; // Importamos los estilos
-import { collection, addDoc, query, where, getDocs } from "firebase/firestore";
+import { collection, query, where, getDocs } from "firebase/firestore";
 import appFirebase from "../../../credenciales";
 import { getFirestore } from "firebase/firestore";
-import emailjs from 'emailjs-com';
+import emailjs from 'emailjs-com'; // Correct import for emailjs
+import { UserContext } from '../../context/UserContext';
 
 const db = getFirestore(appFirebase);
 
-const Postulacion = ({ NombreDest, NombrePer, role }) => {
-  const serviceID = 'wejfverijvfwoeirjfjrkqvw';
-  const templateID = 'template_57a9632';
-  const userID = 'EpWodUNXN2HZHuy6Y';
+const Postulacion = ({ NombreDest, NombrePer }) => {
+  const { profile } = useContext(UserContext); // Destructure profile from UserContext
+  const role = profile ? profile["userType"] : null; // Ensure profile exists before accessing userType
+
+  const serviceID = 'wejfverijvfwoeirjfjrkqvw'; // Replace with your EmailJS service ID
+  const templateID = 'template_57a9632'; // Replace with your EmailJS template ID
+  const userID = 'EpWodUNXN2HZHuy6Y'; // Replace with your EmailJS user ID
 
   const templateParams = {
     name: NombrePer,

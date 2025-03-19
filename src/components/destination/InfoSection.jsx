@@ -24,6 +24,7 @@ export default function InfoSection({
         image={guideImage}
         guide={guide}
         description={guideDescription}
+        dest={descriptionTitle}
       />
       <div className='comments-section'>
         <InputBG destino={descriptionTitle}/>

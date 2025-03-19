@@ -1,6 +1,7 @@
 import React from 'react'
+import Postulacion from '../Postulacion/Postulacion'
 
-export default function GuideCard({ image, guide, description}) {
+export default function GuideCard({ image, guide, description, dest}) {
     return(
         <section className='destination-card'>
         <div className='guide-card-container'>
@@ -13,6 +14,7 @@ export default function GuideCard({ image, guide, description}) {
                     <p className='description'>
                         {description}
                     </p>
+                    <Postulacion NombreDest={dest} NombrePer={guide} />
                 </div>
                 <img
                     src={image}
