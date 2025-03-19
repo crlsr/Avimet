@@ -237,6 +237,7 @@
   width: 55%;
   margin: 10px 0;
   position: relative;
+  z-index: 10;
 }
 
 .filterButton {

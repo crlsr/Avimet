@@ -1,14 +1,22 @@
 .inputContainer {
   align-items: center;
-  gap: 22px;
-  width: 100%;
-  max-width: 800px;
+  gap: 10px;
+  width: 60%;
   display: flex;
 }
 
 @media (width <=640px) {
   .inputContainer {
-    flex-direction: column;
+    width: 75%;
+  }
+
+  .inputField {
+    width: 100%;
+  }
+
+  .actionArea {
+    align-self: flex-end;
+    margin-top: 10px; /* Add this line */
   }
 }
 
@@ -54,8 +62,11 @@
 }
 
 .iconButton:hover {
-  background-color: #a3e96c;
+
+  background-color: #a2e96c00;
   color: #003428;
+  outline-offset: 0px;
+  outline: 2px solid #a3e96c;
 }
 
 .iconButton:focus {

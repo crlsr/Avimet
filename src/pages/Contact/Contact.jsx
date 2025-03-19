@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import styles from './Contact.module.css';
 import global from "../../global.module.css";
-import { useNavigate } from 'react-router-dom';
 import emailjs from 'emailjs-com';
 import CustomAlert from '../../components/common/CustomAlert';
 
 const Contact = () => {
-  const navigation = useNavigate();
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -62,7 +61,6 @@ const Contact = () => {
         setEmail('');
         setPhone('');
         setmessage('');
-        setError('');
       }, (error) => {
         console.error('Error al enviar el correo', error);
         showAlert('Hubo un error al enviar el formulario. Por favor, inténtelo de nuevo.', "warning");
