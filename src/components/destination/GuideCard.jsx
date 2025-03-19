@@ -14,7 +14,7 @@ export default function GuideCard({ image, guide, description, dest}) {
                     <p className='description'>
                         {description}
                     </p>
-                    <Postulacion NombreDest={dest} NombrePer={guide} />
+                    <Postulacion NombreDest={dest} />
                 </div>
                 <img
                     src={image}
