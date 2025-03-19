@@ -27,6 +27,7 @@
     gap: 3%;
     width: 100%;
 }
+
 .top {
     display: flex;
     flex-direction: row;
@@ -58,6 +59,7 @@
     width: 100%;
     border-radius: 25px;
     display: flex;
+    align-self: flex-start;
     flex-direction: column;
     justify-content: center;
     padding: 15px;
@@ -69,6 +71,7 @@
     width: 100%;
     border-radius: 25px;
     display: flex;
+    align-self: flex-start;
     flex-direction: column;
     justify-content: center;
     padding: 15px;
