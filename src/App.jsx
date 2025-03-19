@@ -26,6 +26,7 @@ import Community from './pages/Community/Community';
 import DestinationSearch from "./pages/DestinationSearch/DestinationSearch";
 import DestinationManage from "./pages/admin/DestinationManage/DestinationManage";
 import DestinationCreate from "./pages/admin/destinationCreate/DestinationCreate";
+import DestinationEdit from "./pages/admin/destinationEdit/DestinationEdit";
 
 
 function App() {
@@ -55,6 +56,7 @@ function App() {
             <Route path="/destinations" element={<DestinationSearch />} />
             <Route path="/destinations-manage" element={<DestinationManage />} />
             <Route path="/create-new-destination" element={<DestinationCreate/>} />
+            <Route path="/edit-destination/:slug" element={<DestinationEdit/>}/>
           </Route>
         </Route>
         <Route path="/signup" element={<SignUp />} />

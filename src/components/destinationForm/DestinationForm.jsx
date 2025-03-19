@@ -2,22 +2,29 @@ import React from 'react'
 import styles from './DestinationForm.module.css'
 import global from "../../global.module.css";
 import { useState } from 'react';
+import ImageInput from '../imageInput/ImageInput';
 
-export default function DestinationForm( { new: isNew, destinationObject } ) {
-    const [destination, setDestination] = useState(isNew ? "" : destinationObject.destination);
-    const [title, setTitle] = useState("");
-    const [distance, setDistance] = useState("");
-    const [estimatedTime, setEstimatedTime] = useState("");
-    const [descriptionTitle, setDescriptionTitle] = useState("");
-    const [description, setDescription] = useState("");
-    const [mainImage, setMainImage] = useState("");
-    const [file, setFile] = useState("")
+export default function DestinationForm( { new: isNew, destinationObject, guides = [], categories } ) {
+    const [destination, setDestination] = useState(isNew ? "" : destinationObject?.destination);
+    const [title, setTitle] = useState(isNew ? "" : destinationObject?.title);
+    const [distance, setDistance] = useState(isNew ? "" : destinationObject?.distance);
+    const [estimatedTime, setEstimatedTime] = useState(isNew ? "" : destinationObject?.estimatedTime);
+    const [descriptionTitle, setDescriptionTitle] = useState(isNew ? "" : destinationObject?.descriptionTitle);
+    const [difficulty, setDifficulty] = useState(isNew ? "" : destinationObject?.difficulty);
+    const [description, setDescription] = useState(isNew ? "" : destinationObject?.description);
+    const [mainImage, setMainImage] = useState(isNew ? "" : destinationObject?.images.bannerUrl);
+    const [mapImage, setMapImage] = useState(isNew ? "" : destinationObject?.images.mapUrl);
+    const [descriptionImage, setDescriptionImage] = useState(isNew ? "" : destinationObject?.images.descriptionUrl);
+    const [carouselImage1, setCarouselImage1] = useState(isNew ? "" : destinationObject?.images.carouselUrls[0]);
+    const [carouselImage2, setCarouselImage2] = useState(isNew ? "" : destinationObject?.images.carouselUrls[1]);
+    const [carouselImage3, setCarouselImage3] = useState(isNew ? "" : destinationObject?.images.carouselUrls[2]);
+    const [carouselImage4, setCarouselImage4] = useState(isNew ? "" : destinationObject?.images.carouselUrls[3]);
 
-    React.useEffect(() => {
-        const objectUrl = URL.createObjectURL(file)
-        setMainImage(objectUrl)
-        console.log(mainImage)
-    }, [file])
+    function notDifficulty(cat) {
+        if (cat.nombre != 'Fácil' && cat.nombre != 'Intermedio' && cat.nombre != 'Difícil'){
+            return cat;
+        }
+    }
 
     return(
         <div className={styles.container}>
@@ -75,24 +82,49 @@ export default function DestinationForm( { new: isNew, destinationObject } ) {
                                     /> 
                                 </div>
                             </div>
-                            <select>
-            
-                            </select>
+                            <div>
+                                <label className={styles.label}>
+                                    Dificultad
+                                </label>
+                                <select className={`${styles.selector} ${styles.difficulty}`} required>
+                                    <option key={1} value={'Fácil'}>Fácil</option>
+                                    <option key={2} value={'Intermedio'}>Intermedio</option>
+                                    <option key={3} value={'Difícil'}>Difícil</option>
+                                </select>
+                            </div>
                         </div>
-                        <select>
-            
+                        <label className={styles.label}>
+                            Guía de Ruta
+                        </label>
+                        <select className={styles.selector} required>
+                            <option key={0} value={null}>Seleccione un guía</option>
+                            {guides?.map((guide) => (
+                                <option key={guide.uid} value={guide.uid}>{guide.name}</option>
+                            ))}
                         </select>
-                        <select>
-            
+                        <label className={styles.label}>
+                                Categoría
+                        </label>
+                        <select className={styles.selector} required>
+                            <option key={0} value={null}>Seleccione una categoría</option>
+                            {categories?.filter(notDifficulty)?.map((category) => (
+                                <option key={category.nombre} value={category.nombre}>{category.nombre}</option>
+                            ))}
                         </select>
+                        <label className={styles.label}>
+                                Título de la Descripción
+                        </label>
                         <input
                             className={global.input_field}
                             type="text"
-                            placeholder='Titulo de la Descripción'
+                            placeholder='Título de la Descripción'
                             maxLength={25}
                             value={descriptionTitle}
                             onChange={(e) => setDescriptionTitle(e.target.value)}
                         />
+                        <label className={styles.label}>
+                                Descripción
+                        </label>
                         <textarea 
                             className={`${styles.textarea} ${global.input_field}`}
                             type="text"
@@ -103,90 +135,63 @@ export default function DestinationForm( { new: isNew, destinationObject } ) {
                         />
                     </div>
                     <div className={styles.imageInputs}>
-                        <div className={styles.imageContainer}>
-                            <img
-                                src={mainImage}
-                                className={styles.previewMain}
-                            />
-                            <input 
-                                className={styles.mainImageInput}
-                                type='file'
-                                onChange={(e) => setFile(e.target.files[0])}
-                            />
-                        </div>
+                        <label className={styles.label}>Imagen Principal</label>
+                        <ImageInput 
+                            className={'previewMain'}
+                            file={mainImage}
+                            setFile={setMainImage}
+                            inputId="mainImage"
+                        />
                         <div className={styles.subImages}>
-                            <div className={styles.imageContainer}>
-                                <img
-                                    src={mainImage}
-                                    className={styles.previewSub}
+                            <div>
+                                <label className={styles.label}>Mapa Ruta</label>
+                                <ImageInput 
+                                    className={'previewSub'}
+                                    file={mapImage}
+                                    setFile={setMapImage}
+                                    inputId="mapImage"
                                 />
-                                {/* <input 
-                                    className={styles.mainImageInput}
-                                    type='file'
-                                    onChange={(e) => setFile(e.target.files[0])}
-                                /> */}
                             </div>
-                            <div className={styles.imageContainer}>
-                                <img
-                                    src={mainImage}
-                                    className={styles.previewSub}
+                            <div>
+                                <label className={styles.label}>Imagen Descripción</label>
+                                <ImageInput 
+                                    className={'previewSub'}
+                                    file={descriptionImage}
+                                    setFile={setDescriptionImage}
+                                    inputId="descriptionImage"
                                 />
-{/*                                 <input 
-                                    className={styles.mainImageInput}
-                                    type='file'
-                                    onChange={(e) => setFile(e.target.files[0])}
-                                /> */}
                             </div>
                         </div>
+                        <label className={styles.label}>Imágenes Carrusel</label>
                         <div className={styles.subImages}>
-                            <div className={styles.imageContainer}>
-                                <img
-                                    src={mainImage}
-                                    className={styles.previewBottom}
-                                />
-                                {/* <input 
-                                    className={styles.mainImageInput}
-                                    type='file'
-                                    onChange={(e) => setFile(e.target.files[0])}
-                                /> */}
-                            </div>
-                            <div className={styles.imageContainer}>
-                                <img
-                                    src={mainImage}
-                                    className={styles.previewBottom}
-                                />
-                                {/* <input 
-                                    className={styles.mainImageInput}
-                                    type='file'
-                                    onChange={(e) => setFile(e.target.files[0])}
-                                /> */}
-                            </div>
-                            <div className={styles.imageContainer}>
-                                <img
-                                    src={mainImage}
-                                    className={styles.previewBottom}
-                                />
-                                {/* <input 
-                                    className={styles.mainImageInput}
-                                    type='file'
-                                    onChange={(e) => setFile(e.target.files[0])}
-                                /> */}
-                            </div>
-                            <div className={styles.imageContainer}>
-                                <img
-                                    src={mainImage}
-                                    className={styles.previewBottom}
-                                />
-                                {/* <input 
-                                    className={styles.mainImageInput}
-                                    type='file'
-                                    onChange={(e) => setFile(e.target.files[0])}
-                                /> */}
-                            </div>
+                            <ImageInput 
+                                className={'previewBottom'}
+                                file={carouselImage1}
+                                setFile={setCarouselImage1}
+                                inputId="carouselImage1"
+                            />
+                            <ImageInput 
+                                className={'previewBottom'}
+                                file={carouselImage2}
+                                setFile={setCarouselImage2}
+                                inputId="carouselImage2"
+                            />
+                            <ImageInput 
+                                className={'previewBottom'}
+                                file={carouselImage3}
+                                setFile={setCarouselImage3}
+                                inputId="carouselImage3"
+                            />
+                            <ImageInput 
+                                className={'previewBottom'}
+                                file={carouselImage4}
+                                setFile={setCarouselImage4}
+                                inputId="carouselImage4"
+                            />
                         </div>
                     </div>
                 </div>
-                <button></button>
+                <button className={`${styles.submitBtn} btn-primary`} type='submit'>Guardar Ruta</button>
             </form>
         </div>
             )
