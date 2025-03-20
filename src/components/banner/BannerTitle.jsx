@@ -51,6 +51,7 @@ export default function BannerTitle({ titulo, subtitulo, botonTexto, onButtonCli
             likedClass = 'liked'
             addDoc(collection(db, 'likes'), { uid: uid , dslug: dslug , active: true})
         }
+        alert("Destino agregado a favorito con exito!!")
 
     }
 
