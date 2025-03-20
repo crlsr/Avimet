@@ -1,13 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link, Outlet } from "react-router-dom";
-import { UserContext } from "../../context/UserContext";
 import styles from "./Footer.module.css";
 import ig from "../../assets/ig.png";
 import email from "../../assets/email.png";
 import tel from "../../assets/tel.png";
 
 export default function Footer() {
-  const { logged } = useContext(UserContext);
 
   return (
     <>
@@ -20,20 +18,20 @@ export default function Footer() {
             </Link>
           </li>
           <li>
-            <Link to="/destination" className={styles.footer_link}>
+            <Link to="/destinations" className={styles.footer_link}>
               Destinos
             </Link>
           </li>
           <li>
-            {logged ? (
-              <Link to="/reserve" className={styles.footer_link}>
-                Reserva tu viaje
+              <Link to="/Forum" className={styles.footer_link}>
+                Foro
               </Link>
-            ) : (
-              <Link to="/login" className={styles.footer_link}>
-                Reserva tu viaje
+              
+          </li>
+          <li>
+              <Link to="/contact" className={styles.footer_link}>
+                Contáctanos
               </Link>
-            )}
           </li>
 
           {/* Redes sociales */}

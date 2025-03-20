@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
-import styles from "./Footer.module.css";
+import styles from "./FooterAdmin.module.css";
 import ig from "../../assets/ig.png";
 import email from "../../assets/email.png";
 import tel from "../../assets/tel.png";
@@ -23,7 +23,7 @@ export default function Footer() {
             </Link>
           </li>
           <li>
-            <Link to="/comunity" className={styles.footer_link}>
+            <Link to="/community" className={styles.footer_link}>
               Comunidad
             </Link>
           </li>

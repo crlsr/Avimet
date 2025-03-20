@@ -11,12 +11,14 @@ const ToggleButton = ({design, info1, info2, onDisappear, onClick, isEditing, au
   const handleClick = () => {
       if (authenticated) {
         setEditing(!editing);
+      } else {
+        setEditing(false);
       }
 
       if (editing) {
-          onClick();
+        onClick();
       } else {
-          onDisappear();
+        onDisappear();
       }
   };
 

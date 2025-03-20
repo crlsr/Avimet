@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./CommentComponent.module.css";
 
 const StarIcon = () => (
@@ -16,16 +15,16 @@ const StarIcon = () => (
   </svg>
 );
 
-const CommentComponent = ({
-  avatarText,
-  userName,
-  comment,
-  rating,
-}) => {
+const CommentComponent = ({ userName, comment, picture, rating }) => {
   return (
     <div className={styles.commentCard}>
       <div className={styles.userInfoContainer}>
-        <div className={styles.avatar}>{avatarText}</div>
+        <div className={styles.avatar}>
+            <img
+              src={picture}
+              className={styles.avatarImage}
+            />
+        </div>
         <div className={styles.textContent}>
           <div className={styles.userName}>{userName}</div>
           <div className={styles.commentText}>{comment}</div>

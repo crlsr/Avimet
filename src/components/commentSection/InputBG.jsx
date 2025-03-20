@@ -2,7 +2,7 @@ import * as React from "react";
 import styles from "./InputBG.module.css";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
-import appFirebase from "../../../credenciales";
+import appFirebase from '../../../credenciales';
 import { doc, getFirestore, setDoc} from "firebase/firestore";
 import {v4 as uuidv4} from "uuid";
 
@@ -35,7 +35,6 @@ function ReviewInput({ value, placeholder, onChange }) {
       placeholder={placeholder}
       onChange={onChange}
       value={value}
-      aria-label="Write a review"
     />
   );
 }
@@ -76,28 +75,32 @@ function InputBG(destino) {
         alert("Porfavor, selecione un rating");
         return;
       }
-
+  
       try{
         const commentId = uuidv4();
         await setDoc(doc(db, "comments", commentId), {
-          autor: profile.name || "Anonymous", // Add this line to ensure the autor field has a valid value
+          autor: profile.name,
           autor_id: profile.uid,
           comment : review,
+          picture : profile.profilePicture || null,
           stars: rating,
           destino: destino.destino,
           CreationDate: new Date(),
         });
         console.log("Mandando comentario:", { rating, review });
         handleCancel();
+  
+        const scrollPosition = window.scrollY;
+        window.location.reload();
+        window.scrollTo(0, scrollPosition);
+        window.scrollTo(0, document.body.scrollHeight);
       } catch(error){
         console.error("Error al almacenar el comentario:", error);
       }
-      // Here you would typically send the data to your backend
     } else{
       navigate("./Login");
       handleCancel();
     }
-    
   };
 
   const handleCancel = () => {

@@ -80,8 +80,8 @@ const Community = () => {
                         ))}
                     </div>
                 </div>
-                <div className={styles.students}>
 
+                <div className={styles.students}>
                     <div className = {styles.top}> 
                         <h2> Estudiantes </h2>
                         <p> {estudiantes.length === 0 ? 'No hay estudiantes registrados' : 'Estudiantes: ' + estudiantes.length} </p>

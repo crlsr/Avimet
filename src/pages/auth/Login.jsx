@@ -10,7 +10,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 import appFirebase from "../../../credenciales";
 import { getAuth, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import { getFirestore, doc, getDoc, collection, query, where, getDocs } from "firebase/firestore";
+import { getFirestore, doc, getDoc} from "firebase/firestore";
 
 import {
   authProviders,
@@ -81,55 +81,42 @@ const Login = () => {
         return;
       }
       setLoading(true);
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      const userDoc = await getDoc(doc(db, "users", user.uid));
   
-      // Primero, verificamos si es un admin
-      const adminsRef = collection(db, "admins");
-      const q = query(adminsRef, where("admin", "==", email));
-      const querySnapshot = await getDocs(q);
+      if (userDoc.exists()) {
+        const userData = userDoc.data();
   
-      if (!querySnapshot.empty) {
-        // Es un admin
-        const adminDoc = querySnapshot.docs[0];
-        const adminData = adminDoc.data();
-  
-        if (adminData.password === password) {
-          // Contraseña correcta para admin
-          alert("Has iniciado sesión como administrador");
-          localStorage.setItem('adminSession', JSON.stringify({ email }));
-          setEmail("");
-          setPassword("");
-          setLoading(false);
-          navigation("/");
-          console.log("Admin logged in: " + email);          
-          return;
-        } else {
-          setError("Contraseña incorrecta para administrador");
-          setLoading(false);
-          return;
+        if (userData.userType === "admin") {
+          localStorage.setItem("adminSession", JSON.stringify({ email }));
         }
-      }
+        if (rememberMe) {
+          localStorage.setItem("rememberedUser", JSON.stringify({ email, password }));
+        } else {
+          localStorage.removeItem("rememberedUser");
+        }
   
-      // Si no es admin, procedemos con la autenticación normal de usuario
-      const user = await signInWithEmailAndPassword(auth, email, password);
-      if (rememberMe) {
-        localStorage.setItem('rememberedUser', JSON.stringify({ email, password }));
+        setEmail("");
+        setPassword("");
+        setLoading(false);
+        navigation("/");
       } else {
-        localStorage.removeItem('rememberedUser');
+        setError("Usuario no registrado en la base de datos");
+        setLoading(false);
+        await auth.signOut();
       }
-      setEmail("");
-      setPassword("");
-      setLoading(false);
-      navigation("/");
     } catch (error) {
       setLoading(false);
-      if (error.message === "Firebase: Error (auth/invalid-credential).") {
+      if (error.message.includes("auth/invalid-credential")) {
         setError("Usuario no existente. Email o contraseña inválida");
-      } else if (error.message === "Firebase: Error (auth/network-request-failed).") {
+      } else if (error.message.includes("auth/network-request-failed")) {
         setError("Opss. Revise su conexión a Internet");
       }
       console.log(error.message);
     }
   };
+  
 
   return (
     <div className="auth-container">

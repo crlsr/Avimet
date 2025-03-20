@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { UserContext } from '../../context/UserContext';
+import { useNavigate } from 'react-router-dom';
 import styles from './Profile.module.css';
 import global from "../../global.module.css";
 import default_picture from "../../assets/no-profile-picture.png";
@@ -10,8 +11,11 @@ import {doc, updateDoc} from "firebase/firestore";
 import TarjetaDestinos from "../../components/TarjetaDestinos/TarjetaDestinos";
 import { getUserReservations, getDestinationById } from '../../services/reservationService';
 
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+
 export default function Profile() {
-    const { profile } = useContext(UserContext);
+    const { profile, logged } = useContext(UserContext);
+    const navigation = useNavigate();
     const phoneRegex = /^\+58-\d{4}-\d{3}-\d{4}$/;
     const emailRegex = /^[a-zA-Z0-9._%+-]+@correo\.unimet\.edu\.ve$/;
 
@@ -31,8 +35,13 @@ export default function Profile() {
     const [uploadingPic, setUploadingPic] = useState(false);
     const [destinations, setDestinations] = useState([]);
     const [imageUrls, setImageUrls] = useState([]);
+    const [passwordVisible, setPasswordVisible] = useState(false);
 
     useEffect(() => {
+        if (!logged) {
+            navigation('/login');
+        }
+
         setName(profile.name || '');
         setEmail(profile.email || '');
         setPhone(profile.phone || '');
@@ -42,13 +51,17 @@ export default function Profile() {
         setEditable(false);
         setEditPassword(false);
         setIsEditing(false);
+        setPasswordVisible(false);
+        console.log('Profile updated:', profile);
     }, [profile]);
 
     useEffect(() => {
         const fetchReservations = async () => {
-            const reservations = await getUserReservations(profile.uid);
-            console.log('User reservations:', reservations);
-            setDestinations(reservations);
+            if (profile && profile.uid) {
+                const reservations = await getUserReservations(profile.uid);
+                console.log('User reservations:', reservations);
+                setDestinations(reservations);
+            }
         };
         fetchReservations();
     }, [profile]);
@@ -172,6 +185,7 @@ export default function Profile() {
             console.log(error);
             setError(error.message);
             if (error.message.includes("auth/email-already-in-use")) {
+
                 setError("El correo ya está en uso");
             } else if (error.message.includes("auth/network-request-failed")) {
                 setError("Oops. Revise su conexión a Internet");
@@ -204,10 +218,13 @@ export default function Profile() {
         setFunction(event.target.value);
     };
 
-    const editAction = () => {
+    const editAction = () => {; 
         setLinkToVisible(true);
         setEditable(true);
-        setEditPassword(profile.user && profile.user.provider === 'email');
+        if (profile.provider == 'email'){
+            setEditPassword(true);
+            setPasswordVisible(true);
+        }
         setIsEditing(true);
         console.log('editando');
     };
@@ -220,6 +237,7 @@ export default function Profile() {
             setEditable(true);
             setIsEditing(true);
             setAuthenticated(false);
+            setEditPassword(true)
             console.log('Authentication failed, data not saved');
             return;
         }
@@ -227,8 +245,10 @@ export default function Profile() {
         setLinkToVisible(false);
         setEditable(false);
         setIsEditing(false);
+        setEditPassword(false)
         setAuthenticated(true);
         setError(null);
+        setPasswordVisible(false)
         console.log('guardado');
     };
 
@@ -284,7 +304,7 @@ export default function Profile() {
                         value={password}
                         define_class={styles.inputField}
                         design={styles.passwordInput}
-                        input_type='password'
+                        input_type= {passwordVisible ? "text" : "password"}
                         input_placeholder={profile.password || 'Introduzca una nueva contraseña'}
                         input_id='password'
                         editing={editPassword}
@@ -326,6 +346,16 @@ export default function Profile() {
             <div className={styles.destinationContainer}>
                 <h1 className={styles.titleVariant}>
                     <span className={styles.firstPart}>Mis</span> destinos
+                </h1>
+                <div className={styles.destinationBox}>
+                    <div>
+                        {getResults()}
+                    </div>
+                </div>
+            </div>
+            <div className={styles.destinationContainer}>
+                <h1 className={styles.titleVariant}>
+                    <span className={styles.firstPart}>Mis</span> favoritos
                 </h1>
                 <div className={styles.destinationBox}>
                     <div>

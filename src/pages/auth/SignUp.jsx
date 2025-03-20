@@ -152,7 +152,6 @@ const SignUp = () => {
       const googleUser = await googleSignUp();
       const userDoc = await getDoc(doc(db, "users", googleUser.user.uid));
       if (userDoc.exists()) {
-        setLoading(false);
         setError("El usuario ya está registrado. Por favor, inicie sesión.");
         await auth.signOut();
       } else {
@@ -169,13 +168,13 @@ const SignUp = () => {
           provider: "google",
           
         });
-        setLoading(false);
         navigation("/");
       }
     } catch (error) {
-      setLoading(false);
       console.log(error);
       setError(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
