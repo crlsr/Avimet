@@ -1,10 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext} from 'react';
 import styles from './Postulacion.module.css'; // Importamos los estilos
 import { collection, query, where, getDocs } from "firebase/firestore";
 import appFirebase from "../../../credenciales";
 import { getFirestore } from "firebase/firestore";
 import emailjs from 'emailjs-com'; 
 import { UserContext } from '../../context/UserContext';
+import CustomAlert from '../common/CustomAlert';
+
 
 const db = getFirestore(appFirebase);
 
@@ -12,6 +14,13 @@ const Postulacion = ({ NombreDest }) => {
   const { profile } = useContext(UserContext); // Destructure profile from UserContext
   const role = profile ? profile["userType"] : null; // Ensure profile exists before accessing userType
   const name = profile ? profile["name"] : null; // Ensure profile exists before accessing userType
+  const [alertInfo, setAlertInfo] = useState({ show: false, message: '', type: 'info' });
+  const showAlert = (message, type = 'info') => {
+    setAlertInfo({ show: true, message, type });
+  };
+  const closeAlert = () => {
+    setAlertInfo({ ...alertInfo, show: false });
+  };
 
   const serviceID = 'wejfverijvfwoeirjfjrkqvw'; // Replace with your EmailJS service ID
   const templateID = 'template_57a9632'; // Replace with your EmailJS template ID
@@ -42,10 +51,10 @@ const Postulacion = ({ NombreDest }) => {
         emailjs.send(serviceID, templateID, templateParams, userID)
           .then((result) => {
             console.log(result.text);
-            alert('Correo enviado con éxito!');
+            showAlert('Correo enviado con éxito!', "warning");
           }, (error) => {
             console.log(error.text);
-            alert('Hubo un error al enviar el correo.');
+            showAlert('Hubo un error al enviar el correo.', "warning");
           });
       });
 
@@ -65,12 +74,21 @@ const Postulacion = ({ NombreDest }) => {
   }
 
   return (
+    <div>
     <button
       className={styles.postulacion_button } // Aplicamos la clase CSS
       onClick={handleClick} // Asignamos la función al evento onClick
     >
       Sé un guía!
     </button>
+    {alertInfo.show && (
+        <CustomAlert
+          onClose={closeAlert}
+          type={alertInfo.type}
+          message={alertInfo.message}
+        />
+      )}
+      </div>
   );
 };
 
