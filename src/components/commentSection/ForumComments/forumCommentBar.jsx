@@ -48,6 +48,7 @@ export function ForumCommentBar() {
       setReview("");
     }
   }
+  
 
   return (
     <section className={styles.inputContainer}>
