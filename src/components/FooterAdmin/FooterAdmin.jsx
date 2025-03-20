@@ -23,7 +23,7 @@ export default function Footer() {
             </Link>
           </li>
           <li>
-            <Link to="/comunity" className={styles.footer_link}>
+            <Link to="/community" className={styles.footer_link}>
               Comunidad
             </Link>
           </li>

@@ -1,14 +1,15 @@
-.postulacion-button {
+.postulacion_button {
     padding: 10px 20px;
     font-size: 16px;
-    color: #fff;
-    background-color: #007bff;
+    background-color: #a3e96c;
+    color: #003428;
+    
     border: none;
-    border-radius: 5px;
+    border-radius: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
   }
   
-  .postulacion-button:hover {
-    background-color: #0056b3;
+  .postulacion_button:hover {
+    color: #fff;
+    background-color: #003428; 
   }

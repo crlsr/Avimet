@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import './Postulacion.module.css'; // Importamos los estilos
+import styles from './Postulacion.module.css'; // Importamos los estilos
 import { collection, query, where, getDocs } from "firebase/firestore";
 import appFirebase from "../../../credenciales";
 import { getFirestore } from "firebase/firestore";
@@ -66,10 +66,10 @@ const Postulacion = ({ NombreDest }) => {
 
   return (
     <button
-      className="postulacion-button" // Aplicamos la clase CSS
+      className={styles.postulacion_button } // Aplicamos la clase CSS
       onClick={handleClick} // Asignamos la función al evento onClick
     >
-      Postulación
+      Sé un guía!
     </button>
   );
 };
