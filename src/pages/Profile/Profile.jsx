@@ -353,16 +353,6 @@ export default function Profile() {
                     </div>
                 </div>
             </div>
-            <div className={styles.destinationContainer}>
-                <h1 className={styles.titleVariant}>
-                    <span className={styles.firstPart}>Mis</span> favoritos
-                </h1>
-                <div className={styles.destinationBox}>
-                    <div>
-                        {getResults()}
-                    </div>
-                </div>
-            </div>
         </div>
     );
 }
