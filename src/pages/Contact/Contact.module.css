@@ -25,7 +25,12 @@
   
   .textarea {
     min-height: 150px;
-    resize: vertical;
+    resize: vertical;   
+     font-family:  "Roboto", sans-serif;;
+  }
+
+  .textarea::placeholder{
+    font-family:  "Roboto", sans-serif;;
   }
   
   .submitButton {

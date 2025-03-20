@@ -17,9 +17,8 @@ function Forum() {
         </h1>
         <hr className={styles.divider} />
       </div>
-
-      <ForumCommentBox />
-      <ForumCommentBar />
+        <ForumCommentBox />
+        <ForumCommentBar />
     </main>
   );
 }
