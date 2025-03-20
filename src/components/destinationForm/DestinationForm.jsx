@@ -262,7 +262,7 @@ export default function DestinationForm( { new: isNew, destinationObject, guides
                             <div className={styles.abtInputs}>
                                 <div className={styles.labelInput}>
                                     <label className={styles.label}>
-                                        Nombre del Destino
+                                        Distancia
                                     </label>
                                     <input
                                         className={`${global.input_field} ${styles.abt}`}
@@ -275,7 +275,7 @@ export default function DestinationForm( { new: isNew, destinationObject, guides
                                 </div>
                                 <div className={styles.labelInput}>
                                     <label className={styles.label}>
-                                        Nombre del Destino
+                                        Duración
                                     </label>
                                     <input
                                         className={`${global.input_field} ${styles.abt}`}
