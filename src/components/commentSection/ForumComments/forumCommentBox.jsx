@@ -9,6 +9,7 @@ import {
 import appFirebase from "../../../../credenciales";
 import styles from "./forumCommentBox.module.css";
 import CommentCard from "./forumCommentCard";
+import default_picture from "../../../assets/no-profile-picture.png";
 
 export function ForumCommentBox() {
   const [comments, setComments] = useState([]);
@@ -36,13 +37,21 @@ export function ForumCommentBox() {
     fetchComments()
   }, [db]);
 
+  const verifyProfile = (commentPicture) => {
+    if (commentPicture === null) {
+      return default_picture;
+    } else {
+      return commentPicture;
+    }
+  };
+
   return (
     <div className={styles.inputContainer}>
       <section className={styles.forumContent}>
         <article className={styles.content}>
           {comments.map((comment) => (
             <CommentCard 
-            avatarText={comment.autor[0]}
+            picture={verifyProfile(comment.picture)}
             userName={comment.autor}
             comment={comment.comment}
             />

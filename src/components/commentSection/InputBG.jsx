@@ -35,7 +35,6 @@ function ReviewInput({ value, placeholder, onChange }) {
       placeholder={placeholder}
       onChange={onChange}
       value={value}
-      aria-label="Write a review"
     />
   );
 }
@@ -80,9 +79,10 @@ function InputBG(destino) {
       try{
         const commentId = uuidv4();
         await setDoc(doc(db, "comments", commentId), {
-          autor: profile.name || "Anonymous", 
+          autor: profile.name,
           autor_id: profile.uid,
           comment : review,
+          picture : profile.profilePicture || null,
           stars: rating,
           destino: destino.destino,
           CreationDate: new Date(),

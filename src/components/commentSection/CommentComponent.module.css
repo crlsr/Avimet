@@ -19,9 +19,15 @@
   display: flex;
 }
 
+.avatarImage {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
 .avatar {
   color: #fff;
-  background: #d3d3d3;
   /*
     url(https://cdn.builder.io/api/v1/image/assets/TEMP/eb7c6afc0a3df6fcebea361baa4a29860ad700ce?placeholderIfAbsent=true)
     50% / cover no-repeat;
@@ -41,6 +47,7 @@
 }
 
 .textContent {
+  margin-top: 3%;
   flex-direction: column;
   flex: 1 0 0;
   align-items: flex-start;
@@ -87,6 +94,11 @@
   }
   .commentText {
     max-width: 400px;
+  }
+
+  .avatarImage {
+    width: 30px;
+    height: 30px;
   }
 }
 

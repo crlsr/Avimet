@@ -8,7 +8,7 @@
 
 @media (width <=640px) {
   .inputContainer {
-    flex-direction: column;
+      flex-direction: column;
   }
 }
 
@@ -33,11 +33,11 @@
 
 @media (width <=640px) {
   .inputField {
-    width: 100%;
+      width: 100%;
   }
 
   .actionArea {
-    align-self: flex-end;
+      align-self: flex-end;
   }
 }
 
@@ -50,24 +50,21 @@
   cursor: pointer;
   border-radius: 50%;
   transition: all 0.2s ease-in-out;
-  background-color: #003428;
+  background-color: #33511d;
 }
 
 .iconButton:hover {
-  background-color: #a3e96c;
-  color: #003428;
+  background-color: rgba(163, 233, 108, 0.1);
 }
 
 .iconButton:focus {
-  outline: 2px solid #003428;
+  outline: 2px solid #33511d;
   outline-offset: 2px;
 }
 
-.iconButton:hover .paper-plane-icon{
-    color: #003428;
-}
+
 .iconButton :global(.paper-plane-icon) {
   width: 24px;
   height: 24px;
-  color: #fff;
+  color: #a3e96c;
 }

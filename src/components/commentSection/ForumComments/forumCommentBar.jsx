@@ -32,18 +32,18 @@ export function ForumCommentBar() {
         await setDoc(doc(db, "comments", commentId), {
           autor: profile.name,
           autor_id: profile.uid,
+          picture: profile.profilePicture || null,
           comment: review,
           destino: "Foro",
           CreationDate: new Date(),
         });
         console.log("Mandando comentario:", {review}, "de foro");
-        window.location.reload();
         setReview("");
       } catch(error){
         console.log("Error", {error}, " al querer enviar el mensaje");
       }
     } else{
-      navigate("../login");
+      navigate("./Login");
       setReview("");
     }
   }
