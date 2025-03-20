@@ -39,7 +39,7 @@ function CommentBox({ destino }) {
   }, [db, destino]);
 
     const verifyProfile = (commentPicture) => {
-      if (commentPicture === null) {
+      if (commentPicture === null ) {
         return default_picture;
       } else {
         return commentPicture;
