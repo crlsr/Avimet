@@ -25,7 +25,6 @@ const UserProvider = ({ children }) => {
           }
 
           setProfile(docSnap.data());
-          console.log(docSnap.data());
           setLogged(true);
         } catch (error) {
           console.log(error);

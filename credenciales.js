@@ -32,7 +32,14 @@ const providerFacebook = new FacebookAuthProvider();
 //Supabase perfiles
 const supabaseUrl = 'https://uwodgmgxyjbphknsqjbv.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV3b2RnbWd4eWpicGhrbnNxamJ2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE1NTY1NjEsImV4cCI6MjA1NzEzMjU2MX0.mv3cq8zA--BqfkAjxX18yX87OrfNh9609eeV2n2Ltlk';
+// const supabaseUrl = 'https://bdlwhmwwphszmbapjvhj.supabase.co';
+// const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJkbHdobXd3cGhzem1iYXBqdmhqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE1NDQ3MjEsImV4cCI6MjA1NzEyMDcyMX0.GQv9B9HQUwLG5uDikFtprhP6RhrAwA7O-KBCyj7leLo';
 const supabaseProfiles = createClient(supabaseUrl, supabaseKey);
+
+
+/* NEXT_PUBLIC_SUPABASE_URL=https://bdlwhmwwphszmbapjvhj.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJkbHdobXd3cGhzem1iYXBqdmhqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE1NDQ3MjEsImV4cCI6MjA1NzEyMDcyMX0.GQv9B9HQUwLG5uDikFtprhP6RhrAwA7O-KBCyj7leLo */
+
 
 // Acceder a firestore
 const db = getFirestore(appFirebase);

@@ -7,9 +7,6 @@ const withAuthorization = (WrappedComponent, allowedRoles) => {
         const { logged, profile } = useContext(UserContext);
         const navigate = useNavigate();
 
-        console.log('logged', logged);
-        console.log('profile', profile);
-
         useEffect(() => {
             const checkAuthorization = async () => {
                 if (!logged) {

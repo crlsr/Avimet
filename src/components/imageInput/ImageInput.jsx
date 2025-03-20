@@ -2,8 +2,7 @@ import React from 'react'
 import './ImageInput.css'
 
 export default function ImageInput( {className, file, setFile, inputId} ) {
-    // const [file , setFile] = React.useState('')
-    const [image , setImage] = React.useState('')
+    const [image , setImage] = React.useState(file ? file : '')
 
     var labelClass = ''
 
@@ -15,14 +14,10 @@ export default function ImageInput( {className, file, setFile, inputId} ) {
         labelClass = 'bottomLabel'
     }
 
-    console.log(className)
-
-
     React.useEffect(() => {
         if (file) {
-            const objectUrl = URL.createObjectURL(file)
+            const objectUrl = typeof file == 'object' ? URL.createObjectURL(file) : file;
             setImage(objectUrl)
-            console.log(image)
         }
             
     }, [file])
@@ -39,7 +34,7 @@ export default function ImageInput( {className, file, setFile, inputId} ) {
                 id={inputId}
                 accept="image/*"
                 className="visually-hidden"
-                onChange={(e) => {console.log(e.target.files); setFile(e.target.files[0])}}
+                onChange={(e) => setFile(e.target.files[0])}
             />
         </div>
     )

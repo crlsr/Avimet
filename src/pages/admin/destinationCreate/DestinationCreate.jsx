@@ -10,8 +10,6 @@ export default function DestinationCreate() {
     const [guides, setGuides] = React.useState([]);
     const [categories, setCategories] = React.useState([]);
 
-    
-
     React.useEffect(() => {
 
         async function getGuides() {
@@ -23,7 +21,6 @@ export default function DestinationCreate() {
             const guidesList = docSnap.docs.map((doc) => ({
                 ...doc.data(), 
               }));
-            console.log('guides data', guidesList)
     
             setGuides(guidesList);
             
@@ -38,7 +35,6 @@ export default function DestinationCreate() {
             const categoriesList = docSnap.docs.map((doc) => ({
                 ...doc.data(), 
             }));
-            console.log('categories data', categoriesList)
     
             setCategories(categoriesList);
     

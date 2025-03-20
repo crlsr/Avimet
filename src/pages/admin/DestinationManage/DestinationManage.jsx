@@ -128,7 +128,7 @@ export default function DestinationSearch() {
       <div className={styles.destinationContainer}>
         <DestinationEdit
           titulo={"Nueva excursión"}
-          dirreccion={"/create-new-destination"}
+          direccion={"/create-new-destination"}
           new={true}
         />
         {filteredDestinations.length > 0 ? (

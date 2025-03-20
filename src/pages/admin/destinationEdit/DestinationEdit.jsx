@@ -9,7 +9,10 @@ const db = getFirestore(appFirebase);
 
 export default function DestinationEdit() {
     const params = useParams()
-    const [destination, setDestination] = React.useState(null)
+    const [destination, setDestination] = React.useState(null);
+    const [guides, setGuides] = React.useState([]);
+    const [categories, setCategories] = React.useState([]);
+    const [filters, setFilters] = React.useState([]);
 
     async function getDestination() {
         
@@ -23,33 +26,54 @@ export default function DestinationEdit() {
 
     }
 
-    async function getGuides() {
-            
-        const guidesDocRef = query(collection(db, "users"), where("userType", "==", "guia"));
-        
-        const docSnap = await getDocs(guidesDocRef);
-
-        const guidesList = docSnap.docs.map((doc) => ({
-            ...doc.data(), 
-            }));
-
-        return guidesList
-        
-    }
+    React.useEffect(() => {
     
-    async function getCategories() {
+            async function getGuides() {
+                
+                const guidesDocRef = query(collection(db, "users"), where("userType", "==", "guia"));
+                
+                const docSnap = await getDocs(guidesDocRef);
         
-        const categoriesDocRef = collection(db, "tags");
+                const guidesList = docSnap.docs.map((doc) => ({
+                    ...doc.data(), 
+                  }));
         
-        const docSnap = await getDocs(categoriesDocRef);
+                setGuides(guidesList);
+                
+            }
+            
+            async function getCategories() {
+                
+                const categoriesDocRef = collection(db, "tags");
+                
+                const docSnap = await getDocs(categoriesDocRef);
+                
+                const categoriesList = docSnap.docs.map((doc) => ({
+                    ...doc.data(), 
+                }));
         
-        const categoriesList = docSnap.docs.map((doc) => ({
-            ...doc.data(), 
-        }));
+                setCategories(categoriesList);
+        
+            }
 
-        return categoriesList;
+                async function getFilters() {
+                    
+                    const filtersDocRef = collection(db, "filtrospordestino");
+                    
+                    const docSnap = await getDocs(filtersDocRef);
+                    
+                    const filtersList = docSnap.docs.map((doc) => ({
+                        ...doc.data(), 
+                    }));
+            
+                    setFilters(filtersList);
+            
+                }
 
-    }
+            getFilters()
+            getGuides();
+            getCategories();
+        }, []);
 
     React.useEffect(() => {
         getDestination()
@@ -57,12 +81,13 @@ export default function DestinationEdit() {
 
     return(
     <div className={styles.container}>
-        <h1 className={styles.title}>Crear <span className={styles.secondPart}>Destino</span></h1>
+        <h1 className={styles.title}>Editar <span className={styles.secondPart}>Destino</span></h1>
         <DestinationForm
             new={false}
             destinationObject={destination}
-            guides={getGuides()}
-            categories={getCategories()}
+            guides={guides ?? []}
+            categories={categories ?? []}
+            filters={filters ?? []}
         />
     </div>
     )

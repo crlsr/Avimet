@@ -120,7 +120,6 @@ const Login = () => {
       setPassword("");
       setLoading(false);
       navigation("/");
-      console.log(user.user.email);
     } catch (error) {
       setLoading(false);
       if (error.message === "Firebase: Error (auth/invalid-credential).") {
