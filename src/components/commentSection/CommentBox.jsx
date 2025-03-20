@@ -9,6 +9,7 @@ import {
   where,
 } from "firebase/firestore";
 import appFirebase from "../../../credenciales";
+import default_picture from "../../assets/no-profile-picture.png";
 
 
 function CommentBox({ destino }) {
@@ -37,6 +38,14 @@ function CommentBox({ destino }) {
     fetchComments();
   }, [db, destino]);
 
+    const verifyProfile = (commentPicture) => {
+      if (commentPicture === null) {
+        return default_picture;
+      } else {
+        return commentPicture;
+      }
+    };
+
   return (
     <section className={styles.container}>
       <article className={styles.content}>
@@ -44,7 +53,7 @@ function CommentBox({ destino }) {
           <CommentComponent
             userName={comment.autor}
             comment={comment.comment}
-            picture={comment.picture}
+            picture={verifyProfile(comment.picture)}
             rating={comment.stars}
           />
         ))}
