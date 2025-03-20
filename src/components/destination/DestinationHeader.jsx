@@ -40,6 +40,7 @@ export default function DestinationHeader({ titulo, subtitulo, image, difficulty
                 titulo={titulo}
                 botonTexto="Reservar"
                 onButtonClick={handleBooking}
+                slug={slug}
             />
         </div>
     )
