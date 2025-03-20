@@ -39,6 +39,7 @@ export function ForumCommentBar() {
         });
         console.log("Mandando comentario:", {review}, "de foro");
         setReview("");
+        window.location.reload();
       } catch(error){
         console.log("Error", {error}, " al querer enviar el mensaje");
       }
