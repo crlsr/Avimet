@@ -24,6 +24,24 @@
     color: #003428; 
   }
 
+  .btn-container {
+    display: flex;
+    flex-flow: row;
+    gap: 10px;
+  }
+
+  .likebtn {
+    background-color: transparent;
+  }
+
+  .liked {
+    background-color:#003428;
+  }
+
+ .not-liked {
+    fill: #003428;
+ }
+
   @media (width<=650px) {
     .titulo {
       font-size: 80px;

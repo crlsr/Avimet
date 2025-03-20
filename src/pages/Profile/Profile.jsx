@@ -7,7 +7,7 @@ import default_picture from "../../assets/no-profile-picture.png";
 import ReadModifyInput from '../../components/ReadModifyInput/ReadModifyInput';
 import ToggleButton from '../../components/ToggleButton/ToggleButton';
 import {supabaseProfiles, db} from "../../../credenciales";
-import {doc, updateDoc} from "firebase/firestore";
+import {doc, updateDoc, query, where, collection, getDocs} from "firebase/firestore";
 import TarjetaDestinos from "../../components/TarjetaDestinos/TarjetaDestinos";
 import { getUserReservations, getDestinationById } from '../../services/reservationService';
 
@@ -36,6 +36,7 @@ export default function Profile() {
     const [destinations, setDestinations] = useState([]);
     const [imageUrls, setImageUrls] = useState([]);
     const [passwordVisible, setPasswordVisible] = useState(false);
+    const [likedDestinations, setLikedDestinations] = useState([]);
 
     useEffect(() => {
         if (!logged) {
@@ -64,6 +65,9 @@ export default function Profile() {
             }
         };
         fetchReservations();
+
+        getLikes();
+
     }, [profile]);
 
     useEffect(() => {
@@ -109,6 +113,39 @@ export default function Profile() {
             return <h1>No hay destinos disponibles</h1>;
         }
     };
+
+    console.log(likedDestinations);
+
+    async function getLikes() {
+        const uid = profile.uid
+        const docSnap = await getDocs(query(collection(db, "likes"), where("uid", "==", uid)));
+
+        const likesList = docSnap.docs.map((doc) => ({
+            ...doc.data(), 
+        }));
+        const dslugs = likesList.map((like) => like.dslug);
+        const destDocSnap = await getDocs(query(collection(db, "destinations"), where("slug", "in", dslugs)));
+        const destList = destDocSnap.docs.map((doc) => ({
+            ...doc.data(), 
+        }));
+        if (destList.length > 0) {
+            setLikedDestinations(
+                destList.map((dest, index) => (
+                    <TarjetaDestinos
+                        diseñoTarjeta={styles.destinationItem}
+                        diseñoBoton={styles.destinationButton}
+                        diseñoImagen={styles.destinationImage}
+                        key={index}
+                        imagen={dest.images.bannerUrl}
+                        titulo={dest.destination}
+                        colorClase={"lightgreen"}
+                        direccion={`/destinations/${dest.slug}`}
+                    />
+                )
+            ))
+        }
+
+    }
 
     const getFirstImageOfDestination = async (destinationId) => {
         try {
@@ -252,7 +289,7 @@ export default function Profile() {
         console.log('guardado');
     };
 
-    getFirstImageOfDestination(destinations[0]?.destinationId);
+    /* getFirstImageOfDestination(destinations[0]?.destinationId); */
 
     return (
         <div className={styles.profileContainer}>
@@ -350,6 +387,16 @@ export default function Profile() {
                 <div className={styles.destinationBox}>
                     <div>
                         {getResults()}
+                    </div>
+                </div>
+            </div>
+            <div className={styles.destinationContainer}>
+                <h1 className={styles.titleVariant}>
+                    <span className={styles.firstPart}>Mis</span> favoritos
+                </h1>
+                <div className={styles.destinationBox}>
+                    <div>
+                        {likedDestinations}
                     </div>
                 </div>
             </div>
